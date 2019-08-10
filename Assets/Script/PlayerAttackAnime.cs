@@ -43,7 +43,7 @@ public class PlayerAttackAnime : MonoBehaviour
     {
 
         // 接地している場合
-        if (PC.GetIsGround())
+        if (animator.GetBool("isGround"))
         {
             // 1コンボ
             if (Input.GetKeyDown(KeyCode.Z)&&!isComboing)

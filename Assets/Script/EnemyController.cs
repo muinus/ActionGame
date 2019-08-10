@@ -13,6 +13,8 @@ public class EnemyController : MonoBehaviour
     bool isdamage;
     string state;
 
+    public GameObject BattleEvent;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -20,6 +22,8 @@ public class EnemyController : MonoBehaviour
         player = GameObject.Find("Player");
         animator = transform.root.GetComponent<Animator>();
         isdamage = false;
+
+        BattleEvent = GameObject.Find("Event1");
     }
 
     // Update is called once per frame
@@ -48,6 +52,11 @@ public class EnemyController : MonoBehaviour
         else if (HPbar.value <= 0)
         {
             state = "Die";
+
+            if (BattleEvent.GetComponent<BattleEvent>().GetIsBattleEvent())
+            {
+                BattleEvent.GetComponent<BattleEvent>().DecreaseEnemyCounter();
+            }
         }
         else
         {

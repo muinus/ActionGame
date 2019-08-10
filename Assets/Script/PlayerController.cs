@@ -12,7 +12,6 @@ public class PlayerController : MonoBehaviour
     float runForce = 30.0f;       // 走り始めに加える力
     float runSpeed = 0.5f;       // 走っている間の速度
     float runThreshold = 2.0f;   // 速度切り替え判定のための閾値
-    bool isGround = true;        // 地面と接地しているか管理するフラグ
     bool isDoubleJump = false;   // ダブルジャンプをしているか管理するフラグ
     int key = 0;                 // 左右の入力管理
     int dJumpCount = 0;
@@ -27,6 +26,7 @@ public class PlayerController : MonoBehaviour
     {
         this.rb = GetComponent<Rigidbody2D>();
         this.animator = GetComponent<Animator>();
+        animator.SetBool("isGround",true);
     }
 
     void Update()
@@ -45,7 +45,7 @@ public class PlayerController : MonoBehaviour
             key = 1;
         if (Input.GetKey(KeyCode.LeftArrow))
             key = -1;
-        if (Input.GetKeyDown(KeyCode.Space)&&(!isGround)&&(state != "DJUMP"))
+        if (Input.GetKeyDown(KeyCode.Space)&&(!animator.GetBool("isGround")) &&(state != "DJUMP"))
             isDoubleJump = true;
     }
 
@@ -54,12 +54,11 @@ public class PlayerController : MonoBehaviour
         // 空中にいるかどうかの判定。上下の速度(rigidbody.velocity)が一定の値を超えている場合、空中とみなす
         if (Mathf.Abs(rb.velocity.y) > jumpThreshold)
         {
-            isGround = false;
             animator.SetBool("isGround", false);
         }
 
         // 接地している場合
-        if (isGround)
+        if (animator.GetBool("isGround"))
         {
             // 走行中
             if (key == 1)
@@ -169,7 +168,7 @@ public class PlayerController : MonoBehaviour
             dJumpCount = 1;
         }
         // 接地している時にSpaceキー押下でジャンプ
-        if (isGround)
+        if (animator.GetBool("isGround"))
         {
             if (animator.GetCurrentAnimatorStateInfo(0).IsName("AirAttack3_end"))
                 return;
@@ -178,7 +177,7 @@ public class PlayerController : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Space))
             {
                 this.rb.AddForce(transform.up * this.jumpForce);
-                isGround = false;
+                animator.SetBool("isGround", false);
             }
         }
 
@@ -203,36 +202,37 @@ public class PlayerController : MonoBehaviour
 
     }
 
-    //着地判定
-    void OnTriggerEnter2D(Collider2D col)
-    {
+    ////着地判定
+    //void OnTriggerEnter2D(Collider2D col)
+    //{
 
-        if (col.gameObject.tag == "Ground")
-        {
-            if (!isGround)
-            {
-                isGround = true;
-                animator.SetBool("isGround", true);
-            }
-        }
-    }
-    void OnTriggerStay2D(Collider2D col)
-    {
-        if (col.gameObject.tag == "Ground")
-        {
-            if (!isGround)
-            {
-                isGround = true;
-                animator.SetBool("isGround", true);
-            }
-        }
-    }
+    //    if (col.gameObject.tag == "Ground")
+    //    {
+    //        if (!isGround)
+    //        {
+    //            isGround = true;
+    //            animator.SetBool("isGround", true);
+    //            Debug.Log(col.transform.gameObject.name);
+    //        }
+    //    }
+    //}
+    //void OnTriggerStay2D(Collider2D col)
+    //{
+    //    if (col.gameObject.tag == "Ground")
+    //    {
+    //        if (!isGround)
+    //        {
+    //            isGround = true;
+    //            animator.SetBool("isGround", true);
+    //        }
+    //    }
+    //}
 
-    //Getter
-    public bool GetIsGround()
-    {
-        return isGround;
-    }
+    ////Getter
+    //public bool GetIsGround()
+    //{
+    //    return isGround;
+    //}
 
 
 }

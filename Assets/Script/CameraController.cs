@@ -6,6 +6,10 @@ public class CameraController : MonoBehaviour
 {
     public GameObject player;
 
+    public GameObject BattleEvent; 
+
+    
+
     // Start is called before the first frame update
     void Start()
     {
@@ -15,6 +19,9 @@ public class CameraController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.position = new Vector3(player.transform.position.x,player.transform.position.y+1.0f,-10);
+        if (!BattleEvent.GetComponent<BattleEvent>().GetIsBattleEvent())
+        {
+            transform.position = new Vector3(player.transform.position.x, player.transform.position.y + 0.75f, -1);
+        }
     }
 }
