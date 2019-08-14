@@ -7,7 +7,7 @@ public class PlayerController : MonoBehaviour
     Rigidbody2D rb;
     Animator animator;
 
-    float jumpForce = 390.0f;       // ジャンプ時に加える力
+    float jumpForce = 420.0f;       // ジャンプ時に加える力
     float jumpThreshold = 2.0f;    // ジャンプ中か判定するための閾値
     float runForce = 30.0f;       // 走り始めに加える力
     float runSpeed = 0.5f;       // 走っている間の速度
@@ -161,9 +161,9 @@ public class PlayerController : MonoBehaviour
 
         if (state == "DJUMP"&&dJumpCount==0)
         {
-            if (rb.velocity.y < 0)
-                rb.velocity=new Vector2(0, 3);
-            this.rb.AddForce(transform.up * this.jumpForce*0.5f);
+            //if (rb.velocity.y <= 0)
+                rb.velocity=new Vector2(0, 2);
+            this.rb.AddForce(new Vector3(0, 1, 0) * this.jumpForce*0.5f);
             isDoubleJump = false;
             dJumpCount = 1;
         }
@@ -176,7 +176,7 @@ public class PlayerController : MonoBehaviour
             dJumpCount = 0;
             if (Input.GetKeyDown(KeyCode.Space))
             {
-                this.rb.AddForce(transform.up * this.jumpForce);
+                this.rb.AddForce(new Vector3(0, 1, 0) * this.jumpForce);
                 animator.SetBool("isGround", false);
             }
         }

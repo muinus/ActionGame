@@ -23,7 +23,7 @@ public class EnemyController : MonoBehaviour
         animator = transform.root.GetComponent<Animator>();
         isdamage = false;
 
-        BattleEvent = GameObject.Find("Event1");
+        BattleEvent = GameObject.Find("BattleEventMaster");
     }
 
     // Update is called once per frame
@@ -42,6 +42,10 @@ public class EnemyController : MonoBehaviour
         if(animator.GetCurrentAnimatorStateInfo(0).IsName("Dead"))
         {
             Destroy(this.gameObject);
+            if (BattleEvent.GetComponent<BattleEventMaster>().GetIsBattleEvent())
+            {
+                BattleEvent.GetComponent<BattleEventMaster>().DecreaseEnemyCounter();
+            }
         }
         else if (isdamage)
         {
@@ -52,11 +56,6 @@ public class EnemyController : MonoBehaviour
         else if (HPbar.value <= 0)
         {
             state = "Die";
-
-            if (BattleEvent.GetComponent<BattleEvent>().GetIsBattleEvent())
-            {
-                BattleEvent.GetComponent<BattleEvent>().DecreaseEnemyCounter();
-            }
         }
         else
         {

@@ -13,13 +13,13 @@ public class CameraController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        BattleEvent = GameObject.Find("BattleEventMaster");
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (!BattleEvent.GetComponent<BattleEvent>().GetIsBattleEvent())
+        if (!BattleEvent.GetComponent<BattleEventMaster>().GetIsBattleEvent())
         {
             transform.position = new Vector3(player.transform.position.x, player.transform.position.y + 0.75f, -1);
         }
