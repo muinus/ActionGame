@@ -21899,7 +21899,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.035274506, y: 0.31991005}
+  m_Offset: {x: -0.019401312, y: 0.31991005}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -21910,7 +21910,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 12.226097, y: 1.1543245}
+  m_Size: {x: 11.686405, y: 1.1543245}
   m_EdgeRadius: 0
 --- !u!1 &980893251
 GameObject:
@@ -22787,7 +22787,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 736849736}
-  BattleEvent: {fileID: 943561293}
+  BattleEvent: {fileID: 1307241695}
 --- !u!1 &1379423505
 GameObject:
   m_ObjectHideFlags: 0
@@ -24308,12 +24308,12 @@ PrefabInstance:
     - target: {fileID: 1286844872515609816, guid: a93f28a55ac67ab419a62e1e60440edb,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 6.46
+      value: -8.32
       objectReference: {fileID: 0}
     - target: {fileID: 1286844872515609816, guid: a93f28a55ac67ab419a62e1e60440edb,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3.2
+      value: -8.9
       objectReference: {fileID: 0}
     - target: {fileID: 1286844872515609816, guid: a93f28a55ac67ab419a62e1e60440edb,
         type: 3}
