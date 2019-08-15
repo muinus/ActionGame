@@ -22,8 +22,8 @@ public class BattleEventMaster : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(GetIsBattleEvent());
-        Debug.Log("E;" + eventEndFlag);
+        //Debug.Log(GetIsBattleEvent());
+        //Debug.Log("E;" + eventEndFlag);
 
         if (isBattleEvent)
             if (eventEndFlag)
