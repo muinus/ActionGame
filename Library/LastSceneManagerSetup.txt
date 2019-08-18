@@ -1,5 +1,5 @@
 sceneSetups:
-- path: Assets/Stage6/Stage6.unity
+- path: Assets/TokukeFolder/Scene/Stage2/Stage2.unity
   isLoaded: 1
   isActive: 1
   isSubScene: 0
