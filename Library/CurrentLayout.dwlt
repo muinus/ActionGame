@@ -74,7 +74,7 @@ MonoBehaviour:
   m_MinSize: {x: 242, y: 444}
   m_MaxSize: {x: 4002, y: 8044}
   vertical: 1
-  controlID: 137
+  controlID: 127
 --- !u!114 &4
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -125,7 +125,7 @@ MonoBehaviour:
   m_MinSize: {x: 234, y: 494}
   m_MaxSize: {x: 10004, y: 14044}
   vertical: 1
-  controlID: 19
+  controlID: 49
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -176,7 +176,7 @@ MonoBehaviour:
   m_MinSize: {x: 476, y: 494}
   m_MaxSize: {x: 14006, y: 14044}
   vertical: 0
-  controlID: 18
+  controlID: 48
 --- !u!114 &8
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -201,7 +201,7 @@ MonoBehaviour:
   m_MinSize: {x: 753, y: 494}
   m_MaxSize: {x: 18008, y: 14044}
   vertical: 0
-  controlID: 158
+  controlID: 47
 --- !u!114 &9
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -418,20 +418,19 @@ MonoBehaviour:
     m_ShowAllHits: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Stage
+    - Assets/TokukeFolder/Scene/Stage4
   m_ViewMode: 0
   m_StartGridSize: 64
-  m_LastFolders:
-  - Assets/Stage6
+  m_LastFolders: []
   m_LastFoldersGridSize: -1
-  m_LastProjectPath: C:\Users\gonka\Documents\UnityProject\ActionGame
+  m_LastProjectPath: O:\UnityProjectsGitVer\honban2
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 6c320000
     m_LastClickedID: 12908
-    m_ExpandedIDs: 00000000c2290000be2a0000762d000034300000d030000044310000683300003a350000c035000076360000ca370000b0380000f0380000d23900002c3a0000b23a0000243b00005c3d00005e3d0000603d0000623d0000
+    m_ExpandedIDs: 00000000de33000004360000f8360000e0370000123d00009c3d0000063e00001a400000d44100005642000004430000384400000e4500004a450000044600007e460000ea460000c8470000ca470000cc470000ce470000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -456,10 +455,10 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
   m_AssetTreeState:
-    scrollPos: {x: 0, y: 0}
+    scrollPos: {x: 0, y: 138}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: ffffffff00000000c2290000be2a0000762d000034300000d030000044310000683300003a350000c035000076360000ca370000b0380000f0380000d23900002c3a0000b23a0000243b00005c3d00005e3d0000603d0000623d0000
+    m_ExpandedIDs: ffffffff00000000de33000004360000f8360000e0370000123d00009c3d0000063e00001a400000d44100005642000004430000384400000e4500004a450000044600007e460000ea460000c8470000ca470000cc470000ce4700002e480000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -579,9 +578,9 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: c23d0000
+      m_SelectedIDs: 34480000
       m_LastClickedID: 0
-      m_ExpandedIDs: 1cf6ffff88f6ffff8efbffff
+      m_ExpandedIDs: 76f4ffff68f6ffff
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -641,9 +640,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: -4.645433, y: 9.71681, z: -27.320312}
+    m_Target: {x: -3.5782456, y: -6.4474463, z: -30.852995}
     speed: 2
-    m_Value: {x: -4.645433, y: 9.71681, z: -27.320312}
+    m_Value: {x: -3.8230424, y: -6.4314923, z: -30.80632}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -676,9 +675,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
-    m_Target: 56.546215
+    m_Target: 12.374134
     speed: 2
-    m_Value: 54.11121
+    m_Value: 12.957209
   m_Ortho:
     m_Target: 1
     speed: 2
