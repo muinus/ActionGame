@@ -74,7 +74,7 @@ MonoBehaviour:
   m_MinSize: {x: 242, y: 444}
   m_MaxSize: {x: 4002, y: 8044}
   vertical: 1
-  controlID: 127
+  controlID: 141
 --- !u!114 &4
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -125,7 +125,7 @@ MonoBehaviour:
   m_MinSize: {x: 234, y: 494}
   m_MaxSize: {x: 10004, y: 14044}
   vertical: 1
-  controlID: 49
+  controlID: 91
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -176,7 +176,7 @@ MonoBehaviour:
   m_MinSize: {x: 476, y: 494}
   m_MaxSize: {x: 14006, y: 14044}
   vertical: 0
-  controlID: 48
+  controlID: 90
 --- !u!114 &8
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -201,7 +201,7 @@ MonoBehaviour:
   m_MinSize: {x: 753, y: 494}
   m_MaxSize: {x: 18008, y: 14044}
   vertical: 0
-  controlID: 47
+  controlID: 134
 --- !u!114 &9
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -423,14 +423,14 @@ MonoBehaviour:
   m_StartGridSize: 64
   m_LastFolders: []
   m_LastFoldersGridSize: -1
-  m_LastProjectPath: O:\UnityProjectsGitVer\honban2
+  m_LastProjectPath: C:\Users\gonka\Documents\UnityProject\ActionGame
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 6c320000
     m_LastClickedID: 12908
-    m_ExpandedIDs: 00000000de33000004360000f8360000e0370000123d00009c3d0000063e00001a400000d44100005642000004430000384400000e4500004a450000044600007e460000ea460000c8470000ca470000cc470000ce470000
+    m_ExpandedIDs: 00000000cc330000f2350000e6360000ce370000083d0000923d0000fc3d00004e3f000012400000cc410000504200000043000038440000104500004c4500000846000084460000f0460000d0470000d2470000d4470000d6470000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -455,10 +455,10 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
   m_AssetTreeState:
-    scrollPos: {x: 0, y: 138}
+    scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: ffffffff00000000de33000004360000f8360000e0370000123d00009c3d0000063e00001a400000d44100005642000004430000384400000e4500004a450000044600007e460000ea460000c8470000ca470000cc470000ce4700002e480000
+    m_ExpandedIDs: ffffffff00000000cc330000f2350000e6360000ce370000083d0000923d0000fc3d00004e3f000012400000cc410000504200000043000038440000104500004c4500000846000084460000f0460000d0470000d2470000d4470000d6470000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -578,9 +578,9 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 34480000
+      m_SelectedIDs: 4e3f0000
       m_LastClickedID: 0
-      m_ExpandedIDs: 76f4ffff68f6ffff
+      m_ExpandedIDs: 38f6ffff
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -642,7 +642,7 @@ MonoBehaviour:
   m_Position:
     m_Target: {x: -3.5782456, y: -6.4474463, z: -30.852995}
     speed: 2
-    m_Value: {x: -3.8230424, y: -6.4314923, z: -30.80632}
+    m_Value: {x: -3.5782456, y: -6.4474463, z: -30.852995}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -677,7 +677,7 @@ MonoBehaviour:
   m_Size:
     m_Target: 12.374134
     speed: 2
-    m_Value: 12.957209
+    m_Value: 12.374134
   m_Ortho:
     m_Target: 1
     speed: 2
