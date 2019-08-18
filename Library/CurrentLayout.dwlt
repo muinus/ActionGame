@@ -74,7 +74,11 @@ MonoBehaviour:
   m_MinSize: {x: 242, y: 444}
   m_MaxSize: {x: 4002, y: 8044}
   vertical: 1
+<<<<<<< HEAD
   controlID: 141
+=======
+  controlID: 91
+>>>>>>> bd2bfeed50bc7cabb3baf70052ca214cadefec67
 --- !u!114 &4
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -125,7 +129,11 @@ MonoBehaviour:
   m_MinSize: {x: 234, y: 494}
   m_MaxSize: {x: 10004, y: 14044}
   vertical: 1
+<<<<<<< HEAD
   controlID: 91
+=======
+  controlID: 114
+>>>>>>> bd2bfeed50bc7cabb3baf70052ca214cadefec67
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -201,7 +209,11 @@ MonoBehaviour:
   m_MinSize: {x: 753, y: 494}
   m_MaxSize: {x: 18008, y: 14044}
   vertical: 0
+<<<<<<< HEAD
   controlID: 134
+=======
+  controlID: 157
+>>>>>>> bd2bfeed50bc7cabb3baf70052ca214cadefec67
 --- !u!114 &9
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -418,7 +430,7 @@ MonoBehaviour:
     m_ShowAllHits: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/TokukeFolder/Scene/Stage4
+    - Assets/Stage/Stage4
   m_ViewMode: 0
   m_StartGridSize: 64
   m_LastFolders: []
@@ -430,7 +442,11 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 6c320000
     m_LastClickedID: 12908
+<<<<<<< HEAD
     m_ExpandedIDs: 00000000cc330000f2350000e6360000ce370000083d0000923d0000fc3d00004e3f000012400000cc410000504200000043000038440000104500004c4500000846000084460000f0460000d0470000d2470000d4470000d6470000
+=======
+    m_ExpandedIDs: 00000000c2290000be2a0000762d000036300000d230000046310000983200006c3300003e350000c43500007a360000d0370000b6380000f6380000d8390000323a0000b83a00002a3b0000aa3c0000ac3c0000ae3c0000b03c0000
+>>>>>>> bd2bfeed50bc7cabb3baf70052ca214cadefec67
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -455,10 +471,17 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
   m_AssetTreeState:
+<<<<<<< HEAD
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
     m_ExpandedIDs: ffffffff00000000cc330000f2350000e6360000ce370000083d0000923d0000fc3d00004e3f000012400000cc410000504200000043000038440000104500004c4500000846000084460000f0460000d0470000d2470000d4470000d6470000
+=======
+    scrollPos: {x: 0, y: 86}
+    m_SelectedIDs: 
+    m_LastClickedID: 0
+    m_ExpandedIDs: ffffffff00000000c2290000be2a0000762d000036300000d2300000463100006c3300003e350000c43500007a360000d0370000f6380000d8390000323a0000b83a00002a3b0000aa3c0000ac3c0000ae3c0000b03c0000
+>>>>>>> bd2bfeed50bc7cabb3baf70052ca214cadefec67
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -578,9 +601,15 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
+<<<<<<< HEAD
       m_SelectedIDs: 4e3f0000
       m_LastClickedID: 0
       m_ExpandedIDs: 38f6ffff
+=======
+      m_SelectedIDs: 98320000
+      m_LastClickedID: 0
+      m_ExpandedIDs: 8efbffff
+>>>>>>> bd2bfeed50bc7cabb3baf70052ca214cadefec67
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
