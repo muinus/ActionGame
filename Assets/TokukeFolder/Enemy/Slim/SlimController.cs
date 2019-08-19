@@ -66,7 +66,7 @@ public class SlimController : MonoBehaviour
         {
             state = "Damage";
             isdamage = false;
-            Debug.Log(isdamage);
+            //Debug.Log(isdamage);
         }
         else if (HPbar.value <= 0)
         {
