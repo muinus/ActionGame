@@ -202,37 +202,33 @@ public class PlayerController : MonoBehaviour
 
     }
 
-    ////着地判定
-    //void OnTriggerEnter2D(Collider2D col)
-    //{
+    public void SetRb(Rigidbody2D rb)
+    {
+        this.rb = rb;
+    }
 
-    //    if (col.gameObject.tag == "Ground")
-    //    {
-    //        if (!isGround)
-    //        {
-    //            isGround = true;
-    //            animator.SetBool("isGround", true);
-    //            Debug.Log(col.transform.gameObject.name);
-    //        }
-    //    }
-    //}
-    //void OnTriggerStay2D(Collider2D col)
-    //{
-    //    if (col.gameObject.tag == "Ground")
-    //    {
-    //        if (!isGround)
-    //        {
-    //            isGround = true;
-    //            animator.SetBool("isGround", true);
-    //        }
-    //    }
-    //}
+    public Rigidbody2D GetRb()
+    {
+        return rb;
+    }
 
-    ////Getter
-    //public bool GetIsGround()
-    //{
-    //    return isGround;
-    //}
+    public void SetAnimator(Animator animator)
+    {
+        this.animator = animator;
+    }
 
+    public Animator GetAnimator()
+    {
+        return animator;
+    }
 
+    public void SetState(string state)
+    {
+        this.state = state;
+    }
+
+    public string GetState()
+    {
+        return state;
+    }
 }
