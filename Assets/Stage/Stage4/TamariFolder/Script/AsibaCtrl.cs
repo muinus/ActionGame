@@ -9,10 +9,11 @@ public class AsibaCtrl : MonoBehaviour
     //Rigidbody2D rb;
     public GameObject moveBedMaster;
 
-    private int debugCounter = 0;
-    private int debugCounter2 = 0;
+
     Vector2 movingVector;//足場の移動ベクトルを代入するところ
-    
+    float leftLine_x = 125.36f;
+    float rightLine_x = 239.45f;
+
     private MoveBedMaster moveBedMasterScr;
     // Start is called before the first frame update
     void Start()
@@ -20,8 +21,8 @@ public class AsibaCtrl : MonoBehaviour
         //surfaceEffector = GetComponent<SurfaceEffector2D>();
         //rb= GetComponent<Rigidbody2D>();
 
-        setMovingVector(new Vector2(0f,-0.025f));
 
+        setMovingVector(new Vector2(0.0f, 0f));
 
         moveBedMasterScr = moveBedMaster.GetComponent<MoveBedMaster>();
     }
@@ -32,8 +33,19 @@ public class AsibaCtrl : MonoBehaviour
         //urfaceEffector.speed = movingVector.magnitude;
         //setMovingVector(new Vector2(Mathf.Cos((Mathf.PI/300)*debugCounter)*0.1f, Mathf.Sin((Mathf.PI / 300) * debugCounter) * 0.1f));
 
-        transform.Translate(movingVector);
-        debugCounter += 1;
+        if (transform.position.x+movingVector.x<leftLine_x || rightLine_x < transform.position.x + movingVector.x)
+        {
+            setMovingVector(new Vector2(0f, 0f));
+        }
+        else
+        {
+            transform.Translate(movingVector);
+        }
+
+        
+
+
+        
     }
 
     public void setMovingVector(Vector2 v)
@@ -51,15 +63,28 @@ public class AsibaCtrl : MonoBehaviour
     void OnCollisionStay2D(Collision2D collision)
     {
         //Debug.Log("OnCollisionStay2D: " + collision.gameObject.name);
+        if (collision.gameObject.tag == "Player")
+        {
+            setMovingVector(new Vector2(0.03f, 0f));
+        }
+
+
 
         if (collision.gameObject.tag == "Player" || collision.gameObject.tag=="Enemy")
         {
-            GameObject g = collision.gameObject;
+            if (transform.position.x + movingVector.x < leftLine_x || rightLine_x < transform.position.x + movingVector.x)
+            {
 
-            Vector2 move = moveBedMasterScr.getMoveVector(g,this.gameObject,movingVector);
+            }
+            else
+            {
 
-            g.transform.position+=new Vector3(move.x,move.y,0f);
-           
+                GameObject g = collision.gameObject;
+
+                Vector2 move = moveBedMasterScr.getMoveVector(g, this.gameObject, movingVector);
+
+                g.transform.position += new Vector3(move.x, move.y, 0f);
+            }
 
             //Debug.Log(""+debugCounter+"  :"+debugCounter2);
         }
@@ -71,6 +96,8 @@ public class AsibaCtrl : MonoBehaviour
         {
             GameObject g = collision.gameObject;
 
+            setMovingVector(new Vector2(-0.03f, 0f));//プレイヤーが載っていなければ左に動く
+            
             moveBedMasterScr.RemoveRideInfo(g);
 
         }
