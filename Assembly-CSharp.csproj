@@ -62,11 +62,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Enemy\Oak\Script\EnemyAI.cs" />
     <Compile Include="Assets\Resources\Data\PlayerAttackDamage.cs" />
     <Compile Include="Assets\Script\BattleEvent.cs" />
     <Compile Include="Assets\Script\BattleEventMaster.cs" />
     <Compile Include="Assets\Script\CameraController.cs" />
     <Compile Include="Assets\Script\EnemyController.cs" />
+    <Compile Include="Assets\Script\EnemyController2.cs" />
     <Compile Include="Assets\Script\PlaterController_ground.cs" />
     <Compile Include="Assets\Script\PlayerAttackAnime.cs" />
     <Compile Include="Assets\Script\PlayerAttackCollider.cs" />
