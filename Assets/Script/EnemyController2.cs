@@ -56,7 +56,6 @@ public class EnemyController2 : MonoBehaviour
         {
             state = "Damage";
             isdamage = false;
-            Debug.Log(isdamage);
         }
         else
         {
@@ -85,6 +84,7 @@ public class EnemyController2 : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
+        if(other.transform.tag == "Player_Attack")
         isdamage = true;
     }
 }
