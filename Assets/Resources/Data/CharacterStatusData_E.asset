@@ -15,5 +15,5 @@ MonoBehaviour:
   AttackDataList:
   - EnemyName: Oak
     ActtionName: Attack
-    atk: 110
+    atk: 30
     force: {x: 2, y: 0.5}
