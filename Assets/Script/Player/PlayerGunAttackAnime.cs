@@ -139,6 +139,8 @@ public class PlayerGunAttackAnime : MonoBehaviour
 
         if (HPbar.value > 0.0f)
             HPbar.value -= 5.0f * 1.0f;
+        else
+            nearEnemy.GetComponent<Animator>().SetBool("isDamaged", true);
     }
 
     //指定されたタグの中で最も近いものを取得
