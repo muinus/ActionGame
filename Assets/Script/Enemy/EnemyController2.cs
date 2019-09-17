@@ -10,6 +10,7 @@ public class EnemyController2 : MonoBehaviour
     Animator animator;
 
     bool isdamage;
+    bool isEventMonster;
     string state;
 
     public GameObject BattleEvent;
@@ -21,8 +22,14 @@ public class EnemyController2 : MonoBehaviour
         player = GameObject.Find("Player");
         animator = transform.root.GetComponent<Animator>();
         isdamage = false;
+        isEventMonster=false;
 
         BattleEvent = GameObject.Find("BattleEventMaster");
+
+        if (BattleEvent.GetComponent<BattleEventMaster>().GetIsBattleEvent())
+        {
+            SetEventFlag(true);
+        }
     }
 
     // Update is called once per frame
@@ -45,7 +52,7 @@ public class EnemyController2 : MonoBehaviour
         if (animator.GetCurrentAnimatorStateInfo(0).IsName("Dead"))
         {
             Destroy(this.gameObject);
-            if (BattleEvent.GetComponent<BattleEventMaster>().GetIsBattleEvent())
+            if (GetEventFlag())
             {
                 BattleEvent.GetComponent<BattleEventMaster>().DecreaseEnemyCounter();
             }
@@ -89,5 +96,15 @@ public class EnemyController2 : MonoBehaviour
     {
         if(other.transform.tag == "Player_Attack")
         isdamage = true;
+    }
+
+    public void SetEventFlag(bool isEventMonster)
+    {
+        this.isEventMonster = isEventMonster;
+    }
+
+    public bool GetEventFlag()
+    {
+        return isEventMonster;
     }
 }
