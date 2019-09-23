@@ -158,7 +158,7 @@ public class SlimController : MonoBehaviour
         Vector2 force = new Vector2(400f * moveJudge, 200f);
         
         rb.AddForce(force);
-        Debug.Log(force);
+       // Debug.Log(force);
         attackJudge = true;
     }
     void OnCollisionEnter2D(Collision2D collision)
