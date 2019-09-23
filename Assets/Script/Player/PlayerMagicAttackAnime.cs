@@ -22,6 +22,7 @@ public class PlayerMagicAttackAnime : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        PlayerController PC = new PlayerController();
         this.PC = GetComponent<PlayerController>();
         this.rb = GetComponent<Rigidbody2D>();
         this.animator = GetComponent<Animator>();
