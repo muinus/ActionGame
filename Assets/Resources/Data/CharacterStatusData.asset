@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AttackDataList:
   - ActtionName: Attack1
-    atk: 20
+    atk: 2000
     force: {x: 1, y: 1}
   - ActtionName: Attack2
     atk: 25
@@ -40,6 +40,36 @@ MonoBehaviour:
   - ActtionName: Fireball
     atk: 25
     force: {x: 1, y: 1}
+  - ActtionName: AirFireball
+    atk: 25
+    force: {x: 1, y: -1}
+  - ActtionName: AirFireball
+    atk: 25
+    force: {x: 1, y: -1}
+  - ActtionName: AirFireball
+    atk: 25
+    force: {x: 1, y: -1}
+  - ActtionName: AirFireball
+    atk: 25
+    force: {x: 1, y: -1}
+  - ActtionName: AirFireball
+    atk: 25
+    force: {x: 1, y: -1}
+  - ActtionName: AirFireball
+    atk: 25
+    force: {x: 1, y: -1}
+  - ActtionName: AirFireball
+    atk: 25
+    force: {x: 1, y: -1}
+  - ActtionName: AirFireball
+    atk: 25
+    force: {x: 1, y: -1}
+  - ActtionName: AirFireball
+    atk: 25
+    force: {x: 1, y: -1}
+  - ActtionName: AirFireball
+    atk: 25
+    force: {x: 1, y: -1}
   - ActtionName: AirFireball
     atk: 25
     force: {x: 1, y: -1}
