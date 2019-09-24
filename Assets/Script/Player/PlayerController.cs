@@ -20,7 +20,7 @@ public class PlayerController : MonoBehaviour
     
     string state;                // プレイヤーの状態管理
     string prevState;            // 前の状態を保存
-    float stateEffect = 1;       // 状態に応じて横移動速度を変えるための係数
+    float stateEffect = 1.0f;       // 状態に応じて横移動速度を変えるための係数
 
 
     void Start()
