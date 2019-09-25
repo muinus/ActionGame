@@ -227,14 +227,8 @@ Transform:
   - {fileID: 778496822}
   - {fileID: 1584998299}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &736849736 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1286844872515609793, guid: a93f28a55ac67ab419a62e1e60440edb,
-    type: 3}
-  m_PrefabInstance: {fileID: 1286844872069221257}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &778496821
 GameObject:
   m_ObjectHideFlags: 0
@@ -7791,7 +7785,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1376882945
 MonoBehaviour:
@@ -7805,7 +7799,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3c43ccda2fa0f84badfc3f5567bdf85, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 736849736}
+  player: {fileID: 0}
   BattleEvent: {fileID: 1307241695}
 --- !u!1 &1584998298
 GameObject:
@@ -18266,6 +18260,27 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4866397285633822402, guid: a93f28a55ac67ab419a62e1e60440edb,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -14.79
+      objectReference: {fileID: 0}
+    - target: {fileID: 4866397285633822402, guid: a93f28a55ac67ab419a62e1e60440edb,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -8.34
+      objectReference: {fileID: 0}
+    - target: {fileID: 4866397285633822401, guid: a93f28a55ac67ab419a62e1e60440edb,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 59314c2695a0a7a4c8729198bc958554,
+        type: 3}
+    - target: {fileID: 4866397285633822401, guid: a93f28a55ac67ab419a62e1e60440edb,
+        type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1286844872515609793, guid: a93f28a55ac67ab419a62e1e60440edb,
         type: 3}
       propertyPath: m_Name

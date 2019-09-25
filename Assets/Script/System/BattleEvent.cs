@@ -34,7 +34,7 @@ public class BattleEvent : MonoBehaviour
         if((battleEventMaster.GetEnemyCounter()==0)&&isThisBattleEvent)
         {
             wave += 1;//ウェーブ進行
-            SpwanEnemy();
+            ChangeWave();
         }
 
         
@@ -53,13 +53,13 @@ public class BattleEvent : MonoBehaviour
         battleEventMaster.SetIsBattleEvent(true);
         isThisBattleEvent = true;
         transform.GetComponent<BoxCollider2D>().enabled = false;
-        SpwanEnemy();//敵の発生
+        ChangeWave();//敵の発生
         LockCamera();//カメラを固定にする
         LockPlace();//障壁の出現
         
     }
 
-    void SpwanEnemy()
+    void ChangeWave()
     {
         //スポーン位置はイベントオブジェクトに対する相対座標で指定
 
@@ -67,14 +67,11 @@ public class BattleEvent : MonoBehaviour
         switch (wave)
         {
             case 1:
-                Instantiate(enemy, this.transform.position, Quaternion.identity);
-                battleEventMaster.IncreaseEnemyCounter();
+                SpwanEnemy(enemy, this.transform.position);
                 break;
             case 2:
-                Instantiate(enemy, this.transform.position, Quaternion.identity);
-                battleEventMaster.IncreaseEnemyCounter();
-                Instantiate(enemy, this.transform.position, Quaternion.identity);
-                battleEventMaster.IncreaseEnemyCounter();
+                SpwanEnemy(enemy, this.transform.position);
+                SpwanEnemy(enemy, this.transform.position+new Vector3(1,1,0));
                 break;
             default:
                 battleEventMaster.SetEventEndFlag(true);
@@ -106,7 +103,10 @@ public class BattleEvent : MonoBehaviour
         }
     }
 
-
+    void SpwanEnemy(GameObject enemy,Vector3 position) {
+        Instantiate(enemy, position, Quaternion.identity);
+        battleEventMaster.IncreaseEnemyCounter();
+    }
 
 
 }
