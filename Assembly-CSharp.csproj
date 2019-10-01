@@ -87,12 +87,16 @@
     <Compile Include="Assets\Script\System\ScaffoldScript.cs" />
     <Compile Include="Assets\Stage\Stage4\TamariFolder\Script\AsibaCtrl.cs" />
     <Compile Include="Assets\Stage\Stage4\TamariFolder\Script\BattleEventStage3_1.cs" />
+    <Compile Include="Assets\Stage\Stage4\TamariFolder\Script\bonyou\CreateSpriteObject.cs" />
+    <Compile Include="Assets\Stage\Stage4\TamariFolder\Script\bonyou\SpriteAnimation.cs" />
+    <Compile Include="Assets\Stage\Stage4\TamariFolder\Script\FannelMoveContrl.cs" />
     <Compile Include="Assets\Stage\Stage4\TamariFolder\Script\MoveBedMaster.cs" />
     <Compile Include="Assets\Stage\Stage4\TamariFolder\Script\PlayerController_tamari.cs" />
     <Compile Include="Assets\Tilemaps\TooCubeForest\demoScenes\Movement.cs" />
     <Compile Include="Assets\TokukeFolder\Enemy\Slim\SlimBossController.cs" />
     <Compile Include="Assets\TokukeFolder\Enemy\Slim\SlimController.cs" />
     <Compile Include="Assets\TokukeFolder\Scripts\CameraControllerSt1.cs" />
+    <Compile Include="Assets\TokukeFolder\thunderball\BossSkelton1.cs" />
     <Compile Include="Assets\TokukeFolder\TokukeActionTest\FairlyMove.cs" />
     <Compile Include="Assets\TokukeFolder\TokukeActionTest\Follow.cs" />
     <Compile Include="Assets\TokukeFolder\TokukeActionTest\WolfMove2.cs" />
