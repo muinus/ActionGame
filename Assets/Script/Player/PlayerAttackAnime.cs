@@ -45,8 +45,25 @@ public class PlayerAttackAnime : MonoBehaviour
         // 接地している場合
         if (animator.GetBool("isGround"))
         {
+            //上攻撃
+            if ((Input.GetKeyDown(KeyCode.Z) && Input.GetKey(KeyCode.UpArrow)))
+            {
+                rb.velocity = new Vector2(0, 5);
+                state = "HighSlash";
+            }
+            //横攻撃
+            else if ((Input.GetKeyDown(KeyCode.Z) && Input.GetKey(KeyCode.LeftArrow))||
+                (Input.GetKeyDown(KeyCode.Z) && Input.GetKey(KeyCode.RightArrow)))
+            {
+                
+                state = "ThrowSword";
+            }
+            else if ((Input.GetKeyDown(KeyCode.Z) && Input.GetKey(KeyCode.DownArrow)))
+            {
+                //state = "ThrowSword";
+            }
             // 1コンボ
-            if (Input.GetKeyDown(KeyCode.Z)&&!isComboing)
+            else if (Input.GetKeyDown(KeyCode.Z)&&!isComboing)
             {
                 state = "ATTACK1";
                 isComboing = true;
@@ -76,8 +93,20 @@ public class PlayerAttackAnime : MonoBehaviour
         }
         else//空中にいる場合
         {
+            //空中上攻撃
+            if ((Input.GetKeyDown(KeyCode.Z) && Input.GetKey(KeyCode.UpArrow)))
+            {
+                rb.velocity = new Vector2(0, 5);
+                state = "AirHighSlash";
+            }
+            //空中横攻撃
+            else if ((Input.GetKeyDown(KeyCode.Z) && Input.GetKey(KeyCode.LeftArrow)) ||
+                (Input.GetKeyDown(KeyCode.Z) && Input.GetKey(KeyCode.RightArrow)))
+            {
+                state = "AirRaid";
+            }
             //空中兜割り
-            if ((Input.GetKeyDown(KeyCode.Z) && Input.GetKey(KeyCode.DownArrow)) && !isAAttack3)
+            else if ((Input.GetKeyDown(KeyCode.Z) && Input.GetKey(KeyCode.DownArrow)) && !isAAttack3)
             {
                 state = "AirATTACK3S";
                 rb.velocity = new Vector2(0, 2);
@@ -151,6 +180,28 @@ public class PlayerAttackAnime : MonoBehaviour
                     animator.SetBool("isAAttack3_E", true);
                     animator.SetBool("isAAttack3_S", false);
                     break;
+                case "AirHighSlash":
+                    animator.SetBool("isAHighSlash", true);
+                    break;
+                case "AirRaid":
+                    animator.SetBool("isARaid", true);
+                    break;
+                case "HighSlash":
+                    animator.SetBool("isHighSlash", true);
+                    break;
+                case "Slashing_R":
+                    break;
+                case "Slashing":
+                    break;
+                case "ThrowSword":
+                    animator.SetBool("isThrowSword", true);
+                    break;
+                case "ThrowSword_end":
+                    break;
+                case "Hamma":
+                    break;
+                case "Sickle":
+                    break;
                 default:
                     animator.SetBool("isAAttack3_S", false);
                     animator.SetBool("isAAttack3_E", false);
@@ -159,6 +210,10 @@ public class PlayerAttackAnime : MonoBehaviour
                     animator.SetBool("isAttack1", false);
                     animator.SetBool("isAttack2", false);
                     animator.SetBool("isAttack3", false);
+                    animator.SetBool("isAHighSlash", false);
+                    animator.SetBool("isHighSlash", false);
+                    animator.SetBool("isARaid", false);
+                    animator.SetBool("isThrowSword", false);
                     break;
             }
             // 状態の変更を判定するために状態を保存しておく
