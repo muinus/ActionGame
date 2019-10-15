@@ -1,1 +1,9 @@
+<<<<<<< HEAD
 sceneSetups: []
+=======
+sceneSetups:
+- path: Assets/Stage/SkillsLearned.unity
+  isLoaded: 1
+  isActive: 1
+  isSubScene: 0
+>>>>>>> 706e0598260ae519973e0edcb7e708981579ed8b
