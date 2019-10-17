@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class Fireball : MonoBehaviour
 {
+    float life_time = 1.0f;//生存時間
+    float time = 0f;
+
     float speed=0.2f;
     int drec;
 
@@ -19,6 +22,12 @@ public class Fireball : MonoBehaviour
     void Update()
     {
         transform.position += new Vector3(speed * drec, 0);
+
+        time += Time.deltaTime;
+        if (time > life_time)
+        {
+            Destroy(gameObject);
+        }
     }
 
     void OnTriggerEnter2D(Collider2D other)
@@ -26,8 +35,10 @@ public class Fireball : MonoBehaviour
 
         if (other.transform.tag != "Untagged" &&
             other.transform.tag != "Ground" &&
+            other.transform.tag != "Wall" &&
             other.transform.tag != "Enemy")
             return;
+
 
         Destroy(this.transform.gameObject);
 

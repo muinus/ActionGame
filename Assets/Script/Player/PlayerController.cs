@@ -89,7 +89,7 @@ public class PlayerController : MonoBehaviour
 
             }
             // 上昇中
-            else if (rb.velocity.y > 0)
+            else if (rb.velocity.y > 0 && (!animator.GetBool("isHighSlash")))
             {                  
                 state = "JUMP";
 

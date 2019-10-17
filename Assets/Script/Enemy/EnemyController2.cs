@@ -8,18 +8,18 @@ public class EnemyController2 : MonoBehaviour
     Slider HPbar;//HPバーのオブジェクト
     GameObject player;
     Animator animator;
-
+    
     bool isdamage;
     string state;
 
-    public GameObject BattleEvent;
+    GameObject BattleEvent;
 
     // Start is called before the first frame update
     void Start()
     {
         HPbar = GetComponentInChildren<Slider>();
         player = GameObject.Find("Player");
-        animator = transform.root.GetComponent<Animator>();
+        animator = transform.GetComponent<Animator>();
         isdamage = false;
 
         BattleEvent = GameObject.Find("BattleEventMaster");
@@ -44,11 +44,13 @@ public class EnemyController2 : MonoBehaviour
 
         if (animator.GetCurrentAnimatorStateInfo(0).IsName("Dead"))
         {
-            Destroy(this.gameObject);
-            if (BattleEvent.GetComponent<BattleEventMaster>().GetIsBattleEvent())
+            Debug.Log(BattleEvent);
+            if ((transform.root.gameObject == BattleEvent)
+                && BattleEvent.GetComponent<BattleEventMaster>().GetIsBattleEvent())
             {
                 BattleEvent.GetComponent<BattleEventMaster>().DecreaseEnemyCounter();
             }
+            Destroy(this.gameObject);
         }
         else if (HPbar.value <= 0 && animator.GetCurrentAnimatorStateInfo(0).IsName("Hurt"))
         {

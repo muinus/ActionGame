@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 4176534062516110763}
   - component: {fileID: 1849253387300319516}
   - component: {fileID: -1116798549310082093}
-  - component: {fileID: 8029801588786912657}
+  - component: {fileID: 4272069882962989329}
   m_Layer: 0
   m_Name: AirFireBall
   m_TagString: Player_Attack
@@ -143,7 +143,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6986dc6125432c42aa5503cdfdc5e10, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!50 &8029801588786912657
+--- !u!50 &4272069882962989329
 Rigidbody2D:
   serializedVersion: 4
   m_ObjectHideFlags: 0

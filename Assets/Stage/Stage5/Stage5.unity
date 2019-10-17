@@ -11001,7 +11001,7 @@ GameObject:
   - component: {fileID: 438784839}
   m_Layer: 0
   m_Name: Wall (4)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -11133,7 +11133,7 @@ GameObject:
   - component: {fileID: 506980421}
   m_Layer: 0
   m_Name: Lock
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -22249,7 +22249,7 @@ GameObject:
   - component: {fileID: 660708784}
   m_Layer: 0
   m_Name: Lock
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -22355,7 +22355,7 @@ GameObject:
   - component: {fileID: 714445110}
   m_Layer: 0
   m_Name: Lock
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -22467,7 +22467,7 @@ GameObject:
   - component: {fileID: 755453993}
   m_Layer: 0
   m_Name: Lock
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -22857,7 +22857,7 @@ GameObject:
   - component: {fileID: 980893253}
   m_Layer: 0
   m_Name: Lock
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -22962,7 +22962,7 @@ GameObject:
   - component: {fileID: 1034030033}
   m_Layer: 0
   m_Name: Wall (5)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -23019,7 +23019,7 @@ GameObject:
   - component: {fileID: 1105647253}
   m_Layer: 0
   m_Name: Wall (1)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -23832,7 +23832,7 @@ GameObject:
   - component: {fileID: 1541719510}
   m_Layer: 0
   m_Name: Wall (2)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -23890,7 +23890,7 @@ GameObject:
   - component: {fileID: 1547333169}
   m_Layer: 0
   m_Name: Lock
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -24107,7 +24107,7 @@ GameObject:
   - component: {fileID: 1615020476}
   m_Layer: 0
   m_Name: Wall
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -24164,7 +24164,7 @@ GameObject:
   - component: {fileID: 1628430824}
   m_Layer: 0
   m_Name: Wall (3)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -24376,7 +24376,7 @@ GameObject:
   - component: {fileID: 1778444804}
   m_Layer: 0
   m_Name: Lock
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -24539,7 +24539,7 @@ GameObject:
   - component: {fileID: 1816176257}
   m_Layer: 0
   m_Name: Lock
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -25080,6 +25080,26 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3669297516941822327, guid: e7f088b8a572d04498ef60a93f738434,
+        type: 3}
+      propertyPath: m_TagString
+      value: Wall
+      objectReference: {fileID: 0}
+    - target: {fileID: 3669297517322865560, guid: e7f088b8a572d04498ef60a93f738434,
+        type: 3}
+      propertyPath: m_TagString
+      value: Wall
+      objectReference: {fileID: 0}
+    - target: {fileID: 3669297518195693137, guid: e7f088b8a572d04498ef60a93f738434,
+        type: 3}
+      propertyPath: m_TagString
+      value: Wall
+      objectReference: {fileID: 0}
+    - target: {fileID: 3669297518421683906, guid: e7f088b8a572d04498ef60a93f738434,
+        type: 3}
+      propertyPath: m_TagString
+      value: Wall
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e7f088b8a572d04498ef60a93f738434, type: 3}
 --- !u!1001 &4866397286030795152
@@ -25097,12 +25117,12 @@ PrefabInstance:
     - target: {fileID: 4866397285633822402, guid: a93f28a55ac67ab419a62e1e60440edb,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -9.629
+      value: -5.32
       objectReference: {fileID: 0}
     - target: {fileID: 4866397285633822402, guid: a93f28a55ac67ab419a62e1e60440edb,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -9.521
+      value: -9.19
       objectReference: {fileID: 0}
     - target: {fileID: 4866397285633822402, guid: a93f28a55ac67ab419a62e1e60440edb,
         type: 3}
@@ -25158,8 +25178,34 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 59314c2695a0a7a4c8729198bc958554,
+      objectReference: {fileID: 21300000, guid: a26fd5baa582de64d9d6c11a98345805,
         type: 3}
+    - target: {fileID: 4866397285633822404, guid: a93f28a55ac67ab419a62e1e60440edb,
+        type: 3}
+      propertyPath: thrownSword
+      value: 
+      objectReference: {fileID: 6844309794333309791, guid: c5b84d26d79838e4da12a58cbcffef6d,
+        type: 3}
+    - target: {fileID: 4866397284731236283, guid: a93f28a55ac67ab419a62e1e60440edb,
+        type: 3}
+      propertyPath: m_Offset.x
+      value: 0.17
+      objectReference: {fileID: 0}
+    - target: {fileID: 4866397284731236283, guid: a93f28a55ac67ab419a62e1e60440edb,
+        type: 3}
+      propertyPath: m_Offset.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4866397284731236283, guid: a93f28a55ac67ab419a62e1e60440edb,
+        type: 3}
+      propertyPath: m_Size.x
+      value: 0.14
+      objectReference: {fileID: 0}
+    - target: {fileID: 4866397284731236283, guid: a93f28a55ac67ab419a62e1e60440edb,
+        type: 3}
+      propertyPath: m_Size.y
+      value: 0.3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a93f28a55ac67ab419a62e1e60440edb, type: 3}
 --- !u!1001 &4968495277723478515

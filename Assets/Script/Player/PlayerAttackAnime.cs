@@ -9,6 +9,8 @@ public class PlayerAttackAnime : MonoBehaviour
 
     PlayerController PC;
 
+    public GameObject thrownSword;
+
     string state;                // プレイヤーの状態管理
     string prevState;            // 前の状態を保存
     
@@ -28,7 +30,7 @@ public class PlayerAttackAnime : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //Time.timeScale = 0.3f;
+        //Time.timeScale = 0.1f;
         GetInputKey();          // ① 入力を取得
         ChangeState();          // ② 状態を変更する
         ChangeAnimation();      // ③ 状態に応じてアニメーションを変更する
@@ -48,7 +50,7 @@ public class PlayerAttackAnime : MonoBehaviour
             //上攻撃
             if ((Input.GetKeyDown(KeyCode.Z) && Input.GetKey(KeyCode.UpArrow)))
             {
-                rb.velocity = new Vector2(0, 5);
+                
                 state = "HighSlash";
             }
             //横攻撃
@@ -84,6 +86,12 @@ public class PlayerAttackAnime : MonoBehaviour
 
                 isAAttack3 = false;
             }
+            else if (animator.GetCurrentAnimatorStateInfo(0).IsName("AirRaid"))
+            {
+                state = "IDLE";
+                rb.velocity = new Vector2(0,0);
+
+            }
             else if(animator.GetCurrentAnimatorStateInfo(0).IsName("Idle"))
             {
                 state = "IDLE";
@@ -93,10 +101,16 @@ public class PlayerAttackAnime : MonoBehaviour
         }
         else//空中にいる場合
         {
+            //
+            if (animator.GetCurrentAnimatorStateInfo(0).IsName("AirHighSlash_loop") &&rb.velocity.y < 0.5f)
+            {
+                state = "AHighSlashE";
+                return;
+            }
+
             //空中上攻撃
             if ((Input.GetKeyDown(KeyCode.Z) && Input.GetKey(KeyCode.UpArrow)))
             {
-                rb.velocity = new Vector2(0, 5);
                 state = "AirHighSlash";
             }
             //空中横攻撃
@@ -104,6 +118,7 @@ public class PlayerAttackAnime : MonoBehaviour
                 (Input.GetKeyDown(KeyCode.Z) && Input.GetKey(KeyCode.RightArrow)))
             {
                 state = "AirRaid";
+                
             }
             //空中兜割り
             else if ((Input.GetKeyDown(KeyCode.Z) && Input.GetKey(KeyCode.DownArrow)) && !isAAttack3)
@@ -123,8 +138,6 @@ public class PlayerAttackAnime : MonoBehaviour
                 state = "AirATTACK1";
                 isComboing = true;
                 rb.velocity = new Vector2(0,2);
-                
-
             }
             // 空中2コンボ
             else if (animator.GetCurrentAnimatorStateInfo(0).IsName("AirAttack1") && Input.GetKeyDown(KeyCode.Z))
@@ -189,14 +202,15 @@ public class PlayerAttackAnime : MonoBehaviour
                 case "HighSlash":
                     animator.SetBool("isHighSlash", true);
                     break;
+                case "AHighSlashE":
+                    animator.SetBool("isAHighSlash_end", true);
+                    break;
                 case "Slashing_R":
                     break;
                 case "Slashing":
                     break;
                 case "ThrowSword":
                     animator.SetBool("isThrowSword", true);
-                    break;
-                case "ThrowSword_end":
                     break;
                 case "Hamma":
                     break;
@@ -212,13 +226,31 @@ public class PlayerAttackAnime : MonoBehaviour
                     animator.SetBool("isAttack3", false);
                     animator.SetBool("isAHighSlash", false);
                     animator.SetBool("isHighSlash", false);
+                    animator.SetBool("isAHighSlash_end", false);
                     animator.SetBool("isARaid", false);
                     animator.SetBool("isThrowSword", false);
+                    animator.SetBool("isThrowSword_E", false);
                     break;
             }
             // 状態の変更を判定するために状態を保存しておく
             prevState = state;
 
         }
+    }
+
+    void PlayerRise()
+    {
+        rb.velocity = new Vector2(0, 8);
+    }
+
+    void ThrowSword()
+    {
+        Instantiate(thrownSword, this.transform.position + new Vector3(0.45f * PC.GetDrection(), 0.08f), Quaternion.Euler(0, 90f-PC.GetDrection()*90f, 0));
+    }
+    
+    void AirRaid()
+    {
+        transform.localScale = new Vector3(PC.GetDrection() * 3, 3, 3); // 向きに応じてキャラクターを反転
+        rb.velocity = new Vector2(2.5f * PC.GetDrection(), -5);
     }
 }

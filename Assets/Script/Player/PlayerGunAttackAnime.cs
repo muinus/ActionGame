@@ -110,10 +110,12 @@ public class PlayerGunAttackAnime : MonoBehaviour
                 case "AirGunATTACK1":
                     animator.SetBool("isAGunAttack1", true);
                     animator.SetBool("isAGunAttack2", false);
+                    animator.SetBool("isJump", false);
                     break;
                 case "AirGunATTACK2":
                     animator.SetBool("isAGunAttack2", true);
                     animator.SetBool("isAGunAttack1", false);
+                    animator.SetBool("isJump", false);
                     break;
                 default:
                     animator.SetBool("isGunAttack1", false);
@@ -130,17 +132,20 @@ public class PlayerGunAttackAnime : MonoBehaviour
 
     void GunAttack()
     {
-        nearEnemy=serchTag(transform.gameObject, "Enemy");
+        try
+        {
+            nearEnemy = serchTag(transform.gameObject, "Enemy");
 
-        Slider HPbar=nearEnemy.GetComponentInChildren<Slider>();
+            Slider HPbar = nearEnemy.GetComponentInChildren<Slider>();
 
-        if (HPbar == null)
-            return;
+            if (HPbar == null)
+                return;
 
-        if (HPbar.value > 0.0f)
-            HPbar.value -= 5.0f * 1.0f;
-        else
-            nearEnemy.GetComponent<Animator>().SetBool("isDamaged", true);
+            if (HPbar.value > 0.0f)
+                HPbar.value -= 5.0f * 1.0f;
+            else
+                nearEnemy.GetComponent<Animator>().SetBool("isDamaged", true);
+        }catch{}
     }
 
     //指定されたタグの中で最も近いものを取得

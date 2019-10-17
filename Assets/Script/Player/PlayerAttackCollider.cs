@@ -52,6 +52,11 @@ public class PlayerAttackCollider : MonoBehaviour
             col.offset = new Vector2(0.0f, -0.05f);
             col.size = new Vector2(0.5f, 0.25f);
         }
+        else if (animator.GetCurrentAnimatorStateInfo(0).IsName("AirHighSlash_loop"))
+        {
+            col.offset = new Vector2(0.17f, -0.01f);
+            col.size = new Vector2(0.14f, 0.3f);
+        }
     }
 
     void AttackEnd()

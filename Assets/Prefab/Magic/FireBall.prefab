@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 4949770331602770665}
   - component: {fileID: -8974065987792346715}
   - component: {fileID: -7036794516092108241}
-  - component: {fileID: -6701826208119261422}
+  - component: {fileID: -8319164176425906485}
   m_Layer: 0
   m_Name: FireBall
   m_TagString: Player_Attack
@@ -143,7 +143,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 04f5723ad83e5c14486f8fff19ea84ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!50 &-6701826208119261422
+--- !u!50 &-8319164176425906485
 Rigidbody2D:
   serializedVersion: 4
   m_ObjectHideFlags: 0

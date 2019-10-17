@@ -20,7 +20,7 @@ public class EnemyController : MonoBehaviour
     {
         HPbar = GetComponentInChildren<Slider>();
         player = GameObject.Find("Player");
-        animator = transform.root.GetComponent<Animator>();
+        animator = transform.GetComponent<Animator>();
         isdamage = false;
 
         BattleEvent = GameObject.Find("BattleEventMaster");
@@ -41,17 +41,16 @@ public class EnemyController : MonoBehaviour
 
         if(animator.GetCurrentAnimatorStateInfo(0).IsName("Dead"))
         {
-            Destroy(this.gameObject);
-            if (BattleEvent.GetComponent<BattleEventMaster>().GetIsBattleEvent())
+            if (BattleEvent.GetComponent<BattleEventMaster>().GetIsBattleEvent() && (transform.root.gameObject == BattleEvent))
             {
                 BattleEvent.GetComponent<BattleEventMaster>().DecreaseEnemyCounter();
             }
+            Destroy(this.gameObject);
         }
         else if (isdamage)
         {
             state = "Damage";
             isdamage = false;
-            Debug.Log(isdamage);
         }
         else if (HPbar.value <= 0)
         {

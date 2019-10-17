@@ -104,11 +104,11 @@ public class PlayerMagicAttackAnime : MonoBehaviour
 
     void FireBall()
     {
-        Instantiate(fireball, this.transform.position+new Vector3(0.8f*PC.GetDrection(),0.1f), Quaternion.identity);
+        Instantiate(fireball, this.transform.position+new Vector3(0.8f*PC.GetDrection(),0.1f), Quaternion.Euler(0, 90f - PC.GetDrection() * 90f, 0));
     }
 
     void AirFireBall()
     {
-        Instantiate(airFireball, this.transform.position + new Vector3(0.6f* PC.GetDrection(), -0.5f), Quaternion.identity);
+        Instantiate(airFireball, this.transform.position + new Vector3(0.6f* PC.GetDrection(), -0.5f), Quaternion.Euler(0, 90f - PC.GetDrection() * 90f, 0));
     }
 }
