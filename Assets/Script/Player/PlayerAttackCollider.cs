@@ -57,6 +57,12 @@ public class PlayerAttackCollider : MonoBehaviour
             col.offset = new Vector2(0.17f, -0.01f);
             col.size = new Vector2(0.14f, 0.3f);
         }
+        else if (animator.GetCurrentAnimatorStateInfo(0).IsName("AirRaid"))
+        {
+            col.offset = new Vector2(0.18f, -0.13f);
+            col.size = new Vector2(0.15f, 0.09f);
+        }
+        
     }
 
     void AttackEnd()
@@ -70,4 +76,5 @@ public class PlayerAttackCollider : MonoBehaviour
         animator.SetBool("isAAttack3_E", false);
         col.enabled = false;
     }
+
 }

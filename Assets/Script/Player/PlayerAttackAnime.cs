@@ -30,7 +30,7 @@ public class PlayerAttackAnime : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //Time.timeScale = 0.1f;
+        //Time.timeScale = 0.3f;
         GetInputKey();          // ① 入力を取得
         ChangeState();          // ② 状態を変更する
         ChangeAnimation();      // ③ 状態に応じてアニメーションを変更する

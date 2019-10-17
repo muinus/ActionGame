@@ -159,8 +159,13 @@ public class PlayerController : MonoBehaviour
 
     void Move()
     {
-        
 
+        if (!animator.GetCurrentAnimatorStateInfo(0).IsName("Idle") &&
+            !animator.GetCurrentAnimatorStateInfo(0).IsName("Move") &&
+            !animator.GetCurrentAnimatorStateInfo(0).IsName("Jump") &&
+            !animator.GetCurrentAnimatorStateInfo(0).IsName("DoubleJump") &&
+            !animator.GetCurrentAnimatorStateInfo(0).IsName("Fall"))
+            return;
 
         if (state == "DJUMP"&&dJumpCount==0)
         {
@@ -173,8 +178,7 @@ public class PlayerController : MonoBehaviour
         // 接地している時にSpaceキー押下でジャンプ
         if (animator.GetBool("isGround"))
         {
-            if (animator.GetCurrentAnimatorStateInfo(0).IsName("AirAttack3_end"))
-                return;
+            
 
             dJumpCount = 0;
             if (Input.GetKeyDown(KeyCode.Space))
@@ -185,12 +189,12 @@ public class PlayerController : MonoBehaviour
         }
 
         //攻撃時は移動しない
-        if (!animator.GetCurrentAnimatorStateInfo(0).IsName("Idle") &&
-            !animator.GetCurrentAnimatorStateInfo(0).IsName("Move") &&
-            !animator.GetCurrentAnimatorStateInfo(0).IsName("Jump") &&
-            !animator.GetCurrentAnimatorStateInfo(0).IsName("DoubleJump")&&
-            !animator.GetCurrentAnimatorStateInfo(0).IsName("Fall"))
-            return;
+        //if (!animator.GetCurrentAnimatorStateInfo(0).IsName("Idle") &&
+        //    !animator.GetCurrentAnimatorStateInfo(0).IsName("Move") &&
+        //    !animator.GetCurrentAnimatorStateInfo(0).IsName("Jump") &&
+        //    !animator.GetCurrentAnimatorStateInfo(0).IsName("DoubleJump")&&
+        //    !animator.GetCurrentAnimatorStateInfo(0).IsName("Fall"))
+        //    return;
 
         // 左右の移動。一定の速度に達するまではAddforceで力を加え、それ以降はtransform.positionを直接書き換えて同一速度で移動する
         float speedX = Mathf.Abs(this.rb.velocity.x);

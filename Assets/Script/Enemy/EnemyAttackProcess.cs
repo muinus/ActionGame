@@ -26,7 +26,8 @@ public class EnemyAttackProcess : MonoBehaviour
     // Start is called before the first frame update
     void OnTriggerEnter2D(Collider2D other)
     {
-
+        damage = 0;
+        force = Vector2.zero;
 
         enemy = other.gameObject;
 

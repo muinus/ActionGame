@@ -83,7 +83,8 @@ public class EnemyController : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        isdamage = true;
+        if (other.transform.tag == "Player_Attack")
+            isdamage = true;
     }
 
 }
