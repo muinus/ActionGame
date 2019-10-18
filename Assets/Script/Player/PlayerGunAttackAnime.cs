@@ -10,6 +10,8 @@ public class PlayerGunAttackAnime : MonoBehaviour
 
     PlayerController PC;
 
+    public GameObject railGun;
+
     string state;                // プレイヤーの状態管理
     string prevState;            // 前の状態を保存
 
@@ -45,6 +47,12 @@ public class PlayerGunAttackAnime : MonoBehaviour
         // 接地している場合
         if (animator.GetBool("isGround"))
         {
+            // 横銃(レールガン)
+            if ((Input.GetKeyDown(KeyCode.X) && Input.GetKey(KeyCode.LeftArrow)) ||
+                (Input.GetKeyDown(KeyCode.X) && Input.GetKey(KeyCode.RightArrow)))
+            {
+                state = "RailGun";
+            }
             // 銃コンボ1
             if ((Input.GetKeyDown(KeyCode.X) && !isComboing)||
                 (animator.GetCurrentAnimatorStateInfo(0).IsName("GunAttack2") && Input.GetKeyDown(KeyCode.X)))
@@ -67,7 +75,7 @@ public class PlayerGunAttackAnime : MonoBehaviour
         }
         else//空中にいる場合
         {
-            // 空中1コンボ
+            // 空中銃1コンボ
             if ((Input.GetKeyDown(KeyCode.X) && !isComboing)||
                 (animator.GetCurrentAnimatorStateInfo(0).IsName("AirGunAttack2") && Input.GetKeyDown(KeyCode.X)))
             {
@@ -76,7 +84,7 @@ public class PlayerGunAttackAnime : MonoBehaviour
                 rb.velocity = new Vector2(0, 1);
                 GunAttack();
             }
-            // 空中2コンボ
+            // 空中銃2コンボ
             else if ((animator.GetCurrentAnimatorStateInfo(0).IsName("AirGunAttack1") && Input.GetKeyDown(KeyCode.X)))
             {
                 state = "AirGunATTACK2";
@@ -117,11 +125,15 @@ public class PlayerGunAttackAnime : MonoBehaviour
                     animator.SetBool("isAGunAttack1", false);
                     animator.SetBool("isJump", false);
                     break;
+                case "RailGun":
+                    animator.SetBool("isRailGun", true);
+                    break;
                 default:
                     animator.SetBool("isGunAttack1", false);
                     animator.SetBool("isGunAttack2", false);
                     animator.SetBool("isAGunAttack1", false);
                     animator.SetBool("isAGunAttack2", false);
+                    animator.SetBool("isRailGun", false);
                     break;
             }
             //状態の変更を判定するために状態を保存しておく
@@ -146,6 +158,11 @@ public class PlayerGunAttackAnime : MonoBehaviour
             else
                 nearEnemy.GetComponent<Animator>().SetBool("isDamaged", true);
         }catch{}
+    }
+
+    void RailGun()
+    {
+        Instantiate(railGun, this.transform.position + new Vector3(5.08f * PC.GetDrection(), 0.1f), Quaternion.Euler(0, 90f - PC.GetDrection() * 90f, 0));
     }
 
     //指定されたタグの中で最も近いものを取得

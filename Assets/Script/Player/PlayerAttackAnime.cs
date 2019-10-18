@@ -16,6 +16,10 @@ public class PlayerAttackAnime : MonoBehaviour
     
     bool isComboing;
     bool isAAttack3;
+    bool isPressed;
+
+    float longPressIntervalTime = 1.0f;//生存時間
+    float pressTime = 0f;
 
     // Start is called before the first frame update
     void Start()
@@ -25,6 +29,7 @@ public class PlayerAttackAnime : MonoBehaviour
         this.animator = GetComponent<Animator>();
         isComboing = false;
         isAAttack3 = false;
+        isPressed = false;
     }
 
     // Update is called once per frame
@@ -38,6 +43,12 @@ public class PlayerAttackAnime : MonoBehaviour
 
     void GetInputKey()
     {
+        if (Input.GetKeyDown(KeyCode.Z))
+            isPressed = true;
+        
+
+        if (isPressed)
+
 
     }
 

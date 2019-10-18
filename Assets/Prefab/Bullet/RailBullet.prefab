@@ -11,6 +11,9 @@ GameObject:
   - component: {fileID: 828091427753671036}
   - component: {fileID: 3466514491594846079}
   - component: {fileID: 3791545363711991773}
+  - component: {fileID: 3833010116196615292}
+  - component: {fileID: 2032414712399990254}
+  - component: {fileID: 4032923997399202865}
   m_Layer: 0
   m_Name: RailBullet
   m_TagString: Player_Attack
@@ -69,7 +72,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: c1652c234c497c34094e2f0958c4504b, type: 3}
+  m_Sprite: {fileID: 21300000, guid: af55e36e63506f745a0be16814100c3b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -99,3 +102,40 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!65 &3833010116196615292
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7412576468999414647}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 3, y: 0.08, z: 0.19999999}
+  m_Center: {x: 0, y: -0.0046277, z: 0}
+--- !u!114 &2032414712399990254
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7412576468999414647}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 53c82aec34476b14386328ffbfbd0197, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &4032923997399202865
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7412576468999414647}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 135cb229a69c589409c1c7a2f30b9ee8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

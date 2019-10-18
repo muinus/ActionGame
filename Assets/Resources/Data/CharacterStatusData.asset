@@ -58,3 +58,18 @@ MonoBehaviour:
   - ActtionName: Tyoson
     atk: 45
     force: {x: 0, y: 8}
+  - ActtionName: RailGun
+    atk: 40
+    force: {x: 1, y: 0}
+  - ActtionName: Tyoson
+    atk: 45
+    force: {x: 0, y: 8}
+  - ActtionName: Tyoson
+    atk: 45
+    force: {x: 0, y: 8}
+  - ActtionName: Tyoson
+    atk: 45
+    force: {x: 0, y: 8}
+  - ActtionName: Tyoson
+    atk: 45
+    force: {x: 0, y: 8}
