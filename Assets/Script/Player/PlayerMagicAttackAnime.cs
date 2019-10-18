@@ -47,8 +47,13 @@ public class PlayerMagicAttackAnime : MonoBehaviour
         // 接地している場合
         if (animator.GetBool("isGround"))
         {
+            //魔法(土)
+            if ((Input.GetKeyDown(KeyCode.C) && Input.GetKey(KeyCode.DownArrow)))
+            {
+                state = "Tyoson";
+            }
             //魔法(水)
-            if ((Input.GetKeyDown(KeyCode.C) && Input.GetKey(KeyCode.UpArrow)))
+            else if ((Input.GetKeyDown(KeyCode.C) && Input.GetKey(KeyCode.UpArrow)))
             {
                 state = "WaterMasic";
             }
@@ -103,11 +108,15 @@ public class PlayerMagicAttackAnime : MonoBehaviour
                 case "AirWaterMasic":
                     animator.SetBool("isAWaterMasic", true);
                     break;
+                case "Tyoson":
+                    animator.SetBool("isTyoson", true);
+                    break;
                 default:
                     animator.SetBool("isFireball", false);
                     animator.SetBool("isAFireball", false);
                     animator.SetBool("isWaterMasic", false);
                     animator.SetBool("isAWaterMasic", false);
+                    animator.SetBool("isTyoson", false);
                     break;
             }
             //状態の変更を判定するために状態を保存しておく
@@ -137,5 +146,15 @@ public class PlayerMagicAttackAnime : MonoBehaviour
         Instantiate(airwaterMasic, this.transform.position + new Vector3(1.03f * PC.GetDrection(), 0.08f), Quaternion.Euler(0, 90f - PC.GetDrection() * 90f, 0));
         Instantiate(airwaterMasic, this.transform.position + new Vector3(-0.03f * PC.GetDrection(), -1.06f), Quaternion.Euler(0, 90f - PC.GetDrection() * 90f, -90f));
         Instantiate(airwaterMasic, this.transform.position + new Vector3(-0.03f * PC.GetDrection(), 1.06f), Quaternion.Euler(0, 90f - PC.GetDrection() * 90f, 90f));
+    }
+
+    void Tyoson_S()
+    {
+        transform.position += new Vector3(0, 0.5f);
+    }
+
+    void Tyoson_E()
+    {
+        transform.position -= new Vector3(0, 0.5f);
     }
 }

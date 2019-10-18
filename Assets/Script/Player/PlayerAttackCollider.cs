@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerAttackCollider : MonoBehaviour
 {
     public BoxCollider2D col; //　剣のコライダー
-    Animator animator;            
+    Animator animator;
 
 
     void Start()
@@ -62,7 +62,12 @@ public class PlayerAttackCollider : MonoBehaviour
             col.offset = new Vector2(0.18f, -0.13f);
             col.size = new Vector2(0.15f, 0.09f);
         }
-        
+        else if (animator.GetCurrentAnimatorStateInfo(0).IsName("Tyoson"))
+        {
+            col.offset = new Vector2(0.01f, -0.21f);
+            col.size = new Vector2(0.7f, 0.27f);
+        }
+
     }
 
     void AttackEnd()
@@ -77,4 +82,21 @@ public class PlayerAttackCollider : MonoBehaviour
         col.enabled = false;
     }
 
+    void AttackStart2()
+    {
+        if (animator.GetCurrentAnimatorStateInfo(0).IsName("Tyoson"))
+        {
+            col.offset = new Vector2(0.01f, -0.15f);
+            col.size = new Vector2(0.7f, 0.4f);
+        }
+    }
+
+    void AttackStart3()
+    {
+        if (animator.GetCurrentAnimatorStateInfo(0).IsName("Tyoson"))
+        {
+            col.offset = new Vector2(0.01f, -0.05f);
+            col.size = new Vector2(0.7f, 0.57f);
+        }
+    }
 }

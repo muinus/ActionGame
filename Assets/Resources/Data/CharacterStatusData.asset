@@ -55,6 +55,6 @@ MonoBehaviour:
   - ActtionName: AirWaterMagic
     atk: 10
     force: {x: 1, y: 0}
-  - ActtionName: AirFireball
-    atk: 25
-    force: {x: 1, y: -1}
+  - ActtionName: Tyoson
+    atk: 45
+    force: {x: 0, y: 8}

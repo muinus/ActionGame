@@ -24,19 +24,23 @@ public class PlayerAttackProcess : MonoBehaviour
         player = GameObject.Find("Player");
     }
 
-
-    // Start is called before the first frame update
+    
     void OnTriggerEnter2D(Collider2D other)
     {
 
         if (transform.tag != "Player_Attack")
             return;
+        
 
         if (other.gameObject.tag != "Enemy")
             return;
+        
 
         enemy = other.gameObject;
-        
+
+        if (enemy.GetComponent<EnemyController2>().GetIsDead())
+            return;
+
         damage = 0;
         force = Vector2.zero;
 
