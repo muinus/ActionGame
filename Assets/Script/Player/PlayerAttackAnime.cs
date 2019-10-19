@@ -9,11 +9,17 @@ public class PlayerAttackAnime : MonoBehaviour
 
     PlayerController PC;
 
+    public GameObject thrownSword;
+
     string state;                // プレイヤーの状態管理
     string prevState;            // 前の状態を保存
     
     bool isComboing;
     bool isAAttack3;
+    bool isPressed;
+
+    float longPressIntervalTime = 1.0f;//生存時間
+    float pressTime = 0f;
 
     // Start is called before the first frame update
     void Start()
@@ -23,6 +29,7 @@ public class PlayerAttackAnime : MonoBehaviour
         this.animator = GetComponent<Animator>();
         isComboing = false;
         isAAttack3 = false;
+        isPressed = false;
     }
 
     // Update is called once per frame
@@ -36,6 +43,12 @@ public class PlayerAttackAnime : MonoBehaviour
 
     void GetInputKey()
     {
+        if (Input.GetKeyDown(KeyCode.Z))
+            isPressed = true;
+        
+
+        if (isPressed)
+
 
     }
 
@@ -45,8 +58,25 @@ public class PlayerAttackAnime : MonoBehaviour
         // 接地している場合
         if (animator.GetBool("isGround"))
         {
+            //上攻撃
+            if ((Input.GetKeyDown(KeyCode.Z) && Input.GetKey(KeyCode.UpArrow)))
+            {
+                
+                state = "HighSlash";
+            }
+            //横攻撃
+            else if ((Input.GetKeyDown(KeyCode.Z) && Input.GetKey(KeyCode.LeftArrow))||
+                (Input.GetKeyDown(KeyCode.Z) && Input.GetKey(KeyCode.RightArrow)))
+            {
+                
+                state = "ThrowSword";
+            }
+            else if ((Input.GetKeyDown(KeyCode.Z) && Input.GetKey(KeyCode.DownArrow)))
+            {
+                //state = "ThrowSword";
+            }
             // 1コンボ
-            if (Input.GetKeyDown(KeyCode.Z)&&!isComboing)
+            else if (Input.GetKeyDown(KeyCode.Z)&&!isComboing)
             {
                 state = "ATTACK1";
                 isComboing = true;
@@ -67,6 +97,12 @@ public class PlayerAttackAnime : MonoBehaviour
 
                 isAAttack3 = false;
             }
+            else if (animator.GetCurrentAnimatorStateInfo(0).IsName("AirRaid"))
+            {
+                state = "IDLE";
+                rb.velocity = new Vector2(0,0);
+
+            }
             else if(animator.GetCurrentAnimatorStateInfo(0).IsName("Idle"))
             {
                 state = "IDLE";
@@ -76,8 +112,27 @@ public class PlayerAttackAnime : MonoBehaviour
         }
         else//空中にいる場合
         {
+            //
+            if (animator.GetCurrentAnimatorStateInfo(0).IsName("AirHighSlash_loop") &&rb.velocity.y < 0.5f)
+            {
+                state = "AHighSlashE";
+                return;
+            }
+
+            //空中上攻撃
+            if ((Input.GetKeyDown(KeyCode.Z) && Input.GetKey(KeyCode.UpArrow)))
+            {
+                state = "AirHighSlash";
+            }
+            //空中横攻撃
+            else if ((Input.GetKeyDown(KeyCode.Z) && Input.GetKey(KeyCode.LeftArrow)) ||
+                (Input.GetKeyDown(KeyCode.Z) && Input.GetKey(KeyCode.RightArrow)))
+            {
+                state = "AirRaid";
+                
+            }
             //空中兜割り
-            if ((Input.GetKeyDown(KeyCode.Z) && Input.GetKey(KeyCode.DownArrow)) && !isAAttack3)
+            else if ((Input.GetKeyDown(KeyCode.Z) && Input.GetKey(KeyCode.DownArrow)) && !isAAttack3)
             {
                 state = "AirATTACK3S";
                 rb.velocity = new Vector2(0, 2);
@@ -94,8 +149,6 @@ public class PlayerAttackAnime : MonoBehaviour
                 state = "AirATTACK1";
                 isComboing = true;
                 rb.velocity = new Vector2(0,2);
-                
-
             }
             // 空中2コンボ
             else if (animator.GetCurrentAnimatorStateInfo(0).IsName("AirAttack1") && Input.GetKeyDown(KeyCode.Z))
@@ -151,6 +204,29 @@ public class PlayerAttackAnime : MonoBehaviour
                     animator.SetBool("isAAttack3_E", true);
                     animator.SetBool("isAAttack3_S", false);
                     break;
+                case "AirHighSlash":
+                    animator.SetBool("isAHighSlash", true);
+                    break;
+                case "AirRaid":
+                    animator.SetBool("isARaid", true);
+                    break;
+                case "HighSlash":
+                    animator.SetBool("isHighSlash", true);
+                    break;
+                case "AHighSlashE":
+                    animator.SetBool("isAHighSlash_end", true);
+                    break;
+                case "Slashing_R":
+                    break;
+                case "Slashing":
+                    break;
+                case "ThrowSword":
+                    animator.SetBool("isThrowSword", true);
+                    break;
+                case "Hamma":
+                    break;
+                case "Sickle":
+                    break;
                 default:
                     animator.SetBool("isAAttack3_S", false);
                     animator.SetBool("isAAttack3_E", false);
@@ -159,11 +235,33 @@ public class PlayerAttackAnime : MonoBehaviour
                     animator.SetBool("isAttack1", false);
                     animator.SetBool("isAttack2", false);
                     animator.SetBool("isAttack3", false);
+                    animator.SetBool("isAHighSlash", false);
+                    animator.SetBool("isHighSlash", false);
+                    animator.SetBool("isAHighSlash_end", false);
+                    animator.SetBool("isARaid", false);
+                    animator.SetBool("isThrowSword", false);
+                    animator.SetBool("isThrowSword_E", false);
                     break;
             }
             // 状態の変更を判定するために状態を保存しておく
             prevState = state;
 
         }
+    }
+
+    void PlayerRise()
+    {
+        rb.velocity = new Vector2(0, 8);
+    }
+
+    void ThrowSword()
+    {
+        Instantiate(thrownSword, this.transform.position + new Vector3(0.45f * PC.GetDrection(), 0.08f), Quaternion.Euler(0, 90f-PC.GetDrection()*90f, 0));
+    }
+    
+    void AirRaid()
+    {
+        transform.localScale = new Vector3(PC.GetDrection() * 3, 3, 3); // 向きに応じてキャラクターを反転
+        rb.velocity = new Vector2(2.5f * PC.GetDrection(), -5);
     }
 }

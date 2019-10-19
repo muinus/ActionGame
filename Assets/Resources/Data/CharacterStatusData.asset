@@ -34,42 +34,42 @@ MonoBehaviour:
   - ActtionName: AirAttack3_end
     atk: 50
     force: {x: 4, y: 1}
-  - ActtionName: AirAttack3_end
-    atk: 50
-    force: {x: 4, y: 1}
   - ActtionName: Fireball
     atk: 25
     force: {x: 1, y: 1}
   - ActtionName: AirFireball
     atk: 25
     force: {x: 1, y: -1}
-  - ActtionName: AirFireball
+  - ActtionName: ThrowSword
     atk: 25
-    force: {x: 1, y: -1}
-  - ActtionName: AirFireball
+    force: {x: 0, y: 0}
+  - ActtionName: AirRaid
     atk: 25
-    force: {x: 1, y: -1}
-  - ActtionName: AirFireball
-    atk: 25
-    force: {x: 1, y: -1}
-  - ActtionName: AirFireball
-    atk: 25
-    force: {x: 1, y: -1}
-  - ActtionName: AirFireball
-    atk: 25
-    force: {x: 1, y: -1}
-  - ActtionName: AirFireball
-    atk: 25
-    force: {x: 1, y: -1}
-  - ActtionName: AirFireball
-    atk: 25
-    force: {x: 1, y: -1}
-  - ActtionName: AirFireball
-    atk: 25
-    force: {x: 1, y: -1}
-  - ActtionName: AirFireball
-    atk: 25
-    force: {x: 1, y: -1}
-  - ActtionName: AirFireball
-    atk: 25
-    force: {x: 1, y: -1}
+    force: {x: 2.5, y: -5}
+  - ActtionName: AirHighSlash_loop
+    atk: 30
+    force: {x: 0, y: 8}
+  - ActtionName: WaterMagic
+    atk: 10
+    force: {x: 0.25, y: 3}
+  - ActtionName: AirWaterMagic
+    atk: 10
+    force: {x: 1, y: 0}
+  - ActtionName: Tyoson
+    atk: 45
+    force: {x: 0, y: 8}
+  - ActtionName: RailGun
+    atk: 40
+    force: {x: 1, y: 0}
+  - ActtionName: Tyoson
+    atk: 45
+    force: {x: 0, y: 8}
+  - ActtionName: Tyoson
+    atk: 45
+    force: {x: 0, y: 8}
+  - ActtionName: Tyoson
+    atk: 45
+    force: {x: 0, y: 8}
+  - ActtionName: Tyoson
+    atk: 45
+    force: {x: 0, y: 8}

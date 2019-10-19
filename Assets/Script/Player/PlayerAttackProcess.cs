@@ -9,6 +9,7 @@ public class PlayerAttackProcess : MonoBehaviour
     GameObject enemy;//攻撃対象の敵
     PlayerAttackDamage attackTable;//アクションとダメージの対応テーブル
     List<AttackDamage> ADlist;//テーブルを格納するリスト
+    GameObject player;
 
     Animator animator;
 
@@ -20,23 +21,34 @@ public class PlayerAttackProcess : MonoBehaviour
         attackTable = Resources.Load<PlayerAttackDamage>("Data/CharacterStatusData");
         ADlist = attackTable.AttackDataList;
         animator = transform.root.GetComponent<Animator>();
+        player = GameObject.Find("Player");
     }
 
-
-    // Start is called before the first frame update
+    
     void OnTriggerEnter2D(Collider2D other)
     {
+
+        if (transform.tag != "Player_Attack")
+            return;
+        
+
+        if (other.gameObject.tag != "Enemy")
+            return;
         
 
         enemy = other.gameObject;
 
-        if (enemy.tag != "Enemy")
+        if (enemy.GetComponent<EnemyController2>().GetIsDead())
             return;
+
+        damage = 0;
+        force = Vector2.zero;
 
         HPbar = enemy.GetComponentInChildren<Slider>();
 
         //敵から自分への向き
-        int drec = System.Math.Sign(enemy.transform.position.x - this.transform.position.x);
+        int drec = System.Math.Sign(enemy.transform.position.x - player.transform.position.x);
+        
 
         foreach (AttackDamage state in ADlist)
         {
@@ -55,6 +67,7 @@ public class PlayerAttackProcess : MonoBehaviour
 
     void TakeDamage(int attack)
     {
+        
         if (HPbar == null)
             return;
 

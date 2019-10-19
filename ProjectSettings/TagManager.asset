@@ -9,6 +9,7 @@ TagManager:
   - Player_Attack
   - Enemy_Attack
   - Event
+  - Wall
   layers:
   - Default
   - TransparentFX
@@ -57,4 +58,7 @@ TagManager:
     locked: 0
   - name: Player
     uniqueID: 1689931047
+    locked: 0
+  - name: Masic
+    uniqueID: 2648864979
     locked: 0

@@ -17,7 +17,7 @@ public class PlayerController : MonoBehaviour
     int drec = 1;                // 左右の管理
     int dJumpCount = 0;
 
-    
+
     string state;                // プレイヤーの状態管理
     string prevState;            // 前の状態を保存
     float stateEffect = 1.0f;       // 状態に応じて横移動速度を変えるための係数
@@ -27,7 +27,7 @@ public class PlayerController : MonoBehaviour
     {
         this.rb = GetComponent<Rigidbody2D>();
         this.animator = GetComponent<Animator>();
-        animator.SetBool("isGround",true);
+        animator.SetBool("isGround", true);
     }
 
     void Update()
@@ -46,7 +46,7 @@ public class PlayerController : MonoBehaviour
             key = 1;
         if (Input.GetKey(KeyCode.LeftArrow))
             key = -1;
-        if (Input.GetKeyDown(KeyCode.Space)&&(!animator.GetBool("isGround")) &&(state != "DJUMP"))
+        if (Input.GetKeyDown(KeyCode.Space) && (!animator.GetBool("isGround")) && (state != "DJUMP"))
             isDoubleJump = true;
         if (key != 0)
             drec = key;
@@ -83,14 +83,14 @@ public class PlayerController : MonoBehaviour
         else
         {
             // ダブルジャンプか
-            if (isDoubleJump&&dJumpCount == 0)
+            if (isDoubleJump && dJumpCount == 0)
             {
                 state = "DJUMP";
 
             }
             // 上昇中
-            else if (rb.velocity.y > 0)
-            {                  
+            else if (rb.velocity.y > 0 && (!animator.GetBool("isHighSlash")))
+            {
                 state = "JUMP";
 
             }// 下降中
@@ -134,7 +134,7 @@ public class PlayerController : MonoBehaviour
                     animator.SetBool("isFall", false);
                     animator.SetBool("isJump", false);
                     stateEffect = 1f;
-                    transform.localScale = new Vector3(key*3, 3, 3); // 向きに応じてキャラクターを反転
+                    transform.localScale = new Vector3(key * 3, 3, 3); // 向きに応じてキャラクターを反転
                     break;
                 case "RUN2":
                     animator.SetBool("isMove", true);
@@ -144,7 +144,7 @@ public class PlayerController : MonoBehaviour
                     transform.localScale = new Vector3(key * 3, 3, 3); // 向きに応じてキャラクターを反転
                     break;
                 default:
-                    animator.SetBool("isDJump",false);
+                    animator.SetBool("isDJump", false);
                     animator.SetBool("isFall", false);
                     animator.SetBool("isMove", false);
                     animator.SetBool("isJump", false);
@@ -153,28 +153,32 @@ public class PlayerController : MonoBehaviour
             }
             // 状態の変更を判定するために状態を保存しておく
             prevState = state;
-            
+
         }
     }
 
     void Move()
     {
-        
 
+        if (!animator.GetCurrentAnimatorStateInfo(0).IsName("Idle") &&
+            !animator.GetCurrentAnimatorStateInfo(0).IsName("Move") &&
+            !animator.GetCurrentAnimatorStateInfo(0).IsName("Jump") &&
+            !animator.GetCurrentAnimatorStateInfo(0).IsName("DoubleJump") &&
+            !animator.GetCurrentAnimatorStateInfo(0).IsName("Fall"))
+            return;
 
-        if (state == "DJUMP"&&dJumpCount==0)
+        if (state == "DJUMP" && dJumpCount == 0)
         {
             //if (rb.velocity.y <= 0)
-                rb.velocity=new Vector2(0, 2);
-            this.rb.AddForce(new Vector3(0, 1, 0) * this.jumpForce*0.5f);
+            rb.velocity = new Vector2(0, 2);
+            this.rb.AddForce(new Vector3(0, 1, 0) * this.jumpForce * 0.5f);
             isDoubleJump = false;
             dJumpCount = 1;
         }
         // 接地している時にSpaceキー押下でジャンプ
         if (animator.GetBool("isGround"))
         {
-            if (animator.GetCurrentAnimatorStateInfo(0).IsName("AirAttack3_end"))
-                return;
+
 
             dJumpCount = 0;
             if (Input.GetKeyDown(KeyCode.Space))
@@ -185,12 +189,12 @@ public class PlayerController : MonoBehaviour
         }
 
         //攻撃時は移動しない
-        if (!animator.GetCurrentAnimatorStateInfo(0).IsName("Idle") &&
-            !animator.GetCurrentAnimatorStateInfo(0).IsName("Move") &&
-            !animator.GetCurrentAnimatorStateInfo(0).IsName("Jump") &&
-            !animator.GetCurrentAnimatorStateInfo(0).IsName("DoubleJump")&&
-            !animator.GetCurrentAnimatorStateInfo(0).IsName("Fall"))
-            return;
+        //if (!animator.GetCurrentAnimatorStateInfo(0).IsName("Idle") &&
+        //    !animator.GetCurrentAnimatorStateInfo(0).IsName("Move") &&
+        //    !animator.GetCurrentAnimatorStateInfo(0).IsName("Jump") &&
+        //    !animator.GetCurrentAnimatorStateInfo(0).IsName("DoubleJump")&&
+        //    !animator.GetCurrentAnimatorStateInfo(0).IsName("Fall"))
+        //    return;
 
         // 左右の移動。一定の速度に達するまではAddforceで力を加え、それ以降はtransform.positionを直接書き換えて同一速度で移動する
         float speedX = Mathf.Abs(this.rb.velocity.x);
@@ -244,6 +248,17 @@ public class PlayerController : MonoBehaviour
     {
         rb.simulated = true;
         rb.velocity = new Vector2(0, 0);
+    }
+
+    public void FreezPos()
+    {
+        rb.constraints = RigidbodyConstraints2D.FreezeAll;
+    }
+
+    public void UnFreezPos()
+    {
+        rb.constraints = RigidbodyConstraints2D.None;
+        rb.constraints = RigidbodyConstraints2D.FreezeRotation;
     }
 
     public int GetDrection()
