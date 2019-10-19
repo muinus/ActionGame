@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class FannelMoveContrl : MonoBehaviour
 {
+    const int GRROUND_LAYER = 1<<11 | 1<<9;
 
     public float targetHight;//どのくらいの高さまで上昇するか
     public float riseTime;//何秒かけて上昇するか
@@ -39,9 +40,9 @@ public class FannelMoveContrl : MonoBehaviour
         {
             //rayはおもそうなので一フレームだけ使用
             //ファンネル弾の真上にrayを飛ばして高さ制限をする
-            RaycastHit2D hit = Physics2D.Raycast(transform.position, new Vector2(0, 1), ray_distance);
+            RaycastHit2D hit = Physics2D.Raycast(transform.position, new Vector2(0, 1), ray_distance , GRROUND_LAYER);
             // 上に距離(ray_distance)以内になんかある
-            if (hit.transform != null & hit.transform.gameObject.tag=="Ground")
+            if (hit.transform != null && hit.transform.gameObject.tag=="Ground")
             {
                 float ofset = 0.5f;
                 if (hit.point.y - startPositon.y < targetHight + ofset)
@@ -100,7 +101,7 @@ public class FannelMoveContrl : MonoBehaviour
                     {
                         float rad = Mathf.Atan2(g.transform.position.y - transform.position.y, g.transform.position.x - transform.position.x);
                         //ファンネルから敵に向かってRayをうつ
-                        RaycastHit2D hit = Physics2D.Raycast(transform.position, new Vector2(Mathf.Cos(rad),Mathf.Sin(rad)), ray_distance);
+                        RaycastHit2D hit = Physics2D.Raycast(transform.position, new Vector2(Mathf.Cos(rad),Mathf.Sin(rad)), ray_distance, GRROUND_LAYER);
 
                         if (hit.transform != null)
                         {
@@ -193,5 +194,23 @@ public class FannelMoveContrl : MonoBehaviour
         this.riseTime = riseTime;
         this.bulletSpeed = bulletSpeed;
 
+    }
+
+    public void OnTriggerEnter2D(Collider2D other)
+    {
+        DectoryThisFannelObject(other.gameObject);
+    }
+
+    public void OnTriggerStay2D(Collider2D other)
+    {
+        DectoryThisFannelObject(other.gameObject);
+    }
+
+    public void DectoryThisFannelObject(GameObject g)
+    {
+
+        if (g.tag=="Ground" || g.tag=="Enemy") {
+            GameObject.Destroy(this.gameObject);
+        }
     }
 }
