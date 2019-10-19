@@ -27,7 +27,6 @@ public class PlayerAttackProcess : MonoBehaviour
     
     void OnTriggerEnter2D(Collider2D other)
     {
-
         if (transform.tag != "Player_Attack")
             return;
         
@@ -38,9 +37,12 @@ public class PlayerAttackProcess : MonoBehaviour
 
         enemy = other.gameObject;
 
-        if (enemy.GetComponent<EnemyController2>().GetIsDead())
-            return;
-
+        try
+        {
+            if (enemy.GetComponent<EnemyController2>().GetIsDead())
+                return;
+        }
+        catch{}
         damage = 0;
         force = Vector2.zero;
 

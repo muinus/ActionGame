@@ -14,13 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AttackDataList:
   - ActtionName: Attack1
-    atk: 2000
+    atk: 30
     force: {x: 1, y: 1}
   - ActtionName: Attack2
-    atk: 25
+    atk: 35
     force: {x: 1, y: 1}
   - ActtionName: Attack3
-    atk: 30
+    atk: 40
     force: {x: 4, y: 1}
   - ActtionName: AirAttack1
     atk: 25
@@ -45,10 +45,10 @@ MonoBehaviour:
     force: {x: 0, y: 0}
   - ActtionName: AirRaid
     atk: 25
-    force: {x: 2.5, y: -5}
+    force: {x: 4, y: -5}
   - ActtionName: AirHighSlash_loop
     atk: 30
-    force: {x: 0, y: 8}
+    force: {x: 0, y: 8.5}
   - ActtionName: WaterMagic
     atk: 10
     force: {x: 0.25, y: 3}
@@ -61,9 +61,24 @@ MonoBehaviour:
   - ActtionName: RailGun
     atk: 40
     force: {x: 1, y: 0}
-  - ActtionName: Tyoson
-    atk: 45
-    force: {x: 0, y: 8}
+  - ActtionName: MachineBullet
+    atk: 2
+    force: {x: 0.1, y: 0}
+  - ActtionName: Slashing
+    atk: 50
+    force: {x: 5, y: 1}
+  - ActtionName: AirShotGun
+    atk: 40
+    force: {x: 5, y: 0}
+  - ActtionName: Hamma
+    atk: 30
+    force: {x: 2, y: 0}
+  - ActtionName: Sickle
+    atk: 35
+    force: {x: 0, y: 6}
+  - ActtionName: Fannel
+    atk: 20
+    force: {x: 0, y: 0}
   - ActtionName: Tyoson
     atk: 45
     force: {x: 0, y: 8}

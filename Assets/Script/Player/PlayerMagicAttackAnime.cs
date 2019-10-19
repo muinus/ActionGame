@@ -8,6 +8,7 @@ public class PlayerMagicAttackAnime : MonoBehaviour
     Animator animator;
 
     PlayerController PC;
+    CameraController CC;
 
     string state;                // プレイヤーの状態管理
     string prevState;            // 前の状態を保存
@@ -23,6 +24,7 @@ public class PlayerMagicAttackAnime : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        CC = GameObject.Find("Main Camera").GetComponent<CameraController>();
         PC = GetComponent<PlayerController>();
         this.rb = GetComponent<Rigidbody2D>();
         this.animator = GetComponent<Animator>();
@@ -150,11 +152,13 @@ public class PlayerMagicAttackAnime : MonoBehaviour
 
     void Tyoson_S()
     {
+        CC.LockCamera();
         transform.position += new Vector3(0, 0.5f);
     }
 
     void Tyoson_E()
     {
+        CC.UnLockCamera();
         transform.position -= new Vector3(0, 0.5f);
     }
 }

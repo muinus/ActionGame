@@ -50,6 +50,9 @@ public class BattleEvent : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D col)
     {
+        if (col.gameObject.tag != "Player")
+            return;
+
         battleEventMaster.SetIsBattleEvent(true);
         isThisBattleEvent = true;
         transform.GetComponent<BoxCollider2D>().enabled = false;

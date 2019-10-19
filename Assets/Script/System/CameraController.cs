@@ -6,9 +6,9 @@ public class CameraController : MonoBehaviour
 {
     public GameObject player;
 
-    public GameObject BattleEvent; 
+    public GameObject BattleEvent;
 
-    
+    bool isLockCamera;
 
     // Start is called before the first frame update
     void Start()
@@ -19,9 +19,19 @@ public class CameraController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!BattleEvent.GetComponent<BattleEventMaster>().GetIsBattleEvent())
+        if (!BattleEvent.GetComponent<BattleEventMaster>().GetIsBattleEvent()&&!isLockCamera)
         {
             transform.position = new Vector3(player.transform.position.x, player.transform.position.y + 0.75f, -1);
         }
+    }
+
+    public void LockCamera()
+    {
+        isLockCamera = true;
+    }
+
+    public void UnLockCamera()
+    {
+        isLockCamera = false;
     }
 }

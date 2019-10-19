@@ -11,6 +11,8 @@ public class PlayerGunAttackAnime : MonoBehaviour
     PlayerController PC;
 
     public GameObject railGun;
+    public GameObject bullet;
+    public GameObject Fannelbullet;
 
     string state;                // プレイヤーの状態管理
     string prevState;            // 前の状態を保存
@@ -19,6 +21,11 @@ public class PlayerGunAttackAnime : MonoBehaviour
 
     GameObject nearEnemy;
 
+    float longPressIntervalTime = 1.0f;//生存時間
+    float pressTime = 0f;
+    bool isPressed;
+    bool isreload;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -26,6 +33,8 @@ public class PlayerGunAttackAnime : MonoBehaviour
         this.rb = GetComponent<Rigidbody2D>();
         this.animator = GetComponent<Animator>();
         isComboing = false;
+        isPressed = false;
+        isreload = true;//銃ボタン長押しで無限にマシンガンが撃てるのを抑制するフラグ
     }
 
     // Update is called once per frame
@@ -39,22 +48,61 @@ public class PlayerGunAttackAnime : MonoBehaviour
     void GetInputKey()
     {
 
+        if(Input.GetKeyUp(KeyCode.X))
+            isreload = true;
+
+        if (Input.GetKey(KeyCode.X))
+            isPressed = true;
+        else
+            isPressed = false;
+
+        if (isPressed)
+            pressTime += Time.deltaTime;
+        else
+            pressTime = 0;
     }
 
     void ChangeState()
     {
+        
 
         // 接地している場合
         if (animator.GetBool("isGround"))
         {
+            if(animator.GetCurrentAnimatorStateInfo(0).IsName("MachineGun") && Input.GetKeyUp(KeyCode.X))
+            {
+                state = "IDLE";
+            }
+            // 銃長押し攻撃
+            else if (isPressed && pressTime >= longPressIntervalTime)
+            {
+                Debug.Log(pressTime);
+                if (pressTime >= 3.0f)
+                {
+                    state = "IDLE";
+                    return;
+                }
+
+                if (isreload)
+                {
+                    state = "MachineGun";
+                    isreload = false;
+                }
+            }
             // 横銃(レールガン)
-            if ((Input.GetKeyDown(KeyCode.X) && Input.GetKey(KeyCode.LeftArrow)) ||
+            else if ((Input.GetKeyDown(KeyCode.X) && Input.GetKey(KeyCode.LeftArrow)) ||
                 (Input.GetKeyDown(KeyCode.X) && Input.GetKey(KeyCode.RightArrow)))
             {
                 state = "RailGun";
+            }//上銃(ファンネル)
+            else if (Input.GetKeyDown(KeyCode.X) && Input.GetKey(KeyCode.UpArrow))
+            {
+                var gameobject = GameObject.Find("fannel(Clone)");
+                if(gameobject==null)
+                    InstanceFannel();
             }
             // 銃コンボ1
-            if ((Input.GetKeyDown(KeyCode.X) && !isComboing)||
+            else if ((Input.GetKeyDown(KeyCode.X) && !isComboing)||
                 (animator.GetCurrentAnimatorStateInfo(0).IsName("GunAttack2") && Input.GetKeyDown(KeyCode.X)))
             {
                 state = "GunATTACK1";
@@ -75,8 +123,28 @@ public class PlayerGunAttackAnime : MonoBehaviour
         }
         else//空中にいる場合
         {
+
+            //空中横銃攻撃(ショットガン横)
+            if ((Input.GetKeyDown(KeyCode.X) && Input.GetKey(KeyCode.LeftArrow)) ||
+                (Input.GetKeyDown(KeyCode.X) && Input.GetKey(KeyCode.RightArrow)))
+            {
+                state = "ShotGun";
+                rb.velocity = new Vector2(0, 2);
+                transform.localScale = new Vector3(PC.GetDrection() * 3, 3, 3); // 向きに応じてキャラクターを反転
+            }
+            //空中下銃攻撃(ショットガン下)
+            else if (Input.GetKeyDown(KeyCode.X) && Input.GetKey(KeyCode.DownArrow))
+            {
+                state = "ShotGun_Down";
+            }//空中上銃(ファンネル)
+            else if (Input.GetKeyDown(KeyCode.X) && Input.GetKey(KeyCode.UpArrow))
+            {
+                var gameobject = GameObject.Find("fannel(Clone)");
+                if (gameobject == null)
+                    InstanceFannel();
+            }
             // 空中銃1コンボ
-            if ((Input.GetKeyDown(KeyCode.X) && !isComboing)||
+            else if ((Input.GetKeyDown(KeyCode.X) && !isComboing)||
                 (animator.GetCurrentAnimatorStateInfo(0).IsName("AirGunAttack2") && Input.GetKeyDown(KeyCode.X)))
             {
                 state = "AirGunATTACK1";
@@ -102,7 +170,7 @@ public class PlayerGunAttackAnime : MonoBehaviour
     void ChangeAnimation()
     {
         // 状態が変わった場合のみアニメーションを変更する
-        //Debug.Log(state);
+        Debug.Log(state);
         if (prevState != state)
         {
             switch (state)
@@ -128,12 +196,24 @@ public class PlayerGunAttackAnime : MonoBehaviour
                 case "RailGun":
                     animator.SetBool("isRailGun", true);
                     break;
+                case "MachineGun":
+                    animator.SetBool("isMachineGun", true);
+                    break;
+                case "ShotGun":
+                    animator.SetBool("isShotGun", true);
+                    break;
+                case "ShotGun_Down":
+                    animator.SetBool("isShotGun", true);
+                    break;
                 default:
                     animator.SetBool("isGunAttack1", false);
                     animator.SetBool("isGunAttack2", false);
                     animator.SetBool("isAGunAttack1", false);
                     animator.SetBool("isAGunAttack2", false);
                     animator.SetBool("isRailGun", false);
+                    animator.SetBool("isMachineGun", false);
+                    animator.SetBool("isShotGun", false);
+                    ResetPressTIme();
                     break;
             }
             //状態の変更を判定するために状態を保存しておく
@@ -162,7 +242,36 @@ public class PlayerGunAttackAnime : MonoBehaviour
 
     void RailGun()
     {
-        Instantiate(railGun, this.transform.position + new Vector3(5.08f * PC.GetDrection(), 0.1f), Quaternion.Euler(0, 90f - PC.GetDrection() * 90f, 0));
+        Instantiate(railGun, this.transform.position + new Vector3(5.08f * PC.GetDrection(), -0.1f), Quaternion.Euler(0, 90f - PC.GetDrection() * 90f, 0));
+    }
+
+    void MachineGun()
+    {
+        Instantiate(bullet, this.transform.position + new Vector3(0.26f * PC.GetDrection(), -0.03f), Quaternion.Euler(0, 90f - PC.GetDrection() * 90f, 0));
+        Instantiate(bullet, this.transform.position + new Vector3(0.26f * PC.GetDrection(), -0.03f), Quaternion.Euler(0, 90f - PC.GetDrection() * 90f, 0));
+    }
+
+    void InstanceFannel()
+    {
+        Vector3 pos = this.transform.position;
+        Quaternion qua = Quaternion.Euler(0, 0, 90);
+
+        for (int i = 0; i < 7; i++)
+        {
+            GameObject g = GameObject.Instantiate(Fannelbullet, pos, qua);//ファンネル生成
+
+            float targetHight = (i + 1) * 0.6f;
+            float riseTime = 0.6f;
+            float bulletSpeed = 5f;
+
+            g.GetComponent<FannelMoveContrl>().setInit(targetHight, riseTime, bulletSpeed);//ファンネルの初期値を与える
+
+            if (targetHight < 0f)
+            {
+
+                Debug.Log("・。・" + targetHight);
+            }
+        }
     }
 
     //指定されたタグの中で最も近いものを取得
@@ -200,5 +309,10 @@ public class PlayerGunAttackAnime : MonoBehaviour
         //最も近かったオブジェクトを返す
         //return GameObject.Find(nearObjName);
         return targetObj;
+    }
+
+    public void ResetPressTIme()
+    {
+        pressTime = 0;
     }
 }

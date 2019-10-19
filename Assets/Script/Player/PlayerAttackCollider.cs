@@ -67,10 +67,30 @@ public class PlayerAttackCollider : MonoBehaviour
             col.offset = new Vector2(0.01f, -0.21f);
             col.size = new Vector2(0.7f, 0.27f);
         }
+        else if (animator.GetCurrentAnimatorStateInfo(0).IsName("Slashing"))
+        {
+            col.offset = new Vector2(0.157f, -0.005f);
+            col.size = new Vector2(0.19f, 0.36f);
+        }
+        else if (animator.GetCurrentAnimatorStateInfo(0).IsName("AirShotGun"))
+        {
+            col.offset = new Vector2(0.37f, 0);
+            col.size = new Vector2(0.39f, 0.39f);
+        }
+        else if (animator.GetCurrentAnimatorStateInfo(0).IsName("Hamma"))
+        {
+            col.offset = new Vector2(0.16f, 0);
+            col.size = new Vector2(0.186f, 0.36f);
+        }
+        else if (animator.GetCurrentAnimatorStateInfo(0).IsName("Sickle"))
+        {
+            col.offset = new Vector2(0.1f, 0);
+            col.size = new Vector2(0.26f, 0.36f);
+        }
 
     }
 
-    void AttackEnd()
+    public void AttackEnd()
     {
         col.enabled = false;
     }

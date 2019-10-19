@@ -9,12 +9,17 @@ public class PlayerController_Dameged : MonoBehaviour
     GameObject playerUI;
     Animator animator;
 
+    PlayerAttackAnime PAA;
+    PlayerGunAttackAnime PGA;
+
     bool isdamage;
     string state;
 
     // Start is called before the first frame update
     void Start()
     {
+        PAA = GetComponent<PlayerAttackAnime>();
+        PGA = GetComponent<PlayerGunAttackAnime>();
         playerUI = GameObject.Find("PlayerUI");
         HPbar = playerUI.GetComponentInChildren<Slider>();
         HPbar.maxValue = 100.0f;
@@ -44,6 +49,16 @@ public class PlayerController_Dameged : MonoBehaviour
         }
         else if (isdamage)
         {
+            //剣溜め攻撃の時にダメージを食らった場合の処理
+            if (animator.GetCurrentAnimatorStateInfo(0).IsName("Slashing_R")||
+                animator.GetCurrentAnimatorStateInfo(0).IsName("Slashing"))
+            {
+                PAA.Slashing_E();
+            }
+
+            PAA.ResetPressTIme();
+            PGA.ResetPressTIme();
+
             state = "Damage";
             isdamage = false;
         }

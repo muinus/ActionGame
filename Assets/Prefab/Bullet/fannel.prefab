@@ -10,11 +10,15 @@ GameObject:
   m_Component:
   - component: {fileID: 230220811729172836}
   - component: {fileID: 230220811729172837}
-  - component: {fileID: 230220811729172834}
+  - component: {fileID: 2870170568755729583}
+  - component: {fileID: 987049992316691200}
+  - component: {fileID: -7492596797683175553}
   - component: {fileID: 1961784739}
+  - component: {fileID: 5269161139741699904}
+  - component: {fileID: 7463742950507371485}
   m_Layer: 0
   m_Name: fannel
-  m_TagString: Untagged
+  m_TagString: Player_Attack
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -81,24 +85,72 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &230220811729172834
-MonoBehaviour:
+--- !u!95 &2870170568755729583
+Animator:
+  serializedVersion: 3
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 230220811729172835}
   m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fc48f4067383efb4ea33f69f23c31fd1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sprits:
-  - {fileID: 21300000, guid: bbfcd5116c8971443a8e05412d183b8b, type: 3}
-  - {fileID: 21300000, guid: 8e4fcf72f4922d142bd3e9ef1202ce56, type: 3}
-  - {fileID: 21300000, guid: adda1ce112752d44492c4bc69f0f4158, type: 3}
-  - {fileID: 21300000, guid: e04f0cf401f4d4a4d81b69ea47db171b, type: 3}
-  oneFrameTimeInt: 5
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 26b79dcdec8442d49a571c16385f1df4, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!61 &987049992316691200
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 230220811729172835}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.021500766, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.32, y: 0.32}
+    newSize: {x: 0.32, y: 0.32}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.24867547, y: 0.25}
+  m_EdgeRadius: 0
+--- !u!50 &-7492596797683175553
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 230220811729172835}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 7
 --- !u!114 &1961784739
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -114,3 +166,27 @@ MonoBehaviour:
   targetHight: 7.5
   riseTime: 1.17
   bulletSpeed: 11.13
+--- !u!114 &5269161139741699904
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 230220811729172835}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1b220272770aeff438813cc09827b880, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &7463742950507371485
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 230220811729172835}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 135cb229a69c589409c1c7a2f30b9ee8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

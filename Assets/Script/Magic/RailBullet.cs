@@ -8,7 +8,7 @@ public class RailBullet : MonoBehaviour
 
     private void Start()
     {
-        col = GetComponent<BoxCollider2D>();
+        col = transform.GetComponent<BoxCollider2D>();
         col.size = new Vector2(3f, 0.04f);
     }
 
