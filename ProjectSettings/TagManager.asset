@@ -9,6 +9,7 @@ TagManager:
   - Player_Attack
   - Enemy_Attack
   - Event
+  - flyPoint
   layers:
   - Default
   - TransparentFX

@@ -1,9 +1,5 @@
 sceneSetups:
-<<<<<<< HEAD
 - path: Assets/TokukeFolder/Scene/TestScene.unity
-=======
-- path: Assets/Stage/Stage1/Stage1.unity
->>>>>>> ab3589b24d5a3df79b621b992f0d63ae3c69516d
   isLoaded: 1
   isActive: 1
   isSubScene: 0
