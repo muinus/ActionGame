@@ -8,24 +8,26 @@ public class PlayerMagicAttackAnime : MonoBehaviour
     Animator animator;
 
     PlayerController PC;
+    CameraController CC;
 
     string state;                // プレイヤーの状態管理
     string prevState;            // 前の状態を保存
 
     
-
-    bool isComboing;
+    
 
     public GameObject fireball;
     public GameObject airFireball;
+    public GameObject waterMasic;
+    public GameObject airwaterMasic;
 
     // Start is called before the first frame update
     void Start()
     {
+        CC = GameObject.Find("Main Camera").GetComponent<CameraController>();
         PC = GetComponent<PlayerController>();
         this.rb = GetComponent<Rigidbody2D>();
         this.animator = GetComponent<Animator>();
-        isComboing = false;
     }
 
     // Update is called once per frame
@@ -47,32 +49,43 @@ public class PlayerMagicAttackAnime : MonoBehaviour
         // 接地している場合
         if (animator.GetBool("isGround"))
         {
+            //魔法(土)
+            if ((Input.GetKeyDown(KeyCode.C) && Input.GetKey(KeyCode.DownArrow)))
+            {
+                state = "Tyoson";
+            }
+            //魔法(水)
+            else if ((Input.GetKeyDown(KeyCode.C) && Input.GetKey(KeyCode.UpArrow)))
+            {
+                state = "WaterMasic";
+            }
             // 魔法(火球)
-            if (Input.GetKeyDown(KeyCode.C) && !isComboing)
+            else if (Input.GetKeyDown(KeyCode.C))
             {
                 state = "Fireball";
-                isComboing = true;
             }
             else if (animator.GetCurrentAnimatorStateInfo(0).IsName("Idle"))
             {
                 state = "IDLE";
-                isComboing = false;
             }
 
         }
         else//空中にいる場合
         {
-            // 空中1コンボ
-            if (Input.GetKeyDown(KeyCode.C) && !isComboing)
+            //空中魔法(水)
+            if ((Input.GetKeyDown(KeyCode.C) && Input.GetKey(KeyCode.UpArrow)))
+            {
+                state = "AirWaterMasic";
+            }
+            // 空中魔法(火球)
+            else if (Input.GetKeyDown(KeyCode.C))
             {
                 state = "AirFireball";
-                isComboing = true;
                 
             }
             else if (animator.GetCurrentAnimatorStateInfo(0).IsName("Fall"))
             {
                 state = "FALL";
-                isComboing = false;
             }
         }
     }
@@ -91,9 +104,21 @@ public class PlayerMagicAttackAnime : MonoBehaviour
                 case "AirFireball":
                     animator.SetBool("isAFireball", true);
                     break;
+                case "WaterMasic":
+                    animator.SetBool("isWaterMasic", true);
+                    break;
+                case "AirWaterMasic":
+                    animator.SetBool("isAWaterMasic", true);
+                    break;
+                case "Tyoson":
+                    animator.SetBool("isTyoson", true);
+                    break;
                 default:
                     animator.SetBool("isFireball", false);
                     animator.SetBool("isAFireball", false);
+                    animator.SetBool("isWaterMasic", false);
+                    animator.SetBool("isAWaterMasic", false);
+                    animator.SetBool("isTyoson", false);
                     break;
             }
             //状態の変更を判定するために状態を保存しておく
@@ -104,11 +129,36 @@ public class PlayerMagicAttackAnime : MonoBehaviour
 
     void FireBall()
     {
-        Instantiate(fireball, this.transform.position+new Vector3(0.8f*PC.GetDrection(),0.1f), Quaternion.identity);
+        Instantiate(fireball, this.transform.position+new Vector3(0.8f*PC.GetDrection(),0.1f), Quaternion.Euler(0, 90f - PC.GetDrection() * 90f, 0));
     }
 
     void AirFireBall()
     {
-        Instantiate(airFireball, this.transform.position + new Vector3(0.6f* PC.GetDrection(), -0.5f), Quaternion.identity);
+        Instantiate(airFireball, this.transform.position + new Vector3(0.6f* PC.GetDrection(), -0.5f), Quaternion.Euler(0, 90f - PC.GetDrection() * 90f, 0));
+    }
+
+    void WaterMasic()
+    {
+        Instantiate(waterMasic, this.transform.position + new Vector3(1.1f * PC.GetDrection(), 0.9f), Quaternion.Euler(180, 90f - PC.GetDrection() * 90f, 0));
+    }
+
+    void AirWaterMasic()
+    {
+        Instantiate(airwaterMasic, this.transform.position + new Vector3(-1.14f * PC.GetDrection(), 0.08f), Quaternion.Euler(0, 90f - PC.GetDrection() * 90f, 180f));
+        Instantiate(airwaterMasic, this.transform.position + new Vector3(1.03f * PC.GetDrection(), 0.08f), Quaternion.Euler(0, 90f - PC.GetDrection() * 90f, 0));
+        Instantiate(airwaterMasic, this.transform.position + new Vector3(-0.03f * PC.GetDrection(), -1.06f), Quaternion.Euler(0, 90f - PC.GetDrection() * 90f, -90f));
+        Instantiate(airwaterMasic, this.transform.position + new Vector3(-0.03f * PC.GetDrection(), 1.06f), Quaternion.Euler(0, 90f - PC.GetDrection() * 90f, 90f));
+    }
+
+    void Tyoson_S()
+    {
+        CC.LockCamera();
+        transform.position += new Vector3(0, 0.5f);
+    }
+
+    void Tyoson_E()
+    {
+        CC.UnLockCamera();
+        transform.position -= new Vector3(0, 0.5f);
     }
 }

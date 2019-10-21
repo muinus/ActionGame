@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4866397285559025808}
   - component: {fileID: 4866397284731236283}
+  - component: {fileID: 6416347348571764061}
   m_Layer: 0
   m_Name: AttackColider
   m_TagString: Player_Attack
@@ -57,6 +58,18 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.5, y: 0.25}
   m_EdgeRadius: 0
+--- !u!114 &6416347348571764061
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4866397285559026031}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 135cb229a69c589409c1c7a2f30b9ee8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4866397285633822424
 GameObject:
   m_ObjectHideFlags: 0
@@ -75,7 +88,6 @@ GameObject:
   - component: {fileID: 4866397285633822425}
   - component: {fileID: 4866397285633822426}
   - component: {fileID: 4866397285633822427}
-  - component: {fileID: 4866397285633822403}
   - component: {fileID: 4866397285633822404}
   - component: {fileID: 4866397285633822405}
   - component: {fileID: 4866397285633822406}
@@ -260,6 +272,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b44a80b332286764fbabfbf5f0dfa8b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  railGun: {fileID: 7412576468999414647, guid: ae7866ffda4685d49b1e9af1481299d7, type: 3}
+  bullet: {fileID: 8812958827330184228, guid: 6c54a9dfb13902241aa6771840400998, type: 3}
+  Fannelbullet: {fileID: 230220811729172835, guid: c39e6c21b47cbe044bfa98f1210a4795,
+    type: 3}
 --- !u!114 &4866397285633822426
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -284,18 +300,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b638d7c9e73bf34698e4ecf5cc5341a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &4866397285633822403
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4866397285633822424}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 135cb229a69c589409c1c7a2f30b9ee8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  driftMagicCircle: {fileID: 1632601090592516405, guid: 499c1c1cb20ec1e44ba639dfaa3b39c1,
+    type: 3}
 --- !u!114 &4866397285633822404
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -308,6 +314,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d857930811d3c6f4d872ecc840e9f324, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  thrownSword: {fileID: 6844309794333309791, guid: c5b84d26d79838e4da12a58cbcffef6d,
+    type: 3}
 --- !u!114 &4866397285633822405
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -323,6 +331,10 @@ MonoBehaviour:
   fireball: {fileID: 8413837404813129425, guid: 28b65de62b8d3134d80669466e2c6bed,
     type: 3}
   airFireball: {fileID: 2478508478814037812, guid: 5dc505dfde201bc4ab5ca8622303d546,
+    type: 3}
+  waterMasic: {fileID: 7412315341334029924, guid: 7ab71b63ac377cb45991d92d3bfcbf00,
+    type: 3}
+  airwaterMasic: {fileID: 1808119655762956256, guid: 4f41c383024993142b6f5ee10d7a47fd,
     type: 3}
 --- !u!114 &4866397285633822406
 MonoBehaviour:
@@ -348,9 +360,10 @@ GameObject:
   - component: {fileID: 4866397286069082442}
   - component: {fileID: 4866397286069082444}
   - component: {fileID: 4866397286069082443}
+  - component: {fileID: 298784696456873523}
   m_Layer: 8
   m_Name: GroundTrigger
-  m_TagString: Player
+  m_TagString: GameController
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -407,3 +420,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b495cf77b85a4de4db3ee94dc4b18248, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!50 &298784696456873523
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4866397286069082441}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0

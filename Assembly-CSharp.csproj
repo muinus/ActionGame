@@ -78,8 +78,14 @@
     <Compile Include="Assets\Script\Enemy\EnemyAttackProcess.cs" />
     <Compile Include="Assets\Script\Enemy\EnemyController.cs" />
     <Compile Include="Assets\Script\Enemy\EnemyController2.cs" />
+    <Compile Include="Assets\Script\Magic\AirDrift.cs" />
+    <Compile Include="Assets\Script\Magic\Fannel.cs" />
     <Compile Include="Assets\Script\Magic\Fireball.cs" />
     <Compile Include="Assets\Script\Magic\Fireball_air.cs" />
+    <Compile Include="Assets\Script\Magic\MachineBullet.cs" />
+    <Compile Include="Assets\Script\Magic\RailBullet.cs" />
+    <Compile Include="Assets\Script\Magic\ThrownSword.cs" />
+    <Compile Include="Assets\Script\Magic\Water.cs" />
     <Compile Include="Assets\Script\Player\PlayerAttackAnime.cs" />
     <Compile Include="Assets\Script\Player\PlayerAttackCollider.cs" />
     <Compile Include="Assets\Script\Player\PlayerAttackProcess.cs" />
@@ -97,6 +103,10 @@
     <Compile Include="Assets\Stage\Stage1\Scripts\BattleEventStage1_boss.cs" />
     <Compile Include="Assets\Stage\Stage1\Scripts\CameraControllerStage1.cs" />
     <Compile Include="Assets\Stage\Stage4\TamariFolder\Script\AsibaCtrl.cs" />
+    <Compile Include="Assets\Stage\Stage4\TamariFolder\Script\BattleEventStage3_1.cs" />
+    <Compile Include="Assets\Stage\Stage4\TamariFolder\Script\bonyou\CreateSpriteObject.cs" />
+    <Compile Include="Assets\Stage\Stage4\TamariFolder\Script\bonyou\SpriteAnimation.cs" />
+    <Compile Include="Assets\Stage\Stage4\TamariFolder\Script\FannelMoveContrl.cs" />
     <Compile Include="Assets\Stage\Stage4\TamariFolder\Script\MoveBedMaster.cs" />
     <Compile Include="Assets\Stage\Stage4\TamariFolder\Script\PlayerController_tamari.cs" />
     <Compile Include="Assets\Tilemaps\TooCubeForest\demoScenes\Movement.cs" />

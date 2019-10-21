@@ -4,12 +4,11 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Ground
-  - Enemy
   - Player_Attack
-  - Enemy_Attack
   - Event
-  - flyPoint
+  - Enemy
+  - Enemy_Attack
+  - Wall
   layers:
   - Default
   - TransparentFX
@@ -19,9 +18,9 @@ TagManager:
   - UI
   - 
   - 
-  - Player
-  - Enemy
-  - Background
+  - 
+  - 
+  - 
   - 
   - 
   - 
@@ -44,18 +43,6 @@ TagManager:
   - 
   - 
   m_SortingLayers:
-  - name: Background2
-    uniqueID: 4060012433
-    locked: 0
-  - name: Background
-    uniqueID: 1308750051
-    locked: 0
   - name: Default
     uniqueID: 0
-    locked: 0
-  - name: Enemy
-    uniqueID: 1160256745
-    locked: 0
-  - name: Player
-    uniqueID: 1689931047
     locked: 0

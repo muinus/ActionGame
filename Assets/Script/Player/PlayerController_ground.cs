@@ -14,9 +14,17 @@ public class PlayerController_ground : MonoBehaviour
         animator=Player.GetComponent<Animator>();
     }
 
+    private void Update()
+    {
+        transform.position = transform.parent.position;
+    }
+
     //着地判定
     void OnTriggerEnter2D(Collider2D col)
     {
+        if (animator.GetCurrentAnimatorStateInfo(0).IsName("AirLanding") ||
+           animator.GetCurrentAnimatorStateInfo(0).IsName("AirLanding_end"))
+            return;
 
         if (col.gameObject.tag == "Ground")
         {
@@ -28,6 +36,10 @@ public class PlayerController_ground : MonoBehaviour
     }
     void OnTriggerStay2D(Collider2D col)
     {
+        if (animator.GetCurrentAnimatorStateInfo(0).IsName("AirLanding") ||
+           animator.GetCurrentAnimatorStateInfo(0).IsName("AirLanding_end"))
+            return;
+
         if (col.gameObject.tag == "Ground")
         {
             if (!animator.GetBool("isGround"))

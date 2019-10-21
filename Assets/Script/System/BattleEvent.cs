@@ -11,15 +11,15 @@ public class BattleEvent : MonoBehaviour
     bool isThisBattleEvent;//イベントの箇所の判定
 
     GameObject maincamera;
-    //GameObject battleEventMaster;
+    GameObject objBattleEventMaster;
     BattleEventMaster battleEventMaster;
 
     private void Start()
     {
         wave = 1;//初期ウェーブは1
         isThisBattleEvent = false;
-
-        battleEventMaster = transform.parent.gameObject.GetComponent<BattleEventMaster>();
+        objBattleEventMaster = transform.parent.gameObject;
+        battleEventMaster = objBattleEventMaster.GetComponent<BattleEventMaster>();
         maincamera = GameObject.Find("Main Camera");
 
         ResetPlace();//障壁の消去
@@ -50,6 +50,9 @@ public class BattleEvent : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D col)
     {
+        if (col.gameObject.tag != "Player")
+            return;
+
         battleEventMaster.SetIsBattleEvent(true);
         isThisBattleEvent = true;
         transform.GetComponent<BoxCollider2D>().enabled = false;
@@ -104,7 +107,7 @@ public class BattleEvent : MonoBehaviour
     }
 
     void SpwanEnemy(GameObject enemy,Vector3 position) {
-        Instantiate(enemy, position, Quaternion.identity);
+        Instantiate(enemy, position, Quaternion.identity, objBattleEventMaster.transform);
         battleEventMaster.IncreaseEnemyCounter();
     }
 

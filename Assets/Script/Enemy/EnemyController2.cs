@@ -8,19 +8,23 @@ public class EnemyController2 : MonoBehaviour
     Slider HPbar;//HPバーのオブジェクト
     GameObject player;
     Animator animator;
-
+    Collider2D col;
+    
     bool isdamage;
+    bool isDead;
     string state;
 
-    public GameObject BattleEvent;
+    GameObject BattleEvent;
 
     // Start is called before the first frame update
     void Start()
     {
         HPbar = GetComponentInChildren<Slider>();
         player = GameObject.Find("Player");
-        animator = transform.root.GetComponent<Animator>();
+        animator = transform.GetComponent<Animator>();
         isdamage = false;
+        isDead = false;
+        col = gameObject.GetComponent<CapsuleCollider2D>();
 
         BattleEvent = GameObject.Find("BattleEventMaster");
     }
@@ -44,14 +48,17 @@ public class EnemyController2 : MonoBehaviour
 
         if (animator.GetCurrentAnimatorStateInfo(0).IsName("Dead"))
         {
-            Destroy(this.gameObject);
-            if (BattleEvent.GetComponent<BattleEventMaster>().GetIsBattleEvent())
+            Debug.Log(BattleEvent);
+            if ((transform.root.gameObject == BattleEvent)
+                && BattleEvent.GetComponent<BattleEventMaster>().GetIsBattleEvent())
             {
                 BattleEvent.GetComponent<BattleEventMaster>().DecreaseEnemyCounter();
             }
+            Destroy(this.gameObject);
         }
         else if (HPbar.value <= 0 && animator.GetCurrentAnimatorStateInfo(0).IsName("Hurt"))
         {
+            isDead = true;
             state = "Die";
             isdamage = false;
         }
@@ -72,14 +79,14 @@ public class EnemyController2 : MonoBehaviour
         switch (state)
         {
             case "Die":
-                animator.SetBool("isDead", true);
+                animator.SetBool("isDie", true);
                 animator.SetBool("isDamaged", false);
                 break;
             case "Damage":
                 animator.SetBool("isDamaged", true);
                 break;
             default:
-                animator.SetBool("isDead", false);
+                animator.SetBool("isDie", false);
                 animator.SetBool("isDamaged", false);
                 break;
         }
@@ -87,7 +94,18 @@ public class EnemyController2 : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if(other.transform.tag == "Player_Attack")
-        isdamage = true;
+
+        if (other.transform.tag == "Player_Attack" && !isDead)
+        {
+            isdamage = true;
+            Debug.Log(other.transform.name);
+        }
     }
+
+    public bool GetIsDead()
+    {
+        return isDead;
+    }
+
+
 }

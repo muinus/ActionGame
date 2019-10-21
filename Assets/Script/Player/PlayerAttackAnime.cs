@@ -8,21 +8,42 @@ public class PlayerAttackAnime : MonoBehaviour
     Animator animator;
 
     PlayerController PC;
+    CameraController CC;
+    
+
+    public GameObject thrownSword;
+
+    CapsuleCollider2D capCol;
+    CircleCollider2D cirCol;
+    BoxCollider2D boxCol;
 
     string state;                // プレイヤーの状態管理
     string prevState;            // 前の状態を保存
     
     bool isComboing;
     bool isAAttack3;
+    bool isAttack3;
+    bool isHamma;
+    bool isPressed;
+
+    float longPressIntervalTime = 1.0f;//生存時間
+    float pressTime = 0f;
 
     // Start is called before the first frame update
     void Start()
     {
+        this.CC = GameObject.Find("Main Camera").GetComponent<CameraController>();
         this.PC = GetComponent<PlayerController>();
         this.rb = GetComponent<Rigidbody2D>();
         this.animator = GetComponent<Animator>();
+        capCol= GetComponent<CapsuleCollider2D>();
+        cirCol = GetComponent<CircleCollider2D>();
+        boxCol = GetComponent<BoxCollider2D>();
         isComboing = false;
         isAAttack3 = false;
+        isPressed = false;
+        isHamma = false;
+        isAttack3 = false;
     }
 
     // Update is called once per frame
@@ -36,7 +57,15 @@ public class PlayerAttackAnime : MonoBehaviour
 
     void GetInputKey()
     {
+        if (Input.GetKey(KeyCode.Z))
+            isPressed = true;
+        else
+            isPressed = false;
 
+        if (isPressed)
+            pressTime += Time.deltaTime;
+        else
+            pressTime = 0;
     }
 
     void ChangeState()
@@ -45,8 +74,37 @@ public class PlayerAttackAnime : MonoBehaviour
         // 接地している場合
         if (animator.GetBool("isGround"))
         {
+            //ため攻撃
+            if ((state == "Slashing_R")&& Input.GetKeyUp(KeyCode.Z))
+            {
+                state = "Slashing";
+                isPressed = false;
+            }
+            //ため攻撃(準備)
+            else if (isPressed&&pressTime>=longPressIntervalTime)
+            {
+                state = "Slashing_R";
+            }            
+            //上攻撃
+            else if ((Input.GetKeyDown(KeyCode.Z) && Input.GetKey(KeyCode.UpArrow)))
+            {
+                
+                state = "HighSlash";
+            }
+            //横攻撃
+            else if ((Input.GetKeyDown(KeyCode.Z) && Input.GetKey(KeyCode.LeftArrow))||
+                (Input.GetKeyDown(KeyCode.Z) && Input.GetKey(KeyCode.RightArrow)))
+            {
+                
+                state = "ThrowSword";
+            }
+            //下攻撃(未実装)
+            else if ((Input.GetKeyDown(KeyCode.Z) && Input.GetKey(KeyCode.DownArrow)))
+            {
+                //state = "ThrowSword";
+            }
             // 1コンボ
-            if (Input.GetKeyDown(KeyCode.Z)&&!isComboing)
+            else if (Input.GetKeyDown(KeyCode.Z)&&!isComboing)
             {
                 state = "ATTACK1";
                 isComboing = true;
@@ -57,15 +115,34 @@ public class PlayerAttackAnime : MonoBehaviour
                 state = "ATTACK2";
 
             }// 3コンボ
-            else if(animator.GetCurrentAnimatorStateInfo(0).IsName("Attack2")&&Input.GetKeyDown(KeyCode.Z))
+            else if (animator.GetCurrentAnimatorStateInfo(0).IsName("Attack2") && Input.GetKeyDown(KeyCode.Z)
+                     && isAttack3)
             {
                 state = "ATTACK3";
+            }// 派生コンボ(ハンマー)
+            else if (animator.GetCurrentAnimatorStateInfo(0).IsName("Attack2") && Input.GetKeyDown(KeyCode.Z)
+                     && isHamma)
+            {
+                state = "Hamma";
+            }// 派生コンボ(鎌)
+            else if (animator.GetCurrentAnimatorStateInfo(0).IsName("Hamma") && Input.GetKeyDown(KeyCode.Z))
+            {
+                state = "Sickle";
             }
             else if (animator.GetCurrentAnimatorStateInfo(0).IsName("AirAttack3_loop"))
             {
                 state = "AirATTACK3E";
 
                 isAAttack3 = false;
+            }
+            else if (animator.GetCurrentAnimatorStateInfo(0).IsName("AirRaid"))
+            {
+                state = "IDLE";
+                GetComponent<PlayerAttackCollider>().AttackEnd();
+                boxCol.enabled = false;
+                PC.UnFreezGravity();
+                rb.velocity = new Vector2(0,0);
+
             }
             else if(animator.GetCurrentAnimatorStateInfo(0).IsName("Idle"))
             {
@@ -76,8 +153,27 @@ public class PlayerAttackAnime : MonoBehaviour
         }
         else//空中にいる場合
         {
+            //
+            if (animator.GetCurrentAnimatorStateInfo(0).IsName("AirHighSlash_loop") &&rb.velocity.y < 0.5f)
+            {
+                state = "AHighSlashE";
+                return;
+            }
+
+            //空中上攻撃
+            if ((Input.GetKeyDown(KeyCode.Z) && Input.GetKey(KeyCode.UpArrow)))
+            {
+                state = "AirHighSlash";
+            }
+            //空中横攻撃
+            else if ((Input.GetKeyDown(KeyCode.Z) && Input.GetKey(KeyCode.LeftArrow)) ||
+                (Input.GetKeyDown(KeyCode.Z) && Input.GetKey(KeyCode.RightArrow)))
+            {
+                state = "AirRaid";
+                
+            }
             //空中兜割り
-            if ((Input.GetKeyDown(KeyCode.Z) && Input.GetKey(KeyCode.DownArrow)) && !isAAttack3)
+            else if ((Input.GetKeyDown(KeyCode.Z) && Input.GetKey(KeyCode.DownArrow)) && !isAAttack3)
             {
                 state = "AirATTACK3S";
                 rb.velocity = new Vector2(0, 2);
@@ -94,8 +190,6 @@ public class PlayerAttackAnime : MonoBehaviour
                 state = "AirATTACK1";
                 isComboing = true;
                 rb.velocity = new Vector2(0,2);
-                
-
             }
             // 空中2コンボ
             else if (animator.GetCurrentAnimatorStateInfo(0).IsName("AirAttack1") && Input.GetKeyDown(KeyCode.Z))
@@ -151,6 +245,34 @@ public class PlayerAttackAnime : MonoBehaviour
                     animator.SetBool("isAAttack3_E", true);
                     animator.SetBool("isAAttack3_S", false);
                     break;
+                case "AirHighSlash":
+                    animator.SetBool("isAHighSlash", true);
+                    break;
+                case "AirRaid":
+                    animator.SetBool("isARaid", true);
+                    break;
+                case "HighSlash":
+                    animator.SetBool("isHighSlash", true);
+                    break;
+                case "AHighSlashE":
+                    animator.SetBool("isAHighSlash_end", true);
+                    break;
+                case "Slashing_R":
+                    Slashing_S();
+                    animator.SetBool("isSlashing_R", true);
+                    break;
+                case "Slashing":
+                    animator.SetBool("isSlashing", true);
+                    break;
+                case "ThrowSword":
+                    animator.SetBool("isThrowSword", true);
+                    break;
+                case "Hamma":
+                    animator.SetBool("isHamma", true); 
+                    break;
+                case "Sickle":
+                    animator.SetBool("isSickle", true);
+                    break;
                 default:
                     animator.SetBool("isAAttack3_S", false);
                     animator.SetBool("isAAttack3_E", false);
@@ -159,11 +281,77 @@ public class PlayerAttackAnime : MonoBehaviour
                     animator.SetBool("isAttack1", false);
                     animator.SetBool("isAttack2", false);
                     animator.SetBool("isAttack3", false);
+                    animator.SetBool("isAHighSlash", false);
+                    animator.SetBool("isHighSlash", false);
+                    animator.SetBool("isAHighSlash_end", false);
+                    animator.SetBool("isARaid", false);
+                    animator.SetBool("isThrowSword", false);
+                    animator.SetBool("isThrowSword_E", false);
+                    animator.SetBool("isSlashing", false);
+                    animator.SetBool("isSlashing_R", false);
+                    animator.SetBool("isHamma", false);
+                    animator.SetBool("isSickle", false);
+                    isAttack3 = false;
+                    isHamma = false;
                     break;
             }
             // 状態の変更を判定するために状態を保存しておく
             prevState = state;
 
         }
+    }
+
+    void PlayerRise()
+    {
+        rb.velocity = new Vector2(0, 8);
+    }
+
+    void ThrowSword()
+    {
+        Instantiate(thrownSword, this.transform.position + new Vector3(0.45f * PC.GetDrection(), 0.08f), Quaternion.Euler(0, 90f-PC.GetDrection()*90f, 0));
+    }
+    
+    void AirRaid()
+    {
+        transform.localScale = new Vector3(PC.GetDrection() * 3, 3, 3); // 向きに応じてキャラクターを反転
+        rb.velocity = new Vector2(9f * PC.GetDrection(), -4.5f);
+        boxCol.enabled = true;
+    }
+
+    public void Slashing_S()
+    {
+        CC.LockCamera();
+        transform.position += new Vector3(0.06f, -0.09f);
+        capCol.offset -= new Vector2(0.03f, -0.03f);
+        cirCol.offset -= new Vector2(0.03f, -0.03f);
+    }
+
+    public void Slashing_E()
+    {
+        CC.UnLockCamera();
+        transform.position -= new Vector3(0.06f, -0.09f);
+        capCol.offset += new Vector2(0.03f, -0.03f);
+        cirCol.offset += new Vector2(0.03f, -0.03f);
+    }
+
+    void Attack3Conbo()
+    {
+        isAttack3 = true;
+    }
+
+    void HammaConbo()
+    {
+        isAttack3 = false;
+        isHamma = true;
+    }
+
+    void Hamma_and_Sickle()
+    {
+        rb.velocity = new Vector2(2 * PC.GetDrection(), 0);
+    }
+
+    public void ResetPressTIme()
+    {
+        pressTime=0;
     }
 }
