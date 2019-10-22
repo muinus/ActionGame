@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4968495277731678023}
   - component: {fileID: 4968495277731678021}
   - component: {fileID: 4968495277731678020}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: AttackColider
   m_TagString: Enemy_Attack
   m_Icon: {fileID: 0}
@@ -79,7 +79,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4968495277862028315}
-  m_Layer: 9
+  m_Layer: 10
   m_Name: Handle Slide Area
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -116,7 +116,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4968495278106039435}
   - component: {fileID: 4968495278106039434}
-  m_Layer: 9
+  m_Layer: 10
   m_Name: Slider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -209,7 +209,7 @@ GameObject:
   - component: {fileID: 4968495278120479235}
   - component: {fileID: 4968495278120479260}
   - component: {fileID: 4968495278120479261}
-  m_Layer: 9
+  m_Layer: 10
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -312,7 +312,7 @@ GameObject:
   - component: {fileID: 4968495278166518077}
   - component: {fileID: 4968495278166518076}
   - component: {fileID: 4968495278166518051}
-  m_Layer: 9
+  m_Layer: 10
   m_Name: Enemy_Oak
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -388,8 +388,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1348131965
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 148332ab4fedfbb4e8762ed0aa1dd4a2, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -451,7 +451,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4aaa67f0dde226046b0f0c7c1ace6e91, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BattleEvent: {fileID: 0}
 --- !u!114 &4968495278166518076
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -488,7 +487,7 @@ GameObject:
   - component: {fileID: 4968495278272641615}
   - component: {fileID: 4968495278272641613}
   - component: {fileID: 4968495278272641614}
-  m_Layer: 9
+  m_Layer: 10
   m_Name: Handle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -562,7 +561,7 @@ GameObject:
   - component: {fileID: 4968495278273751921}
   - component: {fileID: 4968495278273751927}
   - component: {fileID: 4968495278273751920}
-  m_Layer: 9
+  m_Layer: 10
   m_Name: Fill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -634,7 +633,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4968495278577681604}
-  m_Layer: 9
+  m_Layer: 10
   m_Name: Fill Area
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -672,7 +671,7 @@ GameObject:
   - component: {fileID: 4968495279093480047}
   - component: {fileID: 4968495279093480045}
   - component: {fileID: 4968495279093480046}
-  m_Layer: 9
+  m_Layer: 10
   m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}

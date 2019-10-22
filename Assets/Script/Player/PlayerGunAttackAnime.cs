@@ -88,8 +88,7 @@ public class PlayerGunAttackAnime : MonoBehaviour
                     state = "MachineGun";
                     isreload = false;
                 }
-            }
-            // 横銃(レールガン)
+            }// 横銃(レールガン)
             else if ((Input.GetKeyDown(KeyCode.X) && Input.GetKey(KeyCode.LeftArrow)) ||
                 (Input.GetKeyDown(KeyCode.X) && Input.GetKey(KeyCode.RightArrow)))
             {
@@ -100,6 +99,10 @@ public class PlayerGunAttackAnime : MonoBehaviour
                 var gameobject = GameObject.Find("fannel(Clone)");
                 if(gameobject==null)
                     InstanceFannel();
+            }// 下銃(乱れうち)
+            else if (Input.GetKeyDown(KeyCode.X) && Input.GetKey(KeyCode.DownArrow))
+            {
+                state = "Midareuti";
             }
             // 銃コンボ1
             else if ((Input.GetKeyDown(KeyCode.X) && !isComboing)||
@@ -136,7 +139,10 @@ public class PlayerGunAttackAnime : MonoBehaviour
             else if (Input.GetKeyDown(KeyCode.X) && Input.GetKey(KeyCode.DownArrow))
             {
                 state = "ShotGun_Down";
-            }//空中上銃(ファンネル)
+                rb.velocity = new Vector2(0, 2);
+                transform.localScale = new Vector3(PC.GetDrection() * 3, 3, 3); // 向きに応じてキャラクターを反転
+            }
+            //空中上銃(ファンネル)
             else if (Input.GetKeyDown(KeyCode.X) && Input.GetKey(KeyCode.UpArrow))
             {
                 var gameobject = GameObject.Find("fannel(Clone)");
@@ -170,7 +176,6 @@ public class PlayerGunAttackAnime : MonoBehaviour
     void ChangeAnimation()
     {
         // 状態が変わった場合のみアニメーションを変更する
-        Debug.Log(state);
         if (prevState != state)
         {
             switch (state)
@@ -203,7 +208,10 @@ public class PlayerGunAttackAnime : MonoBehaviour
                     animator.SetBool("isShotGun", true);
                     break;
                 case "ShotGun_Down":
-                    animator.SetBool("isShotGun", true);
+                    animator.SetBool("isShotGunD", true);
+                    break;
+                case "Midareuti":
+                    animator.SetBool("isMidareuti", true);
                     break;
                 default:
                     animator.SetBool("isGunAttack1", false);
@@ -213,6 +221,8 @@ public class PlayerGunAttackAnime : MonoBehaviour
                     animator.SetBool("isRailGun", false);
                     animator.SetBool("isMachineGun", false);
                     animator.SetBool("isShotGun", false);
+                    animator.SetBool("isShotGunD", false);
+                    animator.SetBool("isMidareuti", false);
                     ResetPressTIme();
                     break;
             }

@@ -148,7 +148,7 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 1689931047
+  m_SortingLayerID: -2060302507
   m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: f4f44172725a384449886346c615496c, type: 3}
@@ -316,6 +316,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   thrownSword: {fileID: 6844309794333309791, guid: c5b84d26d79838e4da12a58cbcffef6d,
     type: 3}
+  potion: {fileID: 4051200705416294255, guid: 765e4e8d4cecd714bb204e835274d71b, type: 3}
 --- !u!114 &4866397285633822405
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -335,6 +336,8 @@ MonoBehaviour:
   waterMasic: {fileID: 7412315341334029924, guid: 7ab71b63ac377cb45991d92d3bfcbf00,
     type: 3}
   airwaterMasic: {fileID: 1808119655762956256, guid: 4f41c383024993142b6f5ee10d7a47fd,
+    type: 3}
+  firecircle: {fileID: 6367966330660074376, guid: 21c03a34b5974284093ffd3f04ab15d3,
     type: 3}
 --- !u!114 &4866397285633822406
 MonoBehaviour:

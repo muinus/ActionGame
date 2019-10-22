@@ -284,7 +284,8 @@ public class PlayerController : MonoBehaviour
         if (hit.collider)
         {
             transform.position -=new Vector3(0, hit.distance-0.65f);
-            animator.SetBool("isALanding_E", true);
+            if(animator.GetCurrentAnimatorStateInfo(0).IsName("AirLanding"))
+                animator.SetBool("isALanding_E", true);
         }
         animator.SetBool("isALanding_S", false);
     }
