@@ -51,6 +51,7 @@ public class PlayerAttackProcess : MonoBehaviour
         //敵から自分への向き
         int drec = System.Math.Sign(enemy.transform.position.x - player.transform.position.x);
         
+        
 
         foreach (AttackDamage state in ADlist)
         {

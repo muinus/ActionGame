@@ -101,8 +101,12 @@
     <Compile Include="Assets\Script\Player\PlayerMagicAttackAnime.cs" />
     <Compile Include="Assets\Script\System\BattleEvent.cs" />
     <Compile Include="Assets\Script\System\BattleEventMaster.cs" />
+    <Compile Include="Assets\Script\System\ButtonSelected.cs" />
     <Compile Include="Assets\Script\System\CameraController.cs" />
+    <Compile Include="Assets\Script\System\NextStage.cs" />
     <Compile Include="Assets\Script\System\ScaffoldScript.cs" />
+    <Compile Include="Assets\Script\System\SkillExplain.cs" />
+    <Compile Include="Assets\Script\System\SkillLearned.cs" />
     <Compile Include="Assets\Stage\Stage1\Scripts\BattleEventMasterStage1.cs" />
     <Compile Include="Assets\Stage\Stage1\Scripts\BattleEventStage1.cs" />
     <Compile Include="Assets\Stage\Stage1\Scripts\BattleEventStage1_boss.cs" />

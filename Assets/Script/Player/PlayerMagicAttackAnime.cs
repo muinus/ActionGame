@@ -105,6 +105,13 @@ public class PlayerMagicAttackAnime : MonoBehaviour
 
     void ChangeAnimation()
     {
+        try
+        {
+            if (!SkillLearned.GetSkillActive(state))
+                state = prevState;
+        }
+        catch { }
+
         // 状態が変わった場合のみアニメーションを変更する
         //Debug.Log(state);
         if (prevState != state)

@@ -94,7 +94,6 @@ public class PlayerAttackAnime : MonoBehaviour
             //上攻撃
             else if ((Input.GetKeyDown(KeyCode.Z) && Input.GetKey(KeyCode.UpArrow)))
             {
-                
                 state = "HighSlash";
             }
             //横攻撃
@@ -129,6 +128,7 @@ public class PlayerAttackAnime : MonoBehaviour
             else if (animator.GetCurrentAnimatorStateInfo(0).IsName("Attack2") && Input.GetKeyDown(KeyCode.Z)
                      && isHamma)
             {
+
                 state = "Hamma";
             }// 派生コンボ(鎌)
             else if (animator.GetCurrentAnimatorStateInfo(0).IsName("Hamma") && Input.GetKeyDown(KeyCode.Z))
@@ -169,6 +169,9 @@ public class PlayerAttackAnime : MonoBehaviour
             //空中上攻撃
             if ((Input.GetKeyDown(KeyCode.Z) && Input.GetKey(KeyCode.UpArrow)))
             {
+                if (!SkillLearned.GetSkillActive("HighSlash"))
+                    return;
+
                 state = "AirHighSlash";
             }
             //空中横攻撃
@@ -215,8 +218,14 @@ public class PlayerAttackAnime : MonoBehaviour
 
     void ChangeAnimation()
     {
+        try
+        {
+            if (!SkillLearned.GetSkillActive(state))
+                state = prevState;
+        }
+        catch { }
+
         // 状態が変わった場合のみアニメーションを変更する
-        //Debug.Log(state);
         if (prevState != state)
         {
             switch (state)
