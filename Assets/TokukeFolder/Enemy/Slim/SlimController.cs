@@ -8,7 +8,9 @@ public class SlimController : MonoBehaviour
 
     Slider HPbar;//HPバーのオブジェクト
     GameObject player;
+    public BoxCollider2D col;
     Animator animator;
+    
 
     bool isdamage;
     string state;
@@ -27,6 +29,8 @@ public class SlimController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        //this.animator = GetComponent<Animator>();
+        col.gameObject.SetActive(false);
         HPbar = GetComponentInChildren<Slider>();
         player = GameObject.Find("Player");
         animator = transform.root.GetComponent<Animator>();
@@ -54,12 +58,12 @@ public class SlimController : MonoBehaviour
         int drec = System.Math.Sign(this.transform.position.x - player.transform.position.x);
         this.transform.rotation = new Quaternion(0, 90.0f * drec + 90.0f, 0, 0);
 
-        if (animator.GetCurrentAnimatorStateInfo(0).IsName("Dead"))
+        if (animator.GetCurrentAnimatorStateInfo(0).IsName("slim_dead"))
         {
             Destroy(this.gameObject);
-            if (BattleEvent.GetComponent<BattleEventMaster>().GetIsBattleEvent())
+            if (BattleEvent.GetComponent<BattleEventMasterStage1>().GetIsBattleEvent())
             {
-                BattleEvent.GetComponent<BattleEventMaster>().DecreaseEnemyCounter();
+                BattleEvent.GetComponent<BattleEventMasterStage1>().DecreaseEnemyCounter();
             }
         }
         else if (isdamage)
@@ -103,10 +107,11 @@ public class SlimController : MonoBehaviour
             case "Die":
                 animator.SetBool("isDead", true);
                 animator.SetBool("isDamaged", false);
-                Destroy(this.gameObject, 0.8f);
+                
                 break;
             case "Damage":
                 animator.SetBool("isDamaged", true);
+                
                 break;
             case "Move":
                 animator.SetBool("isAttack", false);
@@ -166,8 +171,18 @@ public class SlimController : MonoBehaviour
 
         if (collision.gameObject.tag == "Ground")
         {
+            col.gameObject.SetActive(false);
             rb.velocity = Vector3.zero;
         }
 
     }
+    void Dead()
+    {
+        Destroy(this.gameObject);
+    }
+    void AttackActivateTrue()
+    {
+        col.gameObject.SetActive(true);
+    }
+   
 }

@@ -300,7 +300,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b638d7c9e73bf34698e4ecf5cc5341a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  driftMagicCircle: {fileID: 1632601090592516405, guid: 499c1c1cb20ec1e44ba639dfaa3b39c1,
+  driftMagicCircle: {fileID: 2508580595621305404, guid: b04e8c996351ce340b922dd2ea53e40a,
     type: 3}
 --- !u!114 &4866397285633822404
 MonoBehaviour:

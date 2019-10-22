@@ -72,6 +72,10 @@ public class SlimBossController : MonoBehaviour
         {
             state = "Die";
         }
+        if (HPbar.value <= 200)
+        {
+            state = "Wind";
+        }
         else if (rb.velocity.y < 0)
         {
             state = "Fall";
@@ -102,6 +106,9 @@ public class SlimBossController : MonoBehaviour
                 animator.SetBool("isFall", false);
                 animator.SetBool("isLanding", true);
                 break;*/
+            case "wind":
+                animator.SetBool("isWind", true);
+                break;
             case "Default":
                 animator.SetBool("isFall", false);
                 break;
@@ -134,11 +141,14 @@ public class SlimBossController : MonoBehaviour
                 fixposition = this.transform.position.x+1.0f;
             }
             else { fixposition = this.transform.position.x - 1.0f; }
-           // GameObject Slim = Instantiate(slim,new Vector3(fixposition, this.transform.position.y, this.transform.position.z), Quaternion.identity) as GameObject;
-           // Slim.GetComponent<Rigidbody2D>().AddForce(force);
+           GameObject Slim = Instantiate(slim,new Vector3(fixposition, this.transform.position.y, this.transform.position.z), Quaternion.identity) as GameObject;
+            Slim.GetComponent<Rigidbody2D>().AddForce(force);
         }
     }
+    void Wind()
+    {
 
+    }
     void OnTriggerEnter2D(Collider2D other)
     {
         isdamage = true;
