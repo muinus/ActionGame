@@ -52,6 +52,20 @@ public class SkillLearned : MonoBehaviour
         islearned = false;
     }
 
+    public static void AllSkillLreaned()
+    {
+        List<string> TmpList = new List<string>();
+        foreach (KeyValuePair<string, bool> skillstate in skillTable)
+        {
+            TmpList.Add(skillstate.Key);
+        }
+
+        foreach (string skillKey in TmpList)
+        {
+                skillTable[skillKey] = true;
+        }
+    }
+
     public void DebugD()
     {
         foreach ( KeyValuePair<string,bool> skill in skillTable)
