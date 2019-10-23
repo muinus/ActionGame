@@ -25,6 +25,7 @@ public class PlayerController : MonoBehaviour
     string state;                // プレイヤーの状態管理
     string prevState;            // 前の状態を保存
     float stateEffect = 1.0f;       // 状態に応じて横移動速度を変えるための係数
+    float MasicEffect = 1.0f;    // スキルにに応じて横移動速度を変えるための係数
 
     float pressedTime = 0; //2回押しを判断するための時間計測の変数
     KeyCode pressedKey;
@@ -255,11 +256,11 @@ public class PlayerController : MonoBehaviour
         float speedX = Mathf.Abs(this.rb.velocity.x);
         if (speedX < this.runThreshold)
         {
-            this.rb.AddForce(transform.right * key * this.runForce * stateEffect); //未入力の場合は key の値が0になるため移動しない
+            this.rb.AddForce(transform.right * key * this.runForce * stateEffect * MasicEffect); //未入力の場合は key の値が0になるため移動しない
         }
         else
         {
-            this.transform.position += new Vector3(runSpeed * Time.deltaTime * key * stateEffect, 0, 0);
+            this.transform.position += new Vector3(runSpeed * Time.deltaTime * key * stateEffect * MasicEffect, 0, 0);
         }
 
     }
@@ -355,5 +356,15 @@ public class PlayerController : MonoBehaviour
     public int GetDrection()
     {
         return drec;
+    }
+
+    public float GetMasicEffect()
+    {
+        return MasicEffect;
+    }
+
+    public void SetMasicEffect(float MasicEffect)
+    {
+        this.MasicEffect = MasicEffect;
     }
 }

@@ -26,7 +26,7 @@ public class SkillExplain : MonoBehaviour
         skillText.Add("ThrowSword", "ThrowSword");
         skillText.Add("Iai", "Iai");
         skillText.Add("AirRaid", "AirRaid");
-        skillText.Add("Slashing_R", "Slashing");
+        skillText.Add("Slashing", "Slashing");
         //銃スキル
         skillText.Add("Fannel", "Fannel");
         skillText.Add("RailGun", "RailGun");
@@ -54,7 +54,9 @@ public class SkillExplain : MonoBehaviour
 
     public void SetText(string buttonSelected)
     {
-        GetComponent<Text>().text = SkillLearned.GetSkillActive(buttonSelected).ToString();
+        GetComponent<Text>().text = skillText[buttonSelected] + 
+            ":" + SkillLearned.GetSkillActive(buttonSelected).ToString();
+        
         //GetComponent<Text>().text = GameObject.Find("MainSystem").GetComponent<SkillLearned>().GetSkillActive(buttonSelected).ToString();
         //GetComponent<Text>().text = skillText[buttonSelected];
     }

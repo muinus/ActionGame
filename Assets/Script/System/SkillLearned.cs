@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class SkillLearned : MonoBehaviour
@@ -44,12 +45,26 @@ public class SkillLearned : MonoBehaviour
 
     bool islearned;
 
-    string buttonSelected="none";
+    //string buttonSelected="none";
+    Transform buttonSelected;
+
+    static ColorBlock selectedColor;
+
     // Start is called before the first frame update
     void Start()
     {
         skill = GameObject.Find("Canvas").transform.Find("Skill").gameObject;
         islearned = false;
+
+        selectedColor.highlightedColor = Color.blue;
+        selectedColor.normalColor = Color.blue;
+        selectedColor.selectedColor = Color.blue;
+        selectedColor.pressedColor = new Color(200f / 255f, 200f / 255f, 200f / 255f, 255f / 255f);
+        selectedColor.disabledColor = new Color(245f / 255f, 245f / 255f, 245f / 255f, 128f / 255f);
+        selectedColor.colorMultiplier = 1.0f;
+        selectedColor.fadeDuration = 0.1f;
+
+        ChangeBottunColor();
     }
 
     public static void AllSkillLreaned()
@@ -62,7 +77,7 @@ public class SkillLearned : MonoBehaviour
 
         foreach (string skillKey in TmpList)
         {
-                skillTable[skillKey] = true;
+            skillTable[skillKey] = true;
         }
     }
 
@@ -72,7 +87,7 @@ public class SkillLearned : MonoBehaviour
             Debug.Log(skill.Key+":"+skill.Value);
     }
 
-    public void BottunSelected(string buttonSelected)
+    public void BottunSelected(Transform buttonSelected)
     {
         this.buttonSelected = buttonSelected;
     }
@@ -81,7 +96,9 @@ public class SkillLearned : MonoBehaviour
     {
         if (!islearned)
         {
-            skillTable[buttonSelected] = true;
+            buttonSelected.GetComponent<Button>().colors=selectedColor;
+
+            skillTable[buttonSelected.name] = true;
             islearned = true;
         }
     }
@@ -94,5 +111,19 @@ public class SkillLearned : MonoBehaviour
     public void NextScene()
     {
         SceneManager.LoadScene("Stage5");
+    }
+
+    public void ChangeColor(string name)
+    {
+        skill.transform.Find(name).GetComponent<Button>().colors=selectedColor;
+    }
+
+    public void ChangeBottunColor()
+    {
+        foreach (KeyValuePair<string, bool> skillstate in skillTable)
+        {
+            if(skillstate.Value)
+                ChangeColor(skillstate.Key);
+        }
     }
 }
