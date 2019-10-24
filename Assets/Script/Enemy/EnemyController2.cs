@@ -9,10 +9,16 @@ public class EnemyController2 : MonoBehaviour
     GameObject player;
     Animator animator;
     Collider2D col;
-    
+
+    public GameObject healPotion_s;
+    public GameObject healPotion_l;
+
     bool isdamage;
     bool isDead;
+    bool isPotioned;
     string state;
+
+    float dropLate;
 
     GameObject BattleEvent;
 
@@ -24,7 +30,12 @@ public class EnemyController2 : MonoBehaviour
         animator = transform.GetComponent<Animator>();
         isdamage = false;
         isDead = false;
+        isPotioned = false;
+        dropLate = 0.5f;
         col = gameObject.GetComponent<CapsuleCollider2D>();
+
+        healPotion_s = (GameObject)Resources.Load("Item/HealPotion_S");
+        healPotion_l = (GameObject)Resources.Load("Item/HealPotion_L");
 
         BattleEvent = GameObject.Find("BattleEventMaster");
     }
@@ -48,12 +59,13 @@ public class EnemyController2 : MonoBehaviour
 
         if (animator.GetCurrentAnimatorStateInfo(0).IsName("Dead"))
         {
-            Debug.Log(BattleEvent);
+            
             if ((transform.root.gameObject == BattleEvent)
                 && BattleEvent.GetComponent<BattleEventMaster>().GetIsBattleEvent())
             {
                 BattleEvent.GetComponent<BattleEventMaster>().DecreaseEnemyCounter();
             }
+            DropItem();
             Destroy(this.gameObject);
         }
         else if (HPbar.value <= 0 && animator.GetCurrentAnimatorStateInfo(0).IsName("Hurt"))
@@ -107,5 +119,30 @@ public class EnemyController2 : MonoBehaviour
         return isDead;
     }
 
+    public bool GetIsPotioned()
+    {
+        return isPotioned;
+    }
 
+    public void SetIsPotioned()
+    {
+        isPotioned = true;
+        dropLate = 1;
+    }
+
+    public void SetDropLate(float dropLate)
+    {
+        this.dropLate = dropLate;
+    }
+
+    void DropItem()
+    {
+        float dropProf = Random.Range(0f, 1f);
+        Debug.Log(dropProf);
+        if (dropProf <= dropLate-0.2)
+            Instantiate(healPotion_l, this.transform.position , Quaternion.identity);
+        else if(dropProf <= dropLate)
+            Instantiate(healPotion_s, this.transform.position, Quaternion.identity);
+
+    }
 }

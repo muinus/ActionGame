@@ -20,6 +20,7 @@ public class PlayerMagicAttackAnime : MonoBehaviour
     public GameObject airFireball;
     public GameObject waterMasic;
     public GameObject airwaterMasic;
+    public GameObject firecircle;
 
     // Start is called before the first frame update
     void Start()
@@ -49,15 +50,21 @@ public class PlayerMagicAttackAnime : MonoBehaviour
         // 接地している場合
         if (animator.GetBool("isGround"))
         {
-            //魔法(土)
+            //下魔法(土)
             if ((Input.GetKeyDown(KeyCode.C) && Input.GetKey(KeyCode.DownArrow)))
             {
                 state = "Tyoson";
             }
-            //魔法(水)
+            //上魔法(水)
             else if ((Input.GetKeyDown(KeyCode.C) && Input.GetKey(KeyCode.UpArrow)))
             {
                 state = "WaterMasic";
+            }
+            //横魔法(火柱)
+            else if ((Input.GetKeyDown(KeyCode.C) && Input.GetKey(KeyCode.LeftArrow))||
+                     (Input.GetKeyDown(KeyCode.C) && Input.GetKey(KeyCode.RightArrow)))
+            {
+                state = "FireTower";
             }
             // 魔法(火球)
             else if (Input.GetKeyDown(KeyCode.C))
@@ -72,10 +79,16 @@ public class PlayerMagicAttackAnime : MonoBehaviour
         }
         else//空中にいる場合
         {
+
             //空中魔法(水)
-            if ((Input.GetKeyDown(KeyCode.C) && Input.GetKey(KeyCode.UpArrow)))
+            if (Input.GetKeyDown(KeyCode.C) && Input.GetKey(KeyCode.UpArrow))
             {
                 state = "AirWaterMasic";
+            }//空中魔法(雷)
+            else if (Input.GetKeyDown(KeyCode.C) && Input.GetKey(KeyCode.DownArrow))
+            {
+                state = "Lightning-Strike";
+
             }
             // 空中魔法(火球)
             else if (Input.GetKeyDown(KeyCode.C))
@@ -92,6 +105,13 @@ public class PlayerMagicAttackAnime : MonoBehaviour
 
     void ChangeAnimation()
     {
+        try
+        {
+            if (!SkillLearned.GetSkillActive(state))
+                state = prevState;
+        }
+        catch { }
+
         // 状態が変わった場合のみアニメーションを変更する
         //Debug.Log(state);
         if (prevState != state)
@@ -104,6 +124,9 @@ public class PlayerMagicAttackAnime : MonoBehaviour
                 case "AirFireball":
                     animator.SetBool("isAFireball", true);
                     break;
+                case "FireTower":
+                    animator.SetBool("isFiretower", true);
+                    break;
                 case "WaterMasic":
                     animator.SetBool("isWaterMasic", true);
                     break;
@@ -113,12 +136,17 @@ public class PlayerMagicAttackAnime : MonoBehaviour
                 case "Tyoson":
                     animator.SetBool("isTyoson", true);
                     break;
+                case "Lightning-Strike":
+                    animator.SetBool("isLightningstrike", true);
+                    break;
                 default:
                     animator.SetBool("isFireball", false);
                     animator.SetBool("isAFireball", false);
+                    animator.SetBool("isFiretower", false);
                     animator.SetBool("isWaterMasic", false);
                     animator.SetBool("isAWaterMasic", false);
                     animator.SetBool("isTyoson", false);
+                    animator.SetBool("isLightningstrike", false);
                     break;
             }
             //状態の変更を判定するために状態を保存しておく
@@ -140,6 +168,11 @@ public class PlayerMagicAttackAnime : MonoBehaviour
     void WaterMasic()
     {
         Instantiate(waterMasic, this.transform.position + new Vector3(1.1f * PC.GetDrection(), 0.9f), Quaternion.Euler(180, 90f - PC.GetDrection() * 90f, 0));
+    }
+
+    void FireTower()
+    {
+        Instantiate(firecircle, this.transform.position + new Vector3(0.5f * PC.GetDrection(), -0.5f), Quaternion.identity);
     }
 
     void AirWaterMasic()

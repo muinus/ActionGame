@@ -76,8 +76,9 @@ public class PlayerGunAttackAnime : MonoBehaviour
             // 銃長押し攻撃
             else if (isPressed && pressTime >= longPressIntervalTime)
             {
-                Debug.Log(pressTime);
-                if (pressTime >= 3.0f)
+                
+
+                    if (pressTime >= 3.0f)
                 {
                     state = "IDLE";
                     return;
@@ -88,8 +89,7 @@ public class PlayerGunAttackAnime : MonoBehaviour
                     state = "MachineGun";
                     isreload = false;
                 }
-            }
-            // 横銃(レールガン)
+            }// 横銃(レールガン)
             else if ((Input.GetKeyDown(KeyCode.X) && Input.GetKey(KeyCode.LeftArrow)) ||
                 (Input.GetKeyDown(KeyCode.X) && Input.GetKey(KeyCode.RightArrow)))
             {
@@ -97,9 +97,16 @@ public class PlayerGunAttackAnime : MonoBehaviour
             }//上銃(ファンネル)
             else if (Input.GetKeyDown(KeyCode.X) && Input.GetKey(KeyCode.UpArrow))
             {
+                if (!SkillLearned.GetSkillActive("Fannel"))
+                    return;
+
                 var gameobject = GameObject.Find("fannel(Clone)");
                 if(gameobject==null)
                     InstanceFannel();
+            }// 下銃(乱れうち)
+            else if (Input.GetKeyDown(KeyCode.X) && Input.GetKey(KeyCode.DownArrow))
+            {
+                state = "Midareuti";
             }
             // 銃コンボ1
             else if ((Input.GetKeyDown(KeyCode.X) && !isComboing)||
@@ -129,14 +136,16 @@ public class PlayerGunAttackAnime : MonoBehaviour
                 (Input.GetKeyDown(KeyCode.X) && Input.GetKey(KeyCode.RightArrow)))
             {
                 state = "ShotGun";
-                rb.velocity = new Vector2(0, 2);
-                transform.localScale = new Vector3(PC.GetDrection() * 3, 3, 3); // 向きに応じてキャラクターを反転
             }
             //空中下銃攻撃(ショットガン下)
             else if (Input.GetKeyDown(KeyCode.X) && Input.GetKey(KeyCode.DownArrow))
             {
+                if (!SkillLearned.GetSkillActive("ShotGun"))
+                    return;
+
                 state = "ShotGun_Down";
-            }//空中上銃(ファンネル)
+            }
+            //空中上銃(ファンネル)
             else if (Input.GetKeyDown(KeyCode.X) && Input.GetKey(KeyCode.UpArrow))
             {
                 var gameobject = GameObject.Find("fannel(Clone)");
@@ -169,8 +178,14 @@ public class PlayerGunAttackAnime : MonoBehaviour
 
     void ChangeAnimation()
     {
+        try
+        {
+            if (!SkillLearned.GetSkillActive(state))
+                state = prevState;
+        }
+        catch { }
+
         // 状態が変わった場合のみアニメーションを変更する
-        Debug.Log(state);
         if (prevState != state)
         {
             switch (state)
@@ -203,7 +218,10 @@ public class PlayerGunAttackAnime : MonoBehaviour
                     animator.SetBool("isShotGun", true);
                     break;
                 case "ShotGun_Down":
-                    animator.SetBool("isShotGun", true);
+                    animator.SetBool("isShotGunD", true);
+                    break;
+                case "Midareuti":
+                    animator.SetBool("isMidareuti", true);
                     break;
                 default:
                     animator.SetBool("isGunAttack1", false);
@@ -213,6 +231,8 @@ public class PlayerGunAttackAnime : MonoBehaviour
                     animator.SetBool("isRailGun", false);
                     animator.SetBool("isMachineGun", false);
                     animator.SetBool("isShotGun", false);
+                    animator.SetBool("isShotGunD", false);
+                    animator.SetBool("isMidareuti", false);
                     ResetPressTIme();
                     break;
             }
@@ -243,6 +263,12 @@ public class PlayerGunAttackAnime : MonoBehaviour
     void RailGun()
     {
         Instantiate(railGun, this.transform.position + new Vector3(5.08f * PC.GetDrection(), -0.1f), Quaternion.Euler(0, 90f - PC.GetDrection() * 90f, 0));
+    }
+
+    void ShotGun()
+    {
+        rb.velocity = new Vector2(0, 2);
+        transform.localScale = new Vector3(PC.GetDrection() * 3, 3, 3); // 向きに応じてキャラクターを反転
     }
 
     void MachineGun()

@@ -75,7 +75,12 @@ public class PlayerAttackCollider : MonoBehaviour
         else if (animator.GetCurrentAnimatorStateInfo(0).IsName("AirShotGun"))
         {
             col.offset = new Vector2(0.37f, 0);
-            col.size = new Vector2(0.39f, 0.39f);
+            col.size = new Vector2(0.4f, 0.4f);
+        }
+        else if (animator.GetCurrentAnimatorStateInfo(0).IsName("AirShotGunDown"))
+        {
+            col.offset = new Vector2(0.25f, -0.35f);
+            col.size = new Vector2(0.4f, 0.4f);
         }
         else if (animator.GetCurrentAnimatorStateInfo(0).IsName("Hamma"))
         {
@@ -86,6 +91,16 @@ public class PlayerAttackCollider : MonoBehaviour
         {
             col.offset = new Vector2(0.1f, 0);
             col.size = new Vector2(0.26f, 0.36f);
+        }
+        else if (animator.GetCurrentAnimatorStateInfo(0).IsName("Iai"))
+        {
+            col.offset = new Vector2(0.37f, 0);
+            col.size = new Vector2(1.03f, 0.36f);
+        }
+        else if (animator.GetCurrentAnimatorStateInfo(0).IsName("Midareuti"))
+        {
+            col.offset = new Vector2(0.5f, 0.1f);
+            col.size = new Vector2(0.6f, 0.6f);
         }
 
     }
@@ -117,6 +132,18 @@ public class PlayerAttackCollider : MonoBehaviour
         {
             col.offset = new Vector2(0.01f, -0.05f);
             col.size = new Vector2(0.7f, 0.57f);
+        }
+    }
+
+    void AttackStart2_Mitareuti()
+    {
+        col.enabled = true;
+        Debug.Log("a");
+        if (animator.GetCurrentAnimatorStateInfo(0).IsName("Midareuti"))
+        {
+            Debug.Log("b");
+            col.offset = new Vector2(-0.5f, 0.1f);
+            col.size = new Vector2(0.6f, 0.6f);
         }
     }
 }
