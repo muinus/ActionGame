@@ -14,15 +14,15 @@ public class Follow : MonoBehaviour
     private void Start()
     {
         m_target = GameObject.Find("Player").transform;
-        script = GetComponent<PlayerController>();
-
-        //p_speed = script.SetMagicEffect();
+        script = m_target.GetComponent<PlayerController>();
+        script.SetMasicEffect(2f);
         //p_speed+=2;
         StartCoroutine("DestroyTime");
     }
     IEnumerator DestroyTime()
     {
         yield return new WaitForSeconds(20);
+        script.SetMasicEffect(1f);
         Destroy(this.gameObject);
     }
     private void Update()

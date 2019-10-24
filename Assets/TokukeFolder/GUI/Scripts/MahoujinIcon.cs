@@ -18,30 +18,34 @@ public class MahoujinIcon : MonoBehaviour
     }
     private void Update()
     {
+      
+    }
+    public void OnClick()
+    {
         //taka
-        if (Input.GetKey(KeyCode.RightArrow)&&Input.GetKey(KeyCode.Space)&&judge[0]==true)
+        if (Input.GetKey(KeyCode.RightArrow) && judge[0] == true)
         {
             judge[0] = false;
-            Instantiate(taka, new Vector3(player.transform.position.x-10,player.transform.position.y-10,player.transform.position.z), Quaternion.identity);
+            Instantiate(taka, new Vector3(player.transform.position.x - 10, player.transform.position.y + 10, player.transform.position.z), Quaternion.identity);
             StartCoroutine("TukaimaCT", 0);
         }
         //yousei
-        if (Input.GetKey(KeyCode.UpArrow) && Input.GetKey(KeyCode.Space) && judge[1] == true)
+        if (Input.GetKey(KeyCode.UpArrow) &&  judge[1] == true)
         {
             judge[1] = false;
-            Instantiate(fairly, new Vector3(player.transform.position.x+2, player.transform.position.y , player.transform.position.z), Quaternion.identity);
+            Instantiate(fairly, new Vector3(player.transform.position.x + 2, player.transform.position.y, player.transform.position.z), Quaternion.identity);
             StartCoroutine("TukaimaCT", 1);
         }
-        if (Input.GetKey(KeyCode.LeftArrow) && Input.GetKey(KeyCode.Space) && judge[2] == true)
+        if (Input.GetKey(KeyCode.LeftArrow) && judge[2] == true)
         {
             judge[2] = false;
             Instantiate(saboten, new Vector3(player.transform.position.x + 2, player.transform.position.y, player.transform.position.z), Quaternion.identity);
             StartCoroutine("TukaimaCT", 2);
         }
-        if (Input.GetKey(KeyCode.DownArrow) && Input.GetKey(KeyCode.Space) && judge[3] == true)
+        if (Input.GetKey(KeyCode.DownArrow) && judge[3] == true)
         {
-            judge[2] = false;
-            Instantiate(ookami, new Vector3(player.transform.position.x-0.1f, player.transform.position.y-0.1f, player.transform.position.z), Quaternion.identity);
+            judge[3] = false;
+            Instantiate(ookami, new Vector3(player.transform.position.x - 0.1f, player.transform.position.y - 0.1f, player.transform.position.z), Quaternion.identity);
             StartCoroutine("TukaimaCT", 2);
         }
     }
