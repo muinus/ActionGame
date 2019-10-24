@@ -9,6 +9,8 @@ TagManager:
   - Enemy
   - Enemy_Attack
   - Wall
+  - Ground
+  - Item
   layers:
   - Default
   - TransparentFX
@@ -20,9 +22,9 @@ TagManager:
   - 
   - 
   - 
-  - 
-  - 
-  - 
+  - Enemy
+  - Ground
+  - Item
   - 
   - 
   - 
@@ -43,6 +45,21 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Ground
+    uniqueID: 3554618153
+    locked: 0
+  - name: BackGround
+    uniqueID: 4146542217
+    locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Enemy
+    uniqueID: 1348131965
+    locked: 0
+  - name: Player
+    uniqueID: 2234664789
+    locked: 0
+  - name: Masic
+    uniqueID: 1580345387
     locked: 0

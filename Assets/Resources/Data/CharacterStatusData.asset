@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AttackDataList:
   - ActtionName: Attack1
-    atk: 30
+    atk: 2000
     force: {x: 1, y: 1}
   - ActtionName: Attack2
     atk: 35
@@ -77,8 +77,23 @@ MonoBehaviour:
     atk: 35
     force: {x: 0, y: 6}
   - ActtionName: Fannel
-    atk: 20
+    atk: 10
     force: {x: 0, y: 0}
+  - ActtionName: Iai
+    atk: 45
+    force: {x: 3, y: 1}
+  - ActtionName: Midareuti
+    atk: 10
+    force: {x: 0.1, y: 0}
+  - ActtionName: AirShotGunDown
+    atk: 40
+    force: {x: 2, y: 2}
+  - ActtionName: Lightning-Strike
+    atk: 8
+    force: {x: 0.5, y: 0.5}
+  - ActtionName: FireTower
+    atk: 40
+    force: {x: 0, y: 6}
   - ActtionName: Tyoson
     atk: 45
     force: {x: 0, y: 8}

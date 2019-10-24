@@ -12,6 +12,7 @@ public class PlayerAttackAnime : MonoBehaviour
     
 
     public GameObject thrownSword;
+    public GameObject potion;
 
     CapsuleCollider2D capCol;
     CircleCollider2D cirCol;
@@ -84,11 +85,15 @@ public class PlayerAttackAnime : MonoBehaviour
             else if (isPressed&&pressTime>=longPressIntervalTime)
             {
                 state = "Slashing_R";
-            }            
+            }
+            //ポーション投げ
+            else if (Input.GetKeyDown(KeyCode.A))
+            {
+                state = "Potion";
+            }
             //上攻撃
             else if ((Input.GetKeyDown(KeyCode.Z) && Input.GetKey(KeyCode.UpArrow)))
             {
-                
                 state = "HighSlash";
             }
             //横攻撃
@@ -98,10 +103,10 @@ public class PlayerAttackAnime : MonoBehaviour
                 
                 state = "ThrowSword";
             }
-            //下攻撃(未実装)
+            //下攻撃
             else if ((Input.GetKeyDown(KeyCode.Z) && Input.GetKey(KeyCode.DownArrow)))
             {
-                //state = "ThrowSword";
+                state = "Iai";
             }
             // 1コンボ
             else if (Input.GetKeyDown(KeyCode.Z)&&!isComboing)
@@ -123,6 +128,7 @@ public class PlayerAttackAnime : MonoBehaviour
             else if (animator.GetCurrentAnimatorStateInfo(0).IsName("Attack2") && Input.GetKeyDown(KeyCode.Z)
                      && isHamma)
             {
+
                 state = "Hamma";
             }// 派生コンボ(鎌)
             else if (animator.GetCurrentAnimatorStateInfo(0).IsName("Hamma") && Input.GetKeyDown(KeyCode.Z))
@@ -163,6 +169,9 @@ public class PlayerAttackAnime : MonoBehaviour
             //空中上攻撃
             if ((Input.GetKeyDown(KeyCode.Z) && Input.GetKey(KeyCode.UpArrow)))
             {
+                if (!SkillLearned.GetSkillActive("HighSlash"))
+                    return;
+
                 state = "AirHighSlash";
             }
             //空中横攻撃
@@ -209,8 +218,14 @@ public class PlayerAttackAnime : MonoBehaviour
 
     void ChangeAnimation()
     {
+        try
+        {
+            if (!SkillLearned.GetSkillActive(state))
+                state = prevState;
+        }
+        catch { }
+
         // 状態が変わった場合のみアニメーションを変更する
-        //Debug.Log(state);
         if (prevState != state)
         {
             switch (state)
@@ -273,6 +288,12 @@ public class PlayerAttackAnime : MonoBehaviour
                 case "Sickle":
                     animator.SetBool("isSickle", true);
                     break;
+                case "Iai":
+                    animator.SetBool("isIai", true);
+                    break;
+                case "Potion":
+                    animator.SetBool("isPotion", true);
+                    break;
                 default:
                     animator.SetBool("isAAttack3_S", false);
                     animator.SetBool("isAAttack3_E", false);
@@ -291,8 +312,11 @@ public class PlayerAttackAnime : MonoBehaviour
                     animator.SetBool("isSlashing_R", false);
                     animator.SetBool("isHamma", false);
                     animator.SetBool("isSickle", false);
+                    animator.SetBool("isIai", false);
+                    animator.SetBool("isPotion", false);
                     isAttack3 = false;
                     isHamma = false;
+                    cirCol.enabled = true;
                     break;
             }
             // 状態の変更を判定するために状態を保存しておく
@@ -350,8 +374,23 @@ public class PlayerAttackAnime : MonoBehaviour
         rb.velocity = new Vector2(2 * PC.GetDrection(), 0);
     }
 
+    void ThrowPotion()
+    {
+        Instantiate(potion, this.transform.position + new Vector3(0.4f * PC.GetDrection(), -0.2f), Quaternion.identity);
+    }
+
     public void ResetPressTIme()
     {
         pressTime=0;
+    }
+
+    void CirColoff()
+    {
+        cirCol.enabled = false;
+    }
+
+    void CirColon()
+    {
+        cirCol.enabled = true;
     }
 }
