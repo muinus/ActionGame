@@ -18,6 +18,7 @@ public class hukurou_move : MonoBehaviour
     public GameObject kaze;
     
     public BoxCollider2D col;
+    public BoxCollider2D Dcol;
     int count=0;
     int drec;
 
@@ -44,6 +45,7 @@ public class hukurou_move : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Dcol.enabled=false;
         kaze.SetActive(false);
         col.enabled = false;
         rb = this.GetComponent<Rigidbody2D>();
@@ -193,7 +195,7 @@ public class hukurou_move : MonoBehaviour
     void OnTriggerEnter2D(Collider2D other)
     {
        
-           // isdamage = true;
+           isdamage = true;
         
         if (other.tag == "flyPoint")
         {
@@ -202,6 +204,24 @@ public class hukurou_move : MonoBehaviour
             animator.SetBool("isIdle", true);
             animator.SetBool("isForest", true);
         }
+    }
+    void DeadJudge()
+    {
+        animator.SetBool("isCancel", true);
+        Dcol.enabled = true;
+        Vector2 force = new Vector3(movedir*2.0f, 50.0f);
+        rb.gravityScale = 0.5f;
+        rb.AddForce(force);
+        
+    }
+    void OnCollisionEnter2D(Collision2D collision)//着地処理
+    {
+        if (collision.gameObject.tag == "Ground")
+        {
+            animator.SetBool("isGround", true);
+            Destroy(this.gameObject, 2.0f);
+        }
+
     }
 
 }

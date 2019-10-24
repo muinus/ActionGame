@@ -19,7 +19,7 @@ public class SlimController : MonoBehaviour
     public GameObject BattleEvent;
 
     float slimDis=8.0f;
-    float attackDis = 3.0f;
+    float attackDis = 4.0f;
     float movePower=200.0f;//移動力
     int moveJudge;//移動方向
     bool attackJudge = false;
@@ -38,6 +38,7 @@ public class SlimController : MonoBehaviour
         BattleEvent = GameObject.Find("BattleEventMaster");
 
         rb = this.GetComponent<Rigidbody2D>();
+        animator.SetBool("isMove", true);
     }
 
     // Update is called once per frame
@@ -122,18 +123,23 @@ public class SlimController : MonoBehaviour
                 animator.SetBool("isMove", false);
                 break;
             case "Attack":
+                animator.SetBool("isCancel", true);
                 animator.SetBool("isAttack", true);
                 break;
             default:
                 animator.SetBool("isDead", false);
                 animator.SetBool("isDamaged", false);
+                
                 break;
         }
     }
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        isdamage = true;
+        if (other.gameObject.tag=="Player_Attack") {
+            isdamage = true;
+            
+        }
     }
     void SlimMovement()
     {
@@ -171,6 +177,8 @@ public class SlimController : MonoBehaviour
 
         if (collision.gameObject.tag == "Ground")
         {
+            animator.SetBool("isAttack", false);
+            animator.SetBool("isCancel", false);
             col.gameObject.SetActive(false);
             rb.velocity = Vector3.zero;
         }
@@ -184,5 +192,9 @@ public class SlimController : MonoBehaviour
     {
         col.gameObject.SetActive(true);
     }
-   
+   void Yarare()
+    {
+        isdamage = false;
+        animator.SetBool("isDamaged", false);
+    }
 }

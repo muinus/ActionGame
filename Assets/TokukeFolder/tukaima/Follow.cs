@@ -3,14 +3,27 @@ using System.Collections;
 
 public class Follow : MonoBehaviour
 {
-    public Transform m_target = null;
-    public float m_speed = 5;
-    public float m_attenuation = 0.5f;
+    public Transform m_target;
+     float m_speed = 5;
+     float m_attenuation = 0.5f;
+    float p_speed;
     private Vector3 m_velocity;
+    float CT = 20;
+    PlayerController script;
 
     private void Start()
     {
-        
+        m_target = GameObject.Find("Player").transform;
+        script = GetComponent<PlayerController>();
+
+        //p_speed = script.SetMagicEffect();
+        //p_speed+=2;
+        StartCoroutine("DestroyTime");
+    }
+    IEnumerator DestroyTime()
+    {
+        yield return new WaitForSeconds(20);
+        Destroy(this.gameObject);
     }
     private void Update()
     {

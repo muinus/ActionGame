@@ -102,6 +102,7 @@
     <Compile Include="Assets\Stage\Stage1\Scripts\BattleEventStage1.cs" />
     <Compile Include="Assets\Stage\Stage1\Scripts\BattleEventStage1_boss.cs" />
     <Compile Include="Assets\Stage\Stage1\Scripts\CameraControllerStage1.cs" />
+    <Compile Include="Assets\Stage\Stage1\Scripts\SlimBossFlag.cs" />
     <Compile Include="Assets\Stage\Stage4\TamariFolder\Script\AsibaCtrl.cs" />
     <Compile Include="Assets\Stage\Stage4\TamariFolder\Script\BattleEventStage3_1.cs" />
     <Compile Include="Assets\Stage\Stage4\TamariFolder\Script\bonyou\CreateSpriteObject.cs" />
@@ -123,9 +124,13 @@
     <Compile Include="Assets\TokukeFolder\Enemy\Skelton\Scripts\ThunderMove.cs" />
     <Compile Include="Assets\TokukeFolder\Enemy\Slim\SlimBossController.cs" />
     <Compile Include="Assets\TokukeFolder\Enemy\Slim\SlimController.cs" />
-    <Compile Include="Assets\TokukeFolder\TokukeActionTest\FairlyMove.cs" />
-    <Compile Include="Assets\TokukeFolder\TokukeActionTest\Follow.cs" />
-    <Compile Include="Assets\TokukeFolder\TokukeActionTest\WolfMove2.cs" />
+    <Compile Include="Assets\TokukeFolder\GUI\Scripts\MahoujinIcon.cs" />
+    <Compile Include="Assets\TokukeFolder\GUI\Scripts\RaycastMask.cs" />
+    <Compile Include="Assets\TokukeFolder\tukaima\CuctusMove.cs" />
+    <Compile Include="Assets\TokukeFolder\tukaima\FairlyMove.cs" />
+    <Compile Include="Assets\TokukeFolder\tukaima\Follow.cs" />
+    <Compile Include="Assets\TokukeFolder\tukaima\GrowCuctusMove.cs" />
+    <Compile Include="Assets\TokukeFolder\tukaima\WolfMove2.cs" />
     <None Include="Assets\Tilemaps\Medieval_pixel_art_asset_FREE\pixel_snapping_README.txt" />
     <None Include="Assets\Demigiant\DOTween\readme.txt" />
     <Reference Include="Unity.Timeline.Editor">

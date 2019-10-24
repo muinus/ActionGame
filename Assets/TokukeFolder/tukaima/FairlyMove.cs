@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class FairlyMove : MonoBehaviour
 {
@@ -9,13 +10,20 @@ public class FairlyMove : MonoBehaviour
     private Vector3 startPosition;
     private Vector3 endPosition; 
     private int switchJudge;
+    Slider HPbar;
     private float idoukyori=0.6f;
+    GameObject player;
     private void Start()
     {
+        player = GameObject.Find("PlayerUI");
+        HPbar = player.GetComponentInChildren<Slider>();
         startPosition = this.transform.position;
         endPosition= this.transform.position;
         endPosition.y += idoukyori;
         switchJudge = 1;
+        StartCoroutine("Recover");
+        StartCoroutine("DestroyTime");
+
     }
     void Update()
     {
@@ -35,4 +43,18 @@ public class FairlyMove : MonoBehaviour
         time += Time.deltaTime;
         
     }
+    IEnumerator Recover()
+    {
+        while (true)
+        {
+            HPbar.value += 0.5f;
+            yield return new WaitForSeconds(0.1f);
+        }
+    }
+    IEnumerator DestroyTime()
+    {
+        yield return new WaitForSeconds(10);
+        Destroy(this.gameObject);
+    }
+    
 }
