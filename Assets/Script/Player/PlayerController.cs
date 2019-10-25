@@ -8,6 +8,13 @@ public class PlayerController : MonoBehaviour
     Rigidbody2D rb;
     Animator animator;
 
+    UIBottun UB_up;
+    UIBottun UB_down;
+    UIBottun UB_left;
+    UIBottun UB_right;
+    UIBottun UB_move;
+
+
     public GameObject driftMagicCircle;
 
     float jumpForce = 420.0f;       // ジャンプ時に加える力
@@ -28,12 +35,21 @@ public class PlayerController : MonoBehaviour
     float MasicEffect = 1.0f;    // スキルにに応じて横移動速度を変えるための係数
 
     float pressedTime = 0; //2回押しを判断するための時間計測の変数
+
     KeyCode pressedKey;
+    UIBottun UB_clone;
     bool isPress = false;
     bool isDublePress = false;
 
     void Start()
     {
+        Transform dodai = GameObject.Find("PlayerUI").transform.Find("dodai");
+        UB_up = dodai.Find("upButton").GetComponent<UIBottun>();
+        UB_down = dodai.Find("downButton").GetComponent<UIBottun>();
+        UB_left = dodai.Find("leftButton").GetComponent<UIBottun>();
+        UB_right = dodai.Find("rightButton").GetComponent<UIBottun>();
+        UB_move = dodai.Find("MoveButton").GetComponent<UIBottun>();
+        UB_clone = new UIBottun();
         this.rb = GetComponent<Rigidbody2D>();
         rb.sleepMode=RigidbodySleepMode2D.NeverSleep;
         this.animator = GetComponent<Animator>();
@@ -50,40 +66,72 @@ public class PlayerController : MonoBehaviour
 
     void GetInputKey()
     {
+
+
+        //Debug.Log(UB_move.GetIsPressedDown());
+        //Debug.Log(UB_move.GetIsPressedUp());
+        //Debug.Log(UB_move.GetIsPressed());
+
         key = 0;
         isDoubleJump = false;
-        if (Input.GetKey(KeyCode.RightArrow))//右
+        if (Input.GetKey(KeyCode.RightArrow) || UB_right.GetIsPressed()) //右
             key = 1;
-        if (Input.GetKey(KeyCode.LeftArrow))//左
+        if (Input.GetKey(KeyCode.LeftArrow) || UB_left.GetIsPressed()) //左
             key = -1;
-        if (Input.GetKeyDown(KeyCode.Space) && (!animator.GetBool("isGround")) && (state != "DJUMP"))//ジャンプボタン
+        if ((Input.GetKeyDown(KeyCode.Space) || UB_move.GetIsPressedDown()) && (!animator.GetBool("isGround")) && (state != "DJUMP"))//ジャンプボタン
             isDoubleJump = true;
         if (key != 0)
             drec = key;
 
-        
 
-        if (Input.GetKeyDown(pressedKey) && pressedTime < 0.5f && isPress)
+        isDublePress = false;
+
+        if ((Input.GetKeyDown(pressedKey)||UB_clone.GetIsPressedDown()) && pressedTime < 0.5f && isPress)
         {
             isDublePress = true;
             isPress = false;
             pressedTime = 0;
         }
-        else if (Input.anyKeyDown)
+        else if (Input.GetKeyDown(KeyCode.DownArrow)|| UB_down.GetIsPressedDown()||
+                 Input.GetKeyDown(KeyCode.RightArrow) || UB_right.GetIsPressedDown()||
+                 Input.GetKeyDown(KeyCode.LeftArrow) || UB_left.GetIsPressedDown())
         {
-            
-            foreach (KeyCode code in Enum.GetValues(typeof(KeyCode)))
+            if (UB_up.GetIsPressed())
             {
-                if (Input.GetKeyDown(code))
+                UB_clone = UB_up;
+                isPress = true;
+            }
+            else if (UB_down.GetIsPressed())
+            {
+                UB_clone = UB_down;
+                isPress = true;
+            }
+            else if (UB_left.GetIsPressed())
+            {
+                UB_clone = UB_left;
+                isPress = true;
+            }
+            else if (UB_right.GetIsPressed())
+            {
+                UB_clone = UB_right;
+                isPress = true;
+            }
+            else
+            {
+                foreach (KeyCode code in Enum.GetValues(typeof(KeyCode)))
                 {
-                    pressedKey = code;
-                    isPress = true;
-                    isDublePress = false;
-
+                    if (Input.GetKeyDown(code))
+                    {
+                        pressedKey = code;
+                        isPress = true;
+                        
+                    }
                 }
             }
+            
             pressedTime = 0;
         }
+
 
         if (isPress)
             pressedTime += Time.deltaTime;
@@ -121,15 +169,18 @@ public class PlayerController : MonoBehaviour
         else
         {
 
-            if (isDublePress && pressedKey == KeyCode.DownArrow)
+            if (isDublePress && (pressedKey == KeyCode.DownArrow || UB_clone.Equals(UB_down)))
             {
                 isDublePress = false;
                 state = "ALanding";
             }
-            else if ((isDublePress && pressedKey == KeyCode.RightArrow||
-                     isDublePress && pressedKey == KeyCode.LeftArrow)&&
-                     aDriftCount==0)
+            else if ((isDublePress && (pressedKey == KeyCode.RightArrow || UB_clone.Equals(UB_right)
+                      || pressedKey == KeyCode.LeftArrow || UB_clone.Equals(UB_left))) &&
+                      aDriftCount == 0)
             {
+                if (!SkillLearned.GetSkillActive("ADrift"))
+                    return;
+
                 AirDrift();
                 isDublePress = false;
                 state = "ADrift";
@@ -156,6 +207,13 @@ public class PlayerController : MonoBehaviour
 
     void ChangeAnimation()
     {
+        try
+        {
+            if (!SkillLearned.GetSkillActive(state))
+                state = prevState;
+        }
+        catch { }
+
         // 状態が変わった場合のみアニメーションを変更する
         if (prevState != state)
         {
@@ -245,7 +303,7 @@ public class PlayerController : MonoBehaviour
 
             aDriftCount = 0;
             dJumpCount = 0;
-            if (Input.GetKeyDown(KeyCode.Space))
+            if (Input.GetKeyDown(KeyCode.Space)||UB_move.GetIsPressedDown())
             {
                 this.rb.AddForce(new Vector3(0, 1, 0) * this.jumpForce);
                 animator.SetBool("isGround", false);

@@ -9,6 +9,11 @@ public class PlayerMagicAttackAnime : MonoBehaviour
 
     PlayerController PC;
     CameraController CC;
+    UIBottun UB_up;
+    UIBottun UB_down;
+    UIBottun UB_left;
+    UIBottun UB_right;
+    UIBottun UB_magic;
 
     string state;                // プレイヤーの状態管理
     string prevState;            // 前の状態を保存
@@ -25,6 +30,12 @@ public class PlayerMagicAttackAnime : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Transform dodai = GameObject.Find("PlayerUI").transform.Find("dodai");
+        UB_up=dodai.Find("upButton").GetComponent<UIBottun>();
+        UB_down = dodai.Find("downButton").GetComponent<UIBottun>();
+        UB_left = dodai.Find("leftButton").GetComponent<UIBottun>();
+        UB_right = dodai.Find("rightButton").GetComponent<UIBottun>();
+        UB_magic = dodai.Find("MagicButton").GetComponent<UIBottun>();
         CC = GameObject.Find("Main Camera").GetComponent<CameraController>();
         PC = GetComponent<PlayerController>();
         this.rb = GetComponent<Rigidbody2D>();
@@ -41,7 +52,9 @@ public class PlayerMagicAttackAnime : MonoBehaviour
 
     void GetInputKey()
     {
-
+        //Debug.Log(UB_magic.GetIsPressedDown());
+        //Debug.Log(UB_magic.GetIsPressedUp());
+        //Debug.Log(UB_magic.GetIsPressed());
     }
 
     void ChangeState()
@@ -51,23 +64,27 @@ public class PlayerMagicAttackAnime : MonoBehaviour
         if (animator.GetBool("isGround"))
         {
             //下魔法(土)
-            if ((Input.GetKeyDown(KeyCode.C) && Input.GetKey(KeyCode.DownArrow)))
+            if ((Input.GetKeyDown(KeyCode.C)||UB_magic.GetIsPressedDown()) &&
+                (Input.GetKey(KeyCode.DownArrow) || UB_down.GetIsPressed()))
             {
                 state = "Tyoson";
             }
             //上魔法(水)
-            else if ((Input.GetKeyDown(KeyCode.C) && Input.GetKey(KeyCode.UpArrow)))
+            else if ((Input.GetKeyDown(KeyCode.C) || UB_magic.GetIsPressedDown()) 
+                && (Input.GetKey(KeyCode.UpArrow) || UB_up.GetIsPressed()))
             {
                 state = "WaterMasic";
             }
             //横魔法(火柱)
-            else if ((Input.GetKeyDown(KeyCode.C) && Input.GetKey(KeyCode.LeftArrow))||
-                     (Input.GetKeyDown(KeyCode.C) && Input.GetKey(KeyCode.RightArrow)))
+            else if (((Input.GetKeyDown(KeyCode.C) || UB_magic.GetIsPressedDown()) 
+                    && (Input.GetKey(KeyCode.LeftArrow) || UB_left.GetIsPressed()))||
+                     ((Input.GetKeyDown(KeyCode.C) || UB_magic.GetIsPressedDown()) 
+                     && (Input.GetKey(KeyCode.RightArrow) || UB_right.GetIsPressed())))
             {
                 state = "FireTower";
             }
             // 魔法(火球)
-            else if (Input.GetKeyDown(KeyCode.C))
+            else if (Input.GetKeyDown(KeyCode.C) || UB_magic.GetIsPressedDown())
             {
                 state = "Fireball";
             }
@@ -75,23 +92,25 @@ public class PlayerMagicAttackAnime : MonoBehaviour
             {
                 state = "IDLE";
             }
-
         }
+
         else//空中にいる場合
         {
 
             //空中魔法(水)
-            if (Input.GetKeyDown(KeyCode.C) && Input.GetKey(KeyCode.UpArrow))
+            if ((Input.GetKeyDown(KeyCode.C) || UB_magic.GetIsPressedDown())
+                && (Input.GetKey(KeyCode.UpArrow) || UB_up.GetIsPressed()))
             {
                 state = "AirWaterMasic";
             }//空中魔法(雷)
-            else if (Input.GetKeyDown(KeyCode.C) && Input.GetKey(KeyCode.DownArrow))
+            else if ((Input.GetKeyDown(KeyCode.C) || UB_magic.GetIsPressedDown())
+                && (Input.GetKey(KeyCode.DownArrow) || UB_down.GetIsPressed()))
             {
                 state = "Lightning-Strike";
 
             }
             // 空中魔法(火球)
-            else if (Input.GetKeyDown(KeyCode.C))
+            else if (Input.GetKeyDown(KeyCode.C) || UB_magic.GetIsPressedDown())
             {
                 state = "AirFireball";
                 
