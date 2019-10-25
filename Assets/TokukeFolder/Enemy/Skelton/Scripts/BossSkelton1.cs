@@ -21,16 +21,18 @@ public class BossSkelton1 : MonoBehaviour
     public GameObject BattleEvent;
     public GameObject thunderWave;
     public GameObject magicCircle;
+    public BoxCollider2D col;
     //出現ポイント
     public GameObject upLeft, upRight, downLeft, downRight, middle;
     Vector2 upLeftV, upRightV, downLeftV, downRightV, middleV;
     Vector2[] appPoint=new Vector2[5];
-    
+    Vector3 thunderPosition;
 
     // Start is called before the first frame update
     void Start()
     {
         
+        col.gameObject.SetActive(false);
         rb = this.GetComponent<Rigidbody>();
         HPbar = GetComponentInChildren<Slider>();
         animator = transform.root.GetComponent<Animator>();
@@ -123,11 +125,13 @@ public class BossSkelton1 : MonoBehaviour
     }
     void SkeltonThunderWave()//手から雷を発射
     {
-        float dx = player.transform.position.x - this.gameObject.transform.position.x;
+        /*float dx = player.transform.position.x - this.gameObject.transform.position.x;
         float dy = player.transform.position.y - this.gameObject.transform.position.y;
         float rad = Mathf.Atan2(dy, dx);
-        float kakudo = rad * Mathf.Rad2Deg+270;
-        Instantiate(thunderWave, new Vector2(this.transform.position.x+0.2f,this.transform.position.y+1.0f),Quaternion.Euler(0,0,kakudo));
+        float kakudo = rad * Mathf.Rad2Deg+270;*/
+        thunderPosition = new Vector3(this.transform.position.x + 0.2f, this.transform.position.y + 1.0f, this.transform.position.z);
+        var vec = (player.transform.position - thunderPosition).normalized;
+        Instantiate(thunderWave, new Vector2(this.transform.position.x+0.2f,this.transform.position.y+1.0f), Quaternion.FromToRotation(Vector3.up, vec));
         animator.SetInteger("isRand", Random.Range(0, 3));
     }
     void SkeltonFourOfaKind()//上2体は召雷，下２体は雷を発射する
@@ -139,5 +143,34 @@ public class BossSkelton1 : MonoBehaviour
     {
         isdamage = true;
     }
-    
+    void Dead()
+    {
+        
+        Destroy(this.gameObject);
+    }
+    void IsDead()
+    {
+        animator.SetBool("isCancel", true);
+    }
+    void AttackJudge()
+    {
+        if (col.gameObject.activeSelf == true)
+        {
+            col.gameObject.SetActive(false);
+        }else if (col.gameObject.activeSelf == false)
+        {
+            col.gameObject.SetActive(true);
+        }
+    }
+    void HPbarDis()
+    {
+        if (HPbar.gameObject.activeSelf == true)
+        {
+            HPbar.gameObject.SetActive(false);
+        }
+        else if (HPbar.gameObject.activeSelf == false)
+        {
+            HPbar.gameObject.SetActive(true);
+        }
+    }
 }

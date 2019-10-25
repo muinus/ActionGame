@@ -6,7 +6,7 @@ public class ThunderBallMove : MonoBehaviour
 {
     public GameObject player;
     Vector2 v;
-    float speed = 3.0f;
+    float speed = 5.0f;
     public Rigidbody2D rb;
     
     void Start()
@@ -30,13 +30,13 @@ public class ThunderBallMove : MonoBehaviour
          v.y = Mathf.Sin(rad) * speed;
          */
 
-        rb.velocity = transform.up.normalized * speed;
+        //rb.velocity = transform.up.normalized * speed;
         Destroy(this.gameObject, 8.0f);
-      /*  while (true)
+        while (true)
         {
-            yield return new WaitForSeconds(0.02f);
-            rb.position = Vector3.forward * 0.1f;
-        }*/
+            this.transform.Translate(Vector3.up * Time.deltaTime * speed);
+            yield return new WaitForSeconds(0.01f);
+        }
 
     }
 }

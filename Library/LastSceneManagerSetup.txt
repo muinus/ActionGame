@@ -1,1 +1,9 @@
+<<<<<<< HEAD
 sceneSetups: []
+=======
+sceneSetups:
+- path: Assets/TokukeFolder/Scene/TestScene.unity
+  isLoaded: 1
+  isActive: 1
+  isSubScene: 0
+>>>>>>> 8c7c40d2e7206036e9fb36f97fe5585afe474f36

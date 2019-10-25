@@ -7,6 +7,7 @@ public class BattleEventStage1_boss : MonoBehaviour
     
 
     public GameObject enemy;//敵のプレハブを入れる変数
+    GameObject boss;
     int wave;//ウェーブの状態
     bool isThisBattleEvent;//イベントの箇所の判定
     Vector3 enemyPosition;
@@ -17,6 +18,7 @@ public class BattleEventStage1_boss : MonoBehaviour
 
     private void Start()
     {
+        boss = enemy;
         enemyPosition = new Vector3(this.transform.position.x+2.5f, this.transform.position.y+1.0f,0);
         wave = 1;//初期ウェーブは1
         isThisBattleEvent = false;
@@ -30,10 +32,16 @@ public class BattleEventStage1_boss : MonoBehaviour
 
     private void Update()
     {
-        
+
 
         //敵の数がゼロになる度にウェーブが進行する
-        if((battleEventMasterStage1.GetEnemyCounter()==0)&&isThisBattleEvent)
+        /*if((battleEventMasterStage1.GetEnemyCounter()==0)&&isThisBattleEvent)
+        {
+
+            wave += 1;//ウェーブ進行
+            ChangeWave();
+        }*/
+        if (boss == null)
         {
             wave += 1;//ウェーブ進行
             ChangeWave();
@@ -105,6 +113,7 @@ public class BattleEventStage1_boss : MonoBehaviour
 
     void SpwanEnemy(GameObject enemy,Vector3 position) {
         Instantiate(enemy, position, Quaternion.identity);
+        boss = GameObject.Find("Boss(Clone)");
         battleEventMasterStage1.IncreaseEnemyCounter();
     }
 

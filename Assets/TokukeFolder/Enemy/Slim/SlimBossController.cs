@@ -26,6 +26,7 @@ public class SlimBossController : MonoBehaviour
     float jumpx;
     float jumpy;
     bool jumpJudge = false;
+    public BoxCollider2D col;
 
 
 
@@ -37,6 +38,7 @@ public class SlimBossController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        col.gameObject.SetActive(false);
         rb = this.GetComponent<Rigidbody2D>();
         HPbar = GetComponentInChildren<Slider>();
         player = GameObject.Find("Player");
@@ -70,12 +72,14 @@ public class SlimBossController : MonoBehaviour
         this.transform.rotation = new Quaternion(0, 90.0f * drec + 90.0f, 0, 0);
         if (HPbar.value <= 0)
         {
-            state = "Die";
+            //state = "Die";
+            animator.SetBool("isDead", true);
+            Destroy(this.gameObject, 2.0f);
         }
-        if (HPbar.value <= 200)
+        /*else if (HPbar.value <= 200)
         {
             state = "Wind";
-        }
+        }*/
         else if (rb.velocity.y < 0)
         {
             state = "Fall";
@@ -96,7 +100,7 @@ public class SlimBossController : MonoBehaviour
             case "Die":
                 animator.SetBool("isDead", true);
                 animator.SetBool("isDamaged", false);
-                Destroy(this.gameObject, 0.8f);
+                
                 break;
             case "Fall":
                 animator.SetBool("isFall", true);
@@ -128,10 +132,11 @@ public class SlimBossController : MonoBehaviour
         Vector2 force = new Vector2(jumpx * movedir*80, jumpy*80);
         Debug.Log(force);
         rb.AddForce(force);
+        col.gameObject.SetActive(true);
     }
     void SlimDivisionAttack()//分裂
     {
-        for (i = 0; i <= 4; i++)
+        for (i = 0; i <= 2; i++)
         {
             float horizontal = Random.Range(200, 400);
             float vartical = Random.Range(200, 400);
@@ -157,6 +162,7 @@ public class SlimBossController : MonoBehaviour
     {
         if (collision.gameObject.tag == "Ground")
         {
+            col.gameObject.SetActive(false);
             animator.SetBool("isFall", false);
             animator.SetBool("isLanding", true);
             // jumpJudge = true;
