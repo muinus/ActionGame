@@ -1,5 +1,9 @@
 sceneSetups:
+<<<<<<< HEAD
 - path: Assets/Stage/Stage5/Stage5.unity
+=======
+- path: Assets/Stage/Stage4/Stage4.unity
+>>>>>>> b85c906b9829a7ec36dcedf1daa33a28c7ad47d4
   isLoaded: 1
   isActive: 1
   isSubScene: 0

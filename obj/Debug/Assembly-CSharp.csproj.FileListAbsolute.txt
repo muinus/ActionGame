@@ -540,3 +540,5 @@ O:\UnityProjectsGitVer\honban3\obj\Debug\Assembly-CSharp.csproj.CoreCompileInput
 O:\UnityProjectsGitVer\honban3\obj\Debug\Assembly-CSharp.csproj.CopyComplete
 O:\UnityProjectsGitVer\honban3\obj\Debug\Assembly-CSharp.dll
 O:\UnityProjectsGitVer\honban3\obj\Debug\Assembly-CSharp.pdb
+O:\UnityProjectsGitVer\honban3\Temp\bin\Debug\DOTween.dll
+O:\UnityProjectsGitVer\honban3\Temp\bin\Debug\DOTween.xml

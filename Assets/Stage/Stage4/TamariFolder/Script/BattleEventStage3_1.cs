@@ -12,13 +12,14 @@ public class BattleEventStage3_1 : MonoBehaviour
 
     GameObject maincamera;
     //GameObject battleEventMaster;
+    GameObject objBattleEventMaster;
     BattleEventMaster battleEventMaster;
 
     private void Start()
     {
         wave = 1;//初期ウェーブは1
         isThisBattleEvent = false;
-
+        objBattleEventMaster = transform.parent.gameObject;
         battleEventMaster = transform.parent.gameObject.GetComponent<BattleEventMaster>();
         maincamera = GameObject.Find("Main Camera");
 
@@ -105,7 +106,7 @@ public class BattleEventStage3_1 : MonoBehaviour
     }
 
     void SpwanEnemy(GameObject enemy,Vector3 position) {
-        Instantiate(enemy, position, Quaternion.identity);
+        Instantiate(enemy, position, Quaternion.identity, objBattleEventMaster.transform);
         battleEventMaster.IncreaseEnemyCounter();
     }
 
