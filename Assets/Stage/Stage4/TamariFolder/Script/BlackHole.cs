@@ -57,9 +57,9 @@ public class BlackHole : MonoBehaviour
         }
         foreach (GameObject g in targetObjects)
         {
-            if (g.GetComponent<Rigidbody2D> == null) { 
+            
             targetRbObjects.Add(g.GetComponent<Rigidbody2D>());//こいつが激重になる可能性がある
-            }
+            
         }
 
     }
