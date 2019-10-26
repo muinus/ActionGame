@@ -10,6 +10,12 @@ public class PlayerGunAttackAnime : MonoBehaviour
 
     PlayerController PC;
 
+    UIBottun UB_up;
+    UIBottun UB_down;
+    UIBottun UB_left;
+    UIBottun UB_right;
+    UIBottun UB_gun;
+
     public GameObject railGun;
     public GameObject bullet;
     public GameObject Fannelbullet;
@@ -29,12 +35,20 @@ public class PlayerGunAttackAnime : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Transform dodai = GameObject.Find("PlayerUI").transform.Find("dodai");
+        UB_up = dodai.Find("upButton").GetComponent<UIBottun>();
+        UB_down = dodai.Find("downButton").GetComponent<UIBottun>();
+        UB_left = dodai.Find("leftButton").GetComponent<UIBottun>();
+        UB_right = dodai.Find("rightButton").GetComponent<UIBottun>();
+        UB_gun = dodai.Find("GunButton").GetComponent<UIBottun>();
         this.PC = GetComponent<PlayerController>();
         this.rb = GetComponent<Rigidbody2D>();
         this.animator = GetComponent<Animator>();
         isComboing = false;
         isPressed = false;
         isreload = true;//銃ボタン長押しで無限にマシンガンが撃てるのを抑制するフラグ
+
+        Debug.Log(UB_gun.transform.name);
     }
 
     // Update is called once per frame
@@ -47,11 +61,14 @@ public class PlayerGunAttackAnime : MonoBehaviour
 
     void GetInputKey()
     {
+        //Debug.Log(UB_gun.GetIsPressedDown());
+        //Debug.Log(UB_gun.GetIsPressedUp());
+        //Debug.Log(UB_gun.GetIsPressed());
 
-        if(Input.GetKeyUp(KeyCode.X))
+        if (Input.GetKeyUp(KeyCode.X)||UB_gun.GetIsPressedUp())
             isreload = true;
 
-        if (Input.GetKey(KeyCode.X))
+        if (Input.GetKey(KeyCode.X) || UB_gun.GetIsPressed())
             isPressed = true;
         else
             isPressed = false;
@@ -69,7 +86,7 @@ public class PlayerGunAttackAnime : MonoBehaviour
         // 接地している場合
         if (animator.GetBool("isGround"))
         {
-            if(animator.GetCurrentAnimatorStateInfo(0).IsName("MachineGun") && Input.GetKeyUp(KeyCode.X))
+            if(animator.GetCurrentAnimatorStateInfo(0).IsName("MachineGun") && (Input.GetKeyUp(KeyCode.X) || UB_gun.GetIsPressedUp()))
             {
                 state = "IDLE";
             }
@@ -90,12 +107,12 @@ public class PlayerGunAttackAnime : MonoBehaviour
                     isreload = false;
                 }
             }// 横銃(レールガン)
-            else if ((Input.GetKeyDown(KeyCode.X) && Input.GetKey(KeyCode.LeftArrow)) ||
-                (Input.GetKeyDown(KeyCode.X) && Input.GetKey(KeyCode.RightArrow)))
+            else if (((Input.GetKeyDown(KeyCode.X) || UB_gun.GetIsPressedDown()) && (Input.GetKey(KeyCode.LeftArrow)||UB_left.GetIsPressed())) ||
+                ((Input.GetKeyDown(KeyCode.X) || UB_gun.GetIsPressedDown()) && (Input.GetKey(KeyCode.RightArrow)||UB_right.GetIsPressed())))
             {
                 state = "RailGun";
             }//上銃(ファンネル)
-            else if (Input.GetKeyDown(KeyCode.X) && Input.GetKey(KeyCode.UpArrow))
+            else if ((Input.GetKeyDown(KeyCode.X) || UB_gun.GetIsPressedDown()) && (Input.GetKey(KeyCode.UpArrow)||UB_up.GetIsPressed()))
             {
                 if (!SkillLearned.GetSkillActive("Fannel"))
                     return;
@@ -104,19 +121,19 @@ public class PlayerGunAttackAnime : MonoBehaviour
                 if(gameobject==null)
                     InstanceFannel();
             }// 下銃(乱れうち)
-            else if (Input.GetKeyDown(KeyCode.X) && Input.GetKey(KeyCode.DownArrow))
+            else if ((Input.GetKeyDown(KeyCode.X) || UB_gun.GetIsPressedDown()) && (Input.GetKey(KeyCode.DownArrow)||UB_down.GetIsPressed()))
             {
                 state = "Midareuti";
             }
             // 銃コンボ1
-            else if ((Input.GetKeyDown(KeyCode.X) && !isComboing)||
-                (animator.GetCurrentAnimatorStateInfo(0).IsName("GunAttack2") && Input.GetKeyDown(KeyCode.X)))
+            else if (((Input.GetKeyDown(KeyCode.X) || UB_gun.GetIsPressedDown()) && !isComboing)||
+                (animator.GetCurrentAnimatorStateInfo(0).IsName("GunAttack2") && (Input.GetKeyDown(KeyCode.X) || UB_gun.GetIsPressedDown())))
             {
                 state = "GunATTACK1";
                 isComboing = true;
                 GunAttack();
             }// 銃コンボ2
-            else if (animator.GetCurrentAnimatorStateInfo(0).IsName("GunAttack1") && Input.GetKeyDown(KeyCode.X))
+            else if (animator.GetCurrentAnimatorStateInfo(0).IsName("GunAttack1") && (Input.GetKeyDown(KeyCode.X) || UB_gun.GetIsPressedDown()))
             {
                 state = "GunATTACK2";
                 GunAttack();
@@ -132,13 +149,13 @@ public class PlayerGunAttackAnime : MonoBehaviour
         {
 
             //空中横銃攻撃(ショットガン横)
-            if ((Input.GetKeyDown(KeyCode.X) && Input.GetKey(KeyCode.LeftArrow)) ||
-                (Input.GetKeyDown(KeyCode.X) && Input.GetKey(KeyCode.RightArrow)))
+            if (((Input.GetKeyDown(KeyCode.X) || UB_gun.GetIsPressedDown()) && (Input.GetKey(KeyCode.LeftArrow)||UB_left.GetIsPressed())) ||
+                ((Input.GetKeyDown(KeyCode.X) || UB_gun.GetIsPressedDown()) && (Input.GetKey(KeyCode.RightArrow)||UB_right.GetIsPressed())))
             {
                 state = "ShotGun";
             }
             //空中下銃攻撃(ショットガン下)
-            else if (Input.GetKeyDown(KeyCode.X) && Input.GetKey(KeyCode.DownArrow))
+            else if ((Input.GetKeyDown(KeyCode.X) || UB_gun.GetIsPressedDown()) && (Input.GetKey(KeyCode.DownArrow)||UB_down.GetIsPressed()))
             {
                 if (!SkillLearned.GetSkillActive("ShotGun"))
                     return;
@@ -146,15 +163,18 @@ public class PlayerGunAttackAnime : MonoBehaviour
                 state = "ShotGun_Down";
             }
             //空中上銃(ファンネル)
-            else if (Input.GetKeyDown(KeyCode.X) && Input.GetKey(KeyCode.UpArrow))
+            else if ((Input.GetKeyDown(KeyCode.X) || UB_gun.GetIsPressedDown()) && (Input.GetKey(KeyCode.UpArrow)||UB_up.GetIsPressed()))
             {
+                if (!SkillLearned.GetSkillActive("Fannel"))
+                    return;
+
                 var gameobject = GameObject.Find("fannel(Clone)");
                 if (gameobject == null)
                     InstanceFannel();
             }
             // 空中銃1コンボ
-            else if ((Input.GetKeyDown(KeyCode.X) && !isComboing)||
-                (animator.GetCurrentAnimatorStateInfo(0).IsName("AirGunAttack2") && Input.GetKeyDown(KeyCode.X)))
+            else if (((Input.GetKeyDown(KeyCode.X) || UB_gun.GetIsPressedDown()) && !isComboing)||
+                (animator.GetCurrentAnimatorStateInfo(0).IsName("AirGunAttack2") && (Input.GetKeyDown(KeyCode.X) || UB_gun.GetIsPressedDown())))
             {
                 state = "AirGunATTACK1";
                 isComboing = true;
@@ -162,7 +182,7 @@ public class PlayerGunAttackAnime : MonoBehaviour
                 GunAttack();
             }
             // 空中銃2コンボ
-            else if ((animator.GetCurrentAnimatorStateInfo(0).IsName("AirGunAttack1") && Input.GetKeyDown(KeyCode.X)))
+            else if ((animator.GetCurrentAnimatorStateInfo(0).IsName("AirGunAttack1") && (Input.GetKeyDown(KeyCode.X) || UB_gun.GetIsPressedDown())))
             {
                 state = "AirGunATTACK2";
                 rb.velocity = new Vector2(0, 1);

@@ -9,7 +9,12 @@ public class PlayerAttackAnime : MonoBehaviour
 
     PlayerController PC;
     CameraController CC;
-    
+    UIBottun UB_up;
+    UIBottun UB_down;
+    UIBottun UB_left;
+    UIBottun UB_right;
+    UIBottun UB_sword;
+
 
     public GameObject thrownSword;
     public GameObject potion;
@@ -37,7 +42,13 @@ public class PlayerAttackAnime : MonoBehaviour
         this.PC = GetComponent<PlayerController>();
         this.rb = GetComponent<Rigidbody2D>();
         this.animator = GetComponent<Animator>();
-        capCol= GetComponent<CapsuleCollider2D>();
+        Transform dodai = GameObject.Find("PlayerUI").transform.Find("dodai");
+        UB_up = dodai.Find("upButton").GetComponent<UIBottun>();
+        UB_down = dodai.Find("downButton").GetComponent<UIBottun>();
+        UB_left = dodai.Find("leftButton").GetComponent<UIBottun>();
+        UB_right = dodai.Find("rightButton").GetComponent<UIBottun>();
+        UB_sword = dodai.Find("SwordButton").GetComponent<UIBottun>();
+        capCol = GetComponent<CapsuleCollider2D>();
         cirCol = GetComponent<CircleCollider2D>();
         boxCol = GetComponent<BoxCollider2D>();
         isComboing = false;
@@ -58,7 +69,8 @@ public class PlayerAttackAnime : MonoBehaviour
 
     void GetInputKey()
     {
-        if (Input.GetKey(KeyCode.Z))
+
+        if (Input.GetKey(KeyCode.Z)||UB_sword.GetIsPressed())
             isPressed = true;
         else
             isPressed = false;
@@ -76,14 +88,18 @@ public class PlayerAttackAnime : MonoBehaviour
         if (animator.GetBool("isGround"))
         {
             //ため攻撃
-            if ((state == "Slashing_R")&& Input.GetKeyUp(KeyCode.Z))
+            if ((state == "Slashing_R") && (Input.GetKeyUp(KeyCode.Z) || UB_sword.GetIsPressedUp()))
             {
+
                 state = "Slashing";
                 isPressed = false;
             }
             //ため攻撃(準備)
-            else if (isPressed&&pressTime>=longPressIntervalTime)
+            else if (isPressed && pressTime >= longPressIntervalTime)
             {
+                if (!SkillLearned.GetSkillActive("Slashing"))
+                    return;
+
                 state = "Slashing_R";
             }
             //ポーション投げ
@@ -92,46 +108,50 @@ public class PlayerAttackAnime : MonoBehaviour
                 state = "Potion";
             }
             //上攻撃
-            else if ((Input.GetKeyDown(KeyCode.Z) && Input.GetKey(KeyCode.UpArrow)))
+            else if ((Input.GetKeyDown(KeyCode.Z) || UB_sword.GetIsPressedDown())
+                && (Input.GetKey(KeyCode.UpArrow) || UB_up.GetIsPressed()))
             {
                 state = "HighSlash";
             }
             //横攻撃
-            else if ((Input.GetKeyDown(KeyCode.Z) && Input.GetKey(KeyCode.LeftArrow))||
-                (Input.GetKeyDown(KeyCode.Z) && Input.GetKey(KeyCode.RightArrow)))
+            else if (((Input.GetKeyDown(KeyCode.Z) || UB_sword.GetIsPressedDown())
+                && (Input.GetKey(KeyCode.LeftArrow) || UB_left.GetIsPressed())) ||
+                ((Input.GetKeyDown(KeyCode.Z) || UB_sword.GetIsPressedDown())
+                && (Input.GetKey(KeyCode.RightArrow)) || UB_right.GetIsPressed()))
             {
-                
+
                 state = "ThrowSword";
             }
             //下攻撃
-            else if ((Input.GetKeyDown(KeyCode.Z) && Input.GetKey(KeyCode.DownArrow)))
+            else if (((Input.GetKeyDown(KeyCode.Z) || UB_sword.GetIsPressedDown()) &&
+                (Input.GetKey(KeyCode.DownArrow) || UB_down.GetIsPressed()))) 
             {
                 state = "Iai";
             }
             // 1コンボ
-            else if (Input.GetKeyDown(KeyCode.Z)&&!isComboing)
+            else if ((Input.GetKeyDown(KeyCode.Z) || UB_sword.GetIsPressedDown()) && !isComboing)
             {
                 state = "ATTACK1";
                 isComboing = true;
 
             }// 2コンボ
-            else if (animator.GetCurrentAnimatorStateInfo(0).IsName("Attack1")&&Input.GetKeyDown(KeyCode.Z))
+            else if (animator.GetCurrentAnimatorStateInfo(0).IsName("Attack1")&& (Input.GetKeyDown(KeyCode.Z) || UB_sword.GetIsPressedDown()))
             {
                 state = "ATTACK2";
 
             }// 3コンボ
-            else if (animator.GetCurrentAnimatorStateInfo(0).IsName("Attack2") && Input.GetKeyDown(KeyCode.Z)
+            else if (animator.GetCurrentAnimatorStateInfo(0).IsName("Attack2") && (Input.GetKeyDown(KeyCode.Z) || UB_sword.GetIsPressedDown())
                      && isAttack3)
             {
                 state = "ATTACK3";
             }// 派生コンボ(ハンマー)
-            else if (animator.GetCurrentAnimatorStateInfo(0).IsName("Attack2") && Input.GetKeyDown(KeyCode.Z)
+            else if (animator.GetCurrentAnimatorStateInfo(0).IsName("Attack2") && (Input.GetKeyDown(KeyCode.Z) || UB_sword.GetIsPressedDown())
                      && isHamma)
             {
 
                 state = "Hamma";
             }// 派生コンボ(鎌)
-            else if (animator.GetCurrentAnimatorStateInfo(0).IsName("Hamma") && Input.GetKeyDown(KeyCode.Z))
+            else if (animator.GetCurrentAnimatorStateInfo(0).IsName("Hamma") && (Input.GetKeyDown(KeyCode.Z) || UB_sword.GetIsPressedDown()))
             {
                 state = "Sickle";
             }
@@ -167,7 +187,7 @@ public class PlayerAttackAnime : MonoBehaviour
             }
 
             //空中上攻撃
-            if ((Input.GetKeyDown(KeyCode.Z) && Input.GetKey(KeyCode.UpArrow)))
+            if (((Input.GetKeyDown(KeyCode.Z) || UB_sword.GetIsPressedDown()) && Input.GetKey(KeyCode.UpArrow)))
             {
                 if (!SkillLearned.GetSkillActive("HighSlash"))
                     return;
@@ -175,14 +195,14 @@ public class PlayerAttackAnime : MonoBehaviour
                 state = "AirHighSlash";
             }
             //空中横攻撃
-            else if ((Input.GetKeyDown(KeyCode.Z) && Input.GetKey(KeyCode.LeftArrow)) ||
-                (Input.GetKeyDown(KeyCode.Z) && Input.GetKey(KeyCode.RightArrow)))
+            else if (((Input.GetKeyDown(KeyCode.Z) || UB_sword.GetIsPressedDown()) && (Input.GetKey(KeyCode.LeftArrow) || UB_left.GetIsPressed())) ||
+                ((Input.GetKeyDown(KeyCode.Z) || UB_sword.GetIsPressedDown()) && (Input.GetKey(KeyCode.RightArrow) || UB_right.GetIsPressed())))
             {
                 state = "AirRaid";
                 
             }
             //空中兜割り
-            else if ((Input.GetKeyDown(KeyCode.Z) && Input.GetKey(KeyCode.DownArrow)) && !isAAttack3)
+            else if (((Input.GetKeyDown(KeyCode.Z) || UB_sword.GetIsPressedDown()) && (Input.GetKey(KeyCode.DownArrow)||UB_down.GetIsPressed())) && !isAAttack3)
             {
                 state = "AirATTACK3S";
                 rb.velocity = new Vector2(0, 2);
@@ -194,14 +214,14 @@ public class PlayerAttackAnime : MonoBehaviour
             {
                 rb.AddForce(new Vector2(0, -50));
             }// 空中1コンボ
-            else if(Input.GetKeyDown(KeyCode.Z) && !isComboing)
+            else if((Input.GetKeyDown(KeyCode.Z) || UB_sword.GetIsPressedDown()) && !isComboing)
             {
                 state = "AirATTACK1";
                 isComboing = true;
                 rb.velocity = new Vector2(0,2);
             }
             // 空中2コンボ
-            else if (animator.GetCurrentAnimatorStateInfo(0).IsName("AirAttack1") && Input.GetKeyDown(KeyCode.Z))
+            else if (animator.GetCurrentAnimatorStateInfo(0).IsName("AirAttack1") && (Input.GetKeyDown(KeyCode.Z) || UB_sword.GetIsPressedDown()))
             {
                 state = "AirATTACK2";
                 rb.velocity = new Vector2(0,2);
