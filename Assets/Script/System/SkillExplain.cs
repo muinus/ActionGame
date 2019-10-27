@@ -14,7 +14,7 @@ public class SkillExplain : MonoBehaviour
         skillText = new Dictionary<string, string>();
         IniDictionary();
 
-        skill = GameObject.Find("Canvas").transform.Find("Skill").gameObject;
+        skill = GameObject.Find("Canvas").transform.GetChild(0).Find("Skill").gameObject;
     }
 
     void IniDictionary()
@@ -43,10 +43,10 @@ public class SkillExplain : MonoBehaviour
         skillText.Add("ALanding", "ALanding");
         skillText.Add("ADrift", "ADrift");
         //召喚スキル
-        skillText.Add("Summon1", "Summon1");
-        skillText.Add("Summon2", "Summon2");
-        skillText.Add("Summon3", "Summon3");
-        skillText.Add("Summon4", "Summon4");
+        skillText.Add("SummonOokami", "Summon1");
+        skillText.Add("SummonTaka", "Summon2");
+        skillText.Add("SummonYosei", "Summon3");
+        skillText.Add("SummonSaboten", "Summon4");
         //特殊スキル
         skillText.Add("Potion", "Potion");
 

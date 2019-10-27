@@ -42,6 +42,7 @@ public class SkillLearned : MonoBehaviour
         };
 
     GameObject skill;
+    GameObject warning;
 
     bool islearned;
 
@@ -53,7 +54,10 @@ public class SkillLearned : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        skill = GameObject.Find("Canvas").transform.Find("Skill").gameObject;
+        skill = GameObject.Find("Canvas").transform.GetChild(0).Find("Skill").gameObject;
+        warning = GameObject.Find("Canvas").transform.GetChild(1).gameObject;
+
+        warning.SetActive(false);
         islearned = false;
 
         selectedColor.highlightedColor = Color.blue;
@@ -94,6 +98,9 @@ public class SkillLearned : MonoBehaviour
 
     public void SetSkillActive()
     {
+        if (buttonSelected == null)
+            return;
+
         if (!islearned)
         {
             buttonSelected.GetComponent<Button>().colors=selectedColor;
@@ -110,7 +117,11 @@ public class SkillLearned : MonoBehaviour
 
     public void NextScene()
     {
-        SceneManager.LoadScene("Stage5");
+        if (islearned)
+            SceneManager.LoadScene("Stage5");
+        else
+            warning.SetActive(true);
+
     }
 
     public void ChangeColor(string name)
@@ -125,5 +136,16 @@ public class SkillLearned : MonoBehaviour
             if(skillstate.Value)
                 ChangeColor(skillstate.Key);
         }
+    }
+
+    public void ButtonYes()
+    {
+        islearned = true;
+        NextScene();
+    }
+
+    public void ButtonNo()
+    {
+        warning.SetActive(false);
     }
 }
