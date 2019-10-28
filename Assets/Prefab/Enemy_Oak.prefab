@@ -451,6 +451,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4aaa67f0dde226046b0f0c7c1ace6e91, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  healPotion_s: {fileID: 3943685256734502712, guid: 5d343876642354c4cbb4d7bdd7a6e5e5,
+    type: 3}
+  healPotion_l: {fileID: 1995050135789663474, guid: 14cf98a89b82dd946b85dcd565c470ea,
+    type: 3}
 --- !u!114 &4968495278166518076
 MonoBehaviour:
   m_ObjectHideFlags: 0

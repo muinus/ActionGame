@@ -72,6 +72,8 @@
     <Compile Include="Assets\Enemy\Oak\Script\EnemyAI_Oak.cs" />
     <Compile Include="Assets\Enemy\Oak\Script\EnemyAttackCollider_Oak.cs" />
     <Compile Include="Assets\Enemy\Oak\Script\Sample.cs" />
+    <Compile Include="Assets\Enemy\Skelton_week\Script\EnemyAI_Skelton.cs" />
+    <Compile Include="Assets\Enemy\Skelton_week\Script\EnemyAttackCollider_Skelton.cs" />
     <Compile Include="Assets\Resources\Data\EnemyAttackDamege.cs" />
     <Compile Include="Assets\Resources\Data\PlayerAttackDamage.cs" />
     <Compile Include="Assets\Script\Enemy\EnemyAI.cs" />
