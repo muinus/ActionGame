@@ -19,7 +19,7 @@ public class EnemyAttackProcess : MonoBehaviour
     {
         attackTable = Resources.Load<EnemyAttackDamege>("Data/CharacterStatusData_E");
         ADlist = attackTable.AttackDataList;
-        animator = transform.parent.GetComponent<Animator>();
+        animator = transform.root.GetComponent<Animator>();
     }
 
 

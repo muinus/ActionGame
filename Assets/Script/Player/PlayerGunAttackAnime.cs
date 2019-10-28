@@ -27,7 +27,7 @@ public class PlayerGunAttackAnime : MonoBehaviour
 
     GameObject nearEnemy;
 
-    float longPressIntervalTime = 1.0f;//生存時間
+    float longPressIntervalTime = 1.0f;//長押しと判定される時間
     float pressTime = 0f;
     bool isPressed;
     bool isreload;

@@ -121,10 +121,9 @@ public class BlackHole : MonoBehaviour
         }
         
     }
-    /*
+    
     public void DestoryThisObject()
     {
-
-
-    }*/
+        Destroy(gameObject);
+    }
 }

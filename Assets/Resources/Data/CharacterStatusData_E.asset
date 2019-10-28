@@ -21,3 +21,7 @@ MonoBehaviour:
     ActtionName: Skelton_w_Attack1
     atk: 20
     force: {x: 2, y: 0.5}
+  - EnemyName: Wisp
+    ActtionName: WispFireball
+    atk: 25
+    force: {x: 2, y: 0}

@@ -340,6 +340,8 @@ MonoBehaviour:
     type: 3}
   firecircle: {fileID: 6367966330660074376, guid: 21c03a34b5974284093ffd3f04ab15d3,
     type: 3}
+  blackhole: {fileID: 4949606598026872314, guid: 0dda76306e3b8344da1c2f4cd2389c3f,
+    type: 3}
 --- !u!114 &4866397285633822406
 MonoBehaviour:
   m_ObjectHideFlags: 0

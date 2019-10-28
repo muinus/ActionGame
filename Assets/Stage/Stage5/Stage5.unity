@@ -27511,7 +27511,7 @@ PrefabInstance:
     - target: {fileID: 4866397285633822402, guid: a93f28a55ac67ab419a62e1e60440edb,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -3.695
+      value: -3.529
       objectReference: {fileID: 0}
     - target: {fileID: 4866397285633822402, guid: a93f28a55ac67ab419a62e1e60440edb,
         type: 3}
@@ -27652,7 +27652,7 @@ PrefabInstance:
     - target: {fileID: 4866397285633822428, guid: a93f28a55ac67ab419a62e1e60440edb,
         type: 3}
       propertyPath: m_SpriteTilingProperty.pivot.x
-      value: 0.5
+      value: 0.45
       objectReference: {fileID: 0}
     - target: {fileID: 4866397285633822428, guid: a93f28a55ac67ab419a62e1e60440edb,
         type: 3}
@@ -27662,7 +27662,7 @@ PrefabInstance:
     - target: {fileID: 4866397285633822428, guid: a93f28a55ac67ab419a62e1e60440edb,
         type: 3}
       propertyPath: m_SpriteTilingProperty.pivot.y
-      value: 0.5
+      value: 0.58
       objectReference: {fileID: 0}
     - target: {fileID: 4866397285633822425, guid: a93f28a55ac67ab419a62e1e60440edb,
         type: 3}
@@ -27692,7 +27692,7 @@ PrefabInstance:
         type: 3}
       propertyPath: fireball
       value: 
-      objectReference: {fileID: 1945602828485130107, guid: d17a86865cca1264c9ba022ad86d536a,
+      objectReference: {fileID: 8413837404813129425, guid: 28b65de62b8d3134d80669466e2c6bed,
         type: 3}
     - target: {fileID: 4866397286069082441, guid: a93f28a55ac67ab419a62e1e60440edb,
         type: 3}

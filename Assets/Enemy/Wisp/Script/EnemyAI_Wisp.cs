@@ -33,7 +33,6 @@ public class EnemyAI_Wisp : EnemyAI
 
     void WispAttack()
     {
-        Debug.Log(drec);
         Instantiate(fireball, this.transform.position + new Vector3(-0.7f * drec, -0.1f), Quaternion.Euler(0, 90f - drec * 90f, 0));
     }
 }

@@ -26,6 +26,12 @@ public class PlayerMagicAttackAnime : MonoBehaviour
     public GameObject waterMasic;
     public GameObject airwaterMasic;
     public GameObject firecircle;
+    public GameObject blackhole;
+
+    float longPressIntervalTime = 1.0f;//長押しと判定される時間
+    float pressTime = 0f;
+    bool isPressed;
+    bool isreroad;
 
     // Start is called before the first frame update
     void Start()
@@ -40,6 +46,8 @@ public class PlayerMagicAttackAnime : MonoBehaviour
         PC = GetComponent<PlayerController>();
         this.rb = GetComponent<Rigidbody2D>();
         this.animator = GetComponent<Animator>();
+        isPressed = false;
+        isreroad = true;
     }
 
     // Update is called once per frame
@@ -55,6 +63,18 @@ public class PlayerMagicAttackAnime : MonoBehaviour
         //Debug.Log(UB_magic.GetIsPressedDown());
         //Debug.Log(UB_magic.GetIsPressedUp());
         //Debug.Log(UB_magic.GetIsPressed());
+        if (Input.GetKeyDown(KeyCode.C) || UB_magic.GetIsPressedDown())
+            isreroad = true;
+
+        if ((Input.GetKey(KeyCode.C) || UB_magic.GetIsPressed())&&isreroad)
+            isPressed = true;
+        else
+            isPressed = false;
+
+        if (isPressed)
+            pressTime += Time.deltaTime;
+        else
+            pressTime = 0;
     }
 
     void ChangeState()
@@ -63,8 +83,15 @@ public class PlayerMagicAttackAnime : MonoBehaviour
         // 接地している場合
         if (animator.GetBool("isGround"))
         {
+            // 魔法長押し攻撃
+            if (isPressed && pressTime >= longPressIntervalTime)
+            {
+                state = "BlackHole";
+                isPressed = false;
+                isreroad = false;
+            }
             //下魔法(土)
-            if ((Input.GetKeyDown(KeyCode.C)||UB_magic.GetIsPressedDown()) &&
+            else if ((Input.GetKeyDown(KeyCode.C)||UB_magic.GetIsPressedDown()) &&
                 (Input.GetKey(KeyCode.DownArrow) || UB_down.GetIsPressed()))
             {
                 state = "Tyoson";
@@ -158,6 +185,9 @@ public class PlayerMagicAttackAnime : MonoBehaviour
                 case "Lightning-Strike":
                     animator.SetBool("isLightningstrike", true);
                     break;
+                case "BlackHole":
+                    animator.SetBool("isBlackhole", true);
+                    break;
                 default:
                     animator.SetBool("isFireball", false);
                     animator.SetBool("isAFireball", false);
@@ -166,6 +196,7 @@ public class PlayerMagicAttackAnime : MonoBehaviour
                     animator.SetBool("isAWaterMasic", false);
                     animator.SetBool("isTyoson", false);
                     animator.SetBool("isLightningstrike", false);
+                    animator.SetBool("isBlackhole", false);
                     break;
             }
             //状態の変更を判定するために状態を保存しておく
@@ -212,5 +243,10 @@ public class PlayerMagicAttackAnime : MonoBehaviour
     {
         CC.UnLockCamera();
         transform.position -= new Vector3(0, 0.5f);
+    }
+
+    void BlackHole()
+    {
+        Instantiate(blackhole, this.transform.position + new Vector3(-0.03f * PC.GetDrection(), 1.06f), Quaternion.identity);
     }
 }
