@@ -7,6 +7,12 @@ public class NextStage : MonoBehaviour
 {
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        SceneManager.LoadScene("SkillsLearned");
+        if (collision.gameObject.tag == "Player")
+        {
+            string scene = SceneManager.GetActiveScene().name;
+            SkillLearned.SetPrevStage(int.Parse(scene.Substring(5)));
+            SceneManager.LoadScene("SkillsLearned");
+        }
+
     }
 }

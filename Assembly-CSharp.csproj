@@ -107,12 +107,14 @@
     <Compile Include="Assets\Script\System\BattleEventMaster.cs" />
     <Compile Include="Assets\Script\System\ButtonSelected.cs" />
     <Compile Include="Assets\Script\System\CameraController.cs" />
+    <Compile Include="Assets\Script\System\Continue.cs" />
     <Compile Include="Assets\Script\System\LearnAllSkill.cs" />
     <Compile Include="Assets\Script\System\NextStage.cs" />
     <Compile Include="Assets\Script\System\ScaffoldScript.cs" />
     <Compile Include="Assets\Script\System\SkillExplain.cs" />
     <Compile Include="Assets\Script\System\SkillLearned.cs" />
     <Compile Include="Assets\Script\System\UIBottun.cs" />
+    <Compile Include="Assets\Script\Title\ContinueButton.cs" />
     <Compile Include="Assets\Script\Title\ExitButton.cs" />
     <Compile Include="Assets\Script\Title\StartButton.cs" />
     <Compile Include="Assets\Stage\Stage1\Scripts\BattleEventMasterStage1.cs" />

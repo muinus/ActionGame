@@ -7,6 +7,7 @@ public class StartButton : MonoBehaviour
 {
     public void StartMove()
     {
+        SkillLearned.AllSkillLreaned(false);
         SceneManager.LoadScene("Stage1");
     }
 }
