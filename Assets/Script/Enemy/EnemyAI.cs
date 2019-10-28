@@ -94,10 +94,7 @@ public class EnemyAI : MonoBehaviour
         if (state != "Move")
             return;
 
-        if (animator.GetCurrentAnimatorStateInfo(0).IsName("Attack")||
-            animator.GetCurrentAnimatorStateInfo(0).IsName("Idle")||
-            animator.GetCurrentAnimatorStateInfo(0).IsName("Hurt")||
-            animator.GetCurrentAnimatorStateInfo(0).IsName("Die"))
+        if (!animator.GetCurrentAnimatorStateInfo(0).IsName("Move"))
             return;
 
         // 左右の移動。一定の速度に達するまではAddforceで力を加え、それ以降はtransform.positionを直接書き換えて同一速度で移動する

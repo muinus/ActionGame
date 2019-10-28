@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class FannelMoveContrl : MonoBehaviour
 {
-    const int GRROUND_LAYER = 1<<11 | 1<<9;
+    const int GRROUND_LAYER = 1<<11 | 1<<10;
 
     public float targetHight;//どのくらいの高さまで上昇するか
     public float riseTime;//何秒かけて上昇するか

@@ -17,7 +17,7 @@ public class EnemyAttackCollider_Oak : MonoBehaviour
     void AttackStart()
     {
         col.enabled = true;
-        if (animator.GetCurrentAnimatorStateInfo(0).IsName("Attack"))
+        if (animator.GetCurrentAnimatorStateInfo(0).IsName("Oak_Attack"))
         {
             col.offset = new Vector2(-0.16f, 0.0f);
             col.size = new Vector2(0.19f, 0.53f);
