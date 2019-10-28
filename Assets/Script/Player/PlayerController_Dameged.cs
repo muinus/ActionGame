@@ -50,11 +50,6 @@ public class PlayerController_Dameged : MonoBehaviour
         else if (isdamage)
         {
             //剣溜め攻撃の時にダメージを食らった場合の処理
-            if (animator.GetCurrentAnimatorStateInfo(0).IsName("Slashing_R")||
-                animator.GetCurrentAnimatorStateInfo(0).IsName("Slashing"))
-            {
-                PAA.Slashing_E();
-            }
 
             PAA.ResetPressTIme();
             PGA.ResetPressTIme();

@@ -110,7 +110,6 @@ public class EnemyController2 : MonoBehaviour
         if (other.transform.tag == "Player_Attack" && !isDead)
         {
             isdamage = true;
-            Debug.Log(other.transform.name);
         }
     }
 
@@ -138,11 +137,20 @@ public class EnemyController2 : MonoBehaviour
     void DropItem()
     {
         float dropProf = Random.Range(0f, 1f);
-        Debug.Log(dropProf);
         if (dropProf <= dropLate-0.2)
             Instantiate(healPotion_l, this.transform.position , Quaternion.identity);
         else if(dropProf <= dropLate)
             Instantiate(healPotion_s, this.transform.position, Quaternion.identity);
+    }
 
+    void Dead()
+    {
+        GetComponent<CapsuleCollider2D>().enabled = false;
+        GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezePositionY;
+    }
+
+    void Deadend()
+    {
+        GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeAll;
     }
 }

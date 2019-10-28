@@ -47,8 +47,6 @@ public class PlayerGunAttackAnime : MonoBehaviour
         isComboing = false;
         isPressed = false;
         isreload = true;//銃ボタン長押しで無限にマシンガンが撃てるのを抑制するフラグ
-
-        Debug.Log(UB_gun.transform.name);
     }
 
     // Update is called once per frame
