@@ -8,45 +8,74 @@ public class MahoujinIcon : MonoBehaviour
     public GameObject fairly;
     public GameObject ookami;
     public GameObject saboten;
+    public GameObject up;
+    public GameObject down;
+    public GameObject right;
+    public GameObject left;
+
+    UIBottun UB_up;
+    UIBottun UB_down;
+    UIBottun UB_left;
+    UIBottun UB_right;
+    UIBottun UB_summon;
+
     GameObject player;
     bool[] judge={ true, true, true, true };//taka yousei saboten ookami 
     float CT=10.0f;
     private void Start()
     {
         player= GameObject.Find("Player");
-        
+        UB_up = up.GetComponent<UIBottun>();
+        UB_down = down.GetComponent<UIBottun>();
+        UB_right = right.GetComponent<UIBottun>();
+        UB_left = left.GetComponent<UIBottun>();
+        UB_summon = GetComponent<UIBottun>();
+
     }
     private void Update()
     {
-      
+        ChangeState();
     }
-    public void OnClick()
+    public void ChangeState()
     {
         //taka
-        if (Input.GetKey(KeyCode.RightArrow) && judge[0] == true)
+
+        if ((UB_summon.GetIsPressedDown()||Input.GetKeyDown(KeyCode.V))&& (UB_up.GetIsPressed()||Input.GetKey(KeyCode.UpArrow)) && SkillLearned.GetSkillActive("SummonTaka") )
         {
-            judge[0] = false;
-            Instantiate(taka, new Vector3(player.transform.position.x - 10, player.transform.position.y + 10, player.transform.position.z), Quaternion.identity);
-            StartCoroutine("TukaimaCT", 0);
+            if (judge[0])
+            {
+                judge[0] = false;
+                Instantiate(taka, new Vector3(player.transform.position.x - 10, player.transform.position.y + 10, player.transform.position.z), Quaternion.identity);
+                StartCoroutine("TukaimaCT", 0);
+            }
         }
         //yousei
-        if (Input.GetKey(KeyCode.UpArrow) &&  judge[1] == true)
+        else if ((UB_summon.GetIsPressedDown() || Input.GetKeyDown(KeyCode.V)&&(UB_down.GetIsPressed()||Input.GetKey(KeyCode.DownArrow))&& SkillLearned.GetSkillActive("SummonYosei") ))
         {
-            judge[1] = false;
-            Instantiate(fairly, new Vector3(player.transform.position.x + 2, player.transform.position.y, player.transform.position.z), Quaternion.identity);
-            StartCoroutine("TukaimaCT", 1);
+            if (judge[1])
+            {
+                judge[1] = false;
+                Instantiate(fairly, new Vector3(player.transform.position.x + 2, player.transform.position.y, player.transform.position.z), Quaternion.identity);
+                StartCoroutine("TukaimaCT", 1);
+            }
         }
-        if (Input.GetKey(KeyCode.LeftArrow) && judge[2] == true)
+        else if ((UB_summon.GetIsPressedDown() || Input.GetKeyDown(KeyCode.V)&&(UB_right.GetIsPressed()|| UB_left.GetIsPressed()||Input.GetKey(KeyCode.RightArrow)||Input.GetKey(KeyCode.LeftArrow)) && judge[2]  && SkillLearned.GetSkillActive("SummonSaboten") ))
         {
-            judge[2] = false;
-            Instantiate(saboten, new Vector3(player.transform.position.x + 2, player.transform.position.y, player.transform.position.z), Quaternion.identity);
-            StartCoroutine("TukaimaCT", 2);
+            if (judge[2])
+            {
+                judge[2] = false;
+                Instantiate(saboten, new Vector3(player.transform.position.x + 2, player.transform.position.y, player.transform.position.z), Quaternion.identity);
+                StartCoroutine("TukaimaCT", 2);
+            }
         }
-        if (Input.GetKey(KeyCode.DownArrow) && judge[3] == true)
+        else if ((UB_summon.GetIsPressedDown() || Input.GetKeyDown(KeyCode.V)&&judge[3] && SkillLearned.GetSkillActive("SummonOokami")))
         {
-            judge[3] = false;
-            Instantiate(ookami, new Vector3(player.transform.position.x - 0.1f, player.transform.position.y - 0.1f, player.transform.position.z), Quaternion.identity);
-            StartCoroutine("TukaimaCT", 2);
+            if (judge[3])
+            {
+                judge[3] = false;
+                Instantiate(ookami, new Vector3(player.transform.position.x - 0.1f, player.transform.position.y - 0.4f, player.transform.position.z), Quaternion.identity);
+                StartCoroutine("TukaimaCT", 3);
+            }
         }
     }
     IEnumerator TukaimaCT(int index)

@@ -33,10 +33,10 @@ public class SkillLearned : MonoBehaviour
             {"ALanding", false},
             {"ADrift", false},
             //召喚スキル
-            {"Summon1", false},
-            {"Summon2", false},
-            {"Summon3", false},
-            {"Summon4", false},
+            {"SummonTaka", false},
+            {"SummonYosei", false},
+            {"SummonSaboten", false},
+            {"SummonOokami", false},
             //ポーション
             {"Potion", false}
         };
