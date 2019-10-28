@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Fannel : MonoBehaviour
 {
-    float life_time = 10.0f;//生存時間
+    float life_time = 5.0f;//生存時間
     float time = 0f;
 
     void Update()
