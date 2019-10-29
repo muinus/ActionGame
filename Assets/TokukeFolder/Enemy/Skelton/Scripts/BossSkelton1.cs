@@ -37,6 +37,12 @@ public class BossSkelton1 : MonoBehaviour
         HPbar = GetComponentInChildren<Slider>();
         animator = transform.root.GetComponent<Animator>();
         isdamage = false;
+        player= GameObject.Find("Player");
+        upLeft = GameObject.Find("upLeft");
+        upRight = GameObject.Find("upRight");
+        downLeft = GameObject.Find("downLeft");
+        downRight = GameObject.Find("downRight");
+        middle = GameObject.Find("middle");
         upLeftV = new Vector2(upLeft.transform.position.x, upLeft.transform.position.y);
         upRightV = new Vector2(upRight.transform.position.x, upRight.transform.position.y);
         downLeftV = new Vector2(downLeft.transform.position.x, downLeft.transform.position.y);

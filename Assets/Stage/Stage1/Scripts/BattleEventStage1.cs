@@ -7,6 +7,7 @@ public class BattleEventStage1 : MonoBehaviour
     
 
     public GameObject enemy;//敵のプレハブを入れる変数
+    public GameObject enemy2;
     int wave;//ウェーブの状態
     bool isThisBattleEvent;//イベントの箇所の判定
     Vector3 enemyPosition;
@@ -71,6 +72,7 @@ public class BattleEventStage1 : MonoBehaviour
             case 1:
                 //SpwanEnemy(enemy, this.transform.position);
                 SpwanEnemy(enemy, enemyPosition);
+                SpwanEnemy(enemy2, enemyPosition + new Vector3(3, 1, 1));
                 break;
             case 2:
                 //SpwanEnemy(enemy, this.transform.position);
