@@ -195,6 +195,7 @@ GameObject:
   - component: {fileID: 7031121930173641429}
   - component: {fileID: 7031121930173641384}
   - component: {fileID: 7031121930173641431}
+  - component: {fileID: 958664295610381081}
   - component: {fileID: 7031121930173641430}
   - component: {fileID: 7031121930173641385}
   - component: {fileID: 7031121930173641386}
@@ -262,6 +263,18 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
+--- !u!114 &958664295610381081
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7031121930173641428}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6183f85100504804abc79a09de3f5055, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &7031121930173641430
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -367,8 +380,8 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 7031121930173641386}
-          m_MethodName: OnClick
+        - m_Target: {fileID: 958664295610381081}
+          m_MethodName: PointerDown
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -2440,7 +2453,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7031121931736467481}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a42a2a2be28b52b4680405aa1ef94b28, type: 3}
   m_Name: 

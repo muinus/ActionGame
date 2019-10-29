@@ -15,7 +15,7 @@ public class Stage2_1 : MonoBehaviour
 
     GameObject maincamera;
     //GameObject battleEventMaster;
-    BattleEventMaster battleEventMasterStage;
+    BattleEventMaster battleEventMaster;
 
     private void Start()
     {
@@ -23,7 +23,7 @@ public class Stage2_1 : MonoBehaviour
         wave = 1;//初期ウェーブは1
         isThisBattleEvent = false;
 
-        battleEventMasterStage = transform.parent.gameObject.GetComponent<BattleEventMaster>();
+        battleEventMaster = transform.parent.gameObject.GetComponent<BattleEventMaster>();
         maincamera = GameObject.Find("Main Camera");
 
         ResetPlace();//障壁の消去
@@ -35,7 +35,7 @@ public class Stage2_1 : MonoBehaviour
 
 
         //敵の数がゼロになる度にウェーブが進行する
-        if ((battleEventMasterStage.GetEnemyCounter() == 0) && isThisBattleEvent)
+        if ((battleEventMaster.GetEnemyCounter() == 0) && isThisBattleEvent)
         {
             wave += 1;//ウェーブ進行
             ChangeWave();
@@ -44,17 +44,19 @@ public class Stage2_1 : MonoBehaviour
 
 
         //イベント終了時の処理
-        if (!battleEventMasterStage.GetIsBattleEvent())
+        if (!battleEventMaster.GetIsBattleEvent())
         {
             isThisBattleEvent = false;
-            battleEventMasterStage.SetEventEndFlag(false);
+            battleEventMaster.SetEventEndFlag(false);
             ResetPlace();//障壁の消去
         }
     }
 
     void OnTriggerEnter2D(Collider2D col)
     {
-        battleEventMasterStage.SetIsBattleEvent(true);
+        
+
+        battleEventMaster.SetIsBattleEvent(true);
         isThisBattleEvent = true;
         transform.GetComponent<BoxCollider2D>().enabled = false;
         ChangeWave();//敵の発生
@@ -81,7 +83,7 @@ public class Stage2_1 : MonoBehaviour
                 SpwanEnemy(enemy, enemyPosition + new Vector3(1, 1, 1));
                 break;
             default:
-                battleEventMasterStage.SetEventEndFlag(true);
+                battleEventMaster.SetEventEndFlag(true);
                 break;
         }
     }
@@ -89,7 +91,7 @@ public class Stage2_1 : MonoBehaviour
     void LockCamera()
     {
         //イベントオブジェクトに対する相対座標で指定
-        maincamera.transform.position = new Vector3(this.transform.position.x, this.transform.position.y, this.transform.position.z);
+        maincamera.transform.position = new Vector3(this.transform.position.x, this.transform.position.y, this.transform.position.z-2);
     }
 
     void LockPlace()
@@ -113,7 +115,7 @@ public class Stage2_1 : MonoBehaviour
     void SpwanEnemy(GameObject enemy, Vector3 position)
     {
         Instantiate(enemy, position, Quaternion.identity);
-        battleEventMasterStage.IncreaseEnemyCounter();
+        battleEventMaster.IncreaseEnemyCounter();
     }
 
 

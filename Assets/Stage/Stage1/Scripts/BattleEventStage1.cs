@@ -11,18 +11,19 @@ public class BattleEventStage1 : MonoBehaviour
     int wave;//ウェーブの状態
     bool isThisBattleEvent;//イベントの箇所の判定
     Vector3 enemyPosition;
-
+    GameObject objBattleEventMaster;
     GameObject maincamera;
     //GameObject battleEventMaster;
-    BattleEventMasterStage1 battleEventMasterStage1;
+    BattleEventMaster battleEventMasterStage1;
 
     private void Start()
     {
+        objBattleEventMaster = transform.parent.gameObject;
         enemyPosition = new Vector3(this.transform.position.x, this.transform.position.y+1.0f,0);
         wave = 1;//初期ウェーブは1
         isThisBattleEvent = false;
 
-        battleEventMasterStage1 = transform.parent.gameObject.GetComponent<BattleEventMasterStage1>();
+        battleEventMasterStage1 = transform.parent.gameObject.GetComponent<BattleEventMaster>();
         maincamera = GameObject.Find("Main Camera");
 
         ResetPlace();//障壁の消去
@@ -111,7 +112,7 @@ public class BattleEventStage1 : MonoBehaviour
     }
 
     void SpwanEnemy(GameObject enemy,Vector3 position) {
-        Instantiate(enemy, position, Quaternion.identity);
+        Instantiate(enemy, position, Quaternion.identity, objBattleEventMaster.transform);
         battleEventMasterStage1.IncreaseEnemyCounter();
     }
 

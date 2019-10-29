@@ -14,7 +14,7 @@ public class BattleEventStage1_boss : MonoBehaviour
 
     GameObject maincamera;
     //GameObject battleEventMaster;
-    BattleEventMasterStage1 battleEventMasterStage1;
+    BattleEventMaster battleEventMasterStage1;
 
     private void Start()
     {
@@ -23,7 +23,7 @@ public class BattleEventStage1_boss : MonoBehaviour
         wave = 1;//初期ウェーブは1
         isThisBattleEvent = false;
 
-        battleEventMasterStage1 = transform.parent.gameObject.GetComponent<BattleEventMasterStage1>();
+        battleEventMasterStage1 = transform.parent.gameObject.GetComponent<BattleEventMaster>();
         maincamera = GameObject.Find("Main Camera");
 
         ResetPlace();//障壁の消去
