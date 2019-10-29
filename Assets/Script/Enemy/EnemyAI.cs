@@ -28,7 +28,7 @@ public class EnemyAI : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         player = GameObject.Find("Player");
-        animator = transform.root.GetComponent<Animator>();
+        animator = transform.GetComponent<Animator>();
         time = 0;
     }
 

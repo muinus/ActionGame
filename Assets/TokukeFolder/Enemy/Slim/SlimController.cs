@@ -33,7 +33,7 @@ public class SlimController : MonoBehaviour
         col.gameObject.SetActive(false);
         HPbar = GetComponentInChildren<Slider>();
         player = GameObject.Find("Player");
-        animator = transform.root.GetComponent<Animator>();
+        animator = transform.GetComponent<Animator>();
         isdamage = false;
         
         rb = this.GetComponent<Rigidbody2D>();

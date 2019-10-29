@@ -19,7 +19,7 @@ public class EnemyAI_Wisp : EnemyAI
 
         rb = GetComponent<Rigidbody2D>();
         player = GameObject.Find("Player");
-        animator = transform.root.GetComponent<Animator>();
+        animator = transform.GetComponent<Animator>();
         time = 0;
     }
 
