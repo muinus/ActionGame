@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2879544640608028756}
-  m_Layer: 9
+  m_Layer: 10
   m_Name: Handle Slide Area
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -46,7 +46,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2846535173847499211}
   - component: {fileID: 8769151417178912628}
-  m_Layer: 9
+  m_Layer: 10
   m_Name: Slider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -138,7 +138,7 @@ GameObject:
   - component: {fileID: 8170042809360698025}
   - component: {fileID: 5726621144027575376}
   - component: {fileID: 1335923872174133205}
-  m_Layer: 9
+  m_Layer: 10
   m_Name: Fill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -212,7 +212,7 @@ GameObject:
   - component: {fileID: 5801421611204229275}
   - component: {fileID: 7146934277965985520}
   - component: {fileID: 5885102256482361628}
-  m_Layer: 9
+  m_Layer: 10
   m_Name: Handle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -285,7 +285,8 @@ GameObject:
   m_Component:
   - component: {fileID: 3780192874812886894}
   - component: {fileID: 4592569211708594434}
-  m_Layer: 0
+  - component: {fileID: 4530749822892576531}
+  m_Layer: 10
   m_Name: AttackColider
   m_TagString: Enemy_Attack
   m_Icon: {fileID: 0}
@@ -304,7 +305,7 @@ Transform:
   m_LocalScale: {x: -0.33333334, y: 0.33333334, z: 0}
   m_Children: []
   m_Father: {fileID: 2933944508024329693}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &4592569211708594434
 BoxCollider2D:
@@ -319,7 +320,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.12654889, y: -0.1246202}
+  m_Offset: {x: -0.130822, y: -0.1246202}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -330,8 +331,20 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.48164058, y: 0.33535957}
+  m_Size: {x: 0.4901868, y: 0.33535957}
   m_EdgeRadius: 0
+--- !u!114 &4530749822892576531
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4105088568496112336}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b50530b90594144a82b2f8e25bba338, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6906938653069615323
 GameObject:
   m_ObjectHideFlags: 0
@@ -341,7 +354,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7782183295156342896}
-  m_Layer: 9
+  m_Layer: 10
   m_Name: Fill Area
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -379,7 +392,7 @@ GameObject:
   - component: {fileID: 1303048286191233762}
   - component: {fileID: 1752175812476766854}
   - component: {fileID: 1027953833717921408}
-  m_Layer: 9
+  m_Layer: 10
   m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -454,7 +467,7 @@ GameObject:
   - component: {fileID: 6787873781768112982}
   - component: {fileID: 2868997090052221771}
   - component: {fileID: 6539038673373234813}
-  m_Layer: 9
+  m_Layer: 10
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -474,7 +487,7 @@ RectTransform:
   m_Children:
   - {fileID: 2846535173847499211}
   m_Father: {fileID: 2933944508024329693}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -555,7 +568,7 @@ GameObject:
   - component: {fileID: 6528753315892452249}
   - component: {fileID: 6192777518405785215}
   - component: {fileID: 1249856555197780171}
-  m_Layer: 9
+  m_Layer: 10
   m_Name: Slim
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -573,8 +586,8 @@ Transform:
   m_LocalPosition: {x: 1.761, y: -0.763, z: 0}
   m_LocalScale: {x: -3, y: 3, z: 0}
   m_Children:
-  - {fileID: 8925939782621503176}
   - {fileID: 3780192874812886894}
+  - {fileID: 8925939782621503176}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}

@@ -25,3 +25,27 @@ MonoBehaviour:
     ActtionName: WispFireball
     atk: 25
     force: {x: 2, y: 0}
+  - EnemyName: Slim
+    ActtionName: slim_attack
+    atk: 20
+    force: {x: 2, y: 0}
+  - EnemyName: SlimBoss
+    ActtionName: slim_boss_fall
+    atk: 50
+    force: {x: 2, y: 0}
+  - EnemyName: SlimBoss
+    ActtionName: slim_boss_fall1
+    atk: 50
+    force: {x: 2, y: 0}
+  - EnemyName: Skelton_boss
+    ActtionName: skelton_attack
+    atk: 30
+    force: {x: 2, y: 0}
+  - EnemyName: thunderball
+    ActtionName: thunderball
+    atk: 30
+    force: {x: 2, y: 0}
+  - EnemyName: thunder
+    ActtionName: thunder
+    atk: 40
+    force: {x: 2, y: 0}
