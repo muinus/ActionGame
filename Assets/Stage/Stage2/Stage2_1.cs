@@ -32,7 +32,7 @@ public class Stage2_1 : MonoBehaviour
 
     private void Update()
     {
-
+        Debug.Log(battleEventMasterStage.GetEnemyCounter());
 
         //敵の数がゼロになる度にウェーブが進行する
         if ((battleEventMasterStage.GetEnemyCounter() == 0) && isThisBattleEvent)
