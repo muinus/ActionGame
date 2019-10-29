@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AttackDataList:
   - ActtionName: Attack1
-    atk: 2000
+    atk: 25
     force: {x: 1, y: 1}
   - ActtionName: Attack2
     atk: 35

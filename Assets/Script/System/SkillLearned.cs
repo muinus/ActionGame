@@ -44,6 +44,8 @@ public class SkillLearned : MonoBehaviour
     GameObject skill;
     GameObject warning;
 
+    static int prevstage = 0;
+
     bool islearned;
 
     //string buttonSelected="none";
@@ -71,7 +73,7 @@ public class SkillLearned : MonoBehaviour
         ChangeBottunColor();
     }
 
-    public static void AllSkillLreaned()
+    public static void AllSkillLreaned(bool active)
     {
         List<string> TmpList = new List<string>();
         foreach (KeyValuePair<string, bool> skillstate in skillTable)
@@ -81,9 +83,11 @@ public class SkillLearned : MonoBehaviour
 
         foreach (string skillKey in TmpList)
         {
-            skillTable[skillKey] = true;
+            skillTable[skillKey] = active;
         }
     }
+
+    
 
     public void DebugD()
     {
@@ -118,7 +122,7 @@ public class SkillLearned : MonoBehaviour
     public void NextScene()
     {
         if (islearned)
-            SceneManager.LoadScene("Stage5");
+            SceneManager.LoadScene("Stage"+(prevstage+1).ToString());
         else
             warning.SetActive(true);
 
@@ -147,5 +151,16 @@ public class SkillLearned : MonoBehaviour
     public void ButtonNo()
     {
         warning.SetActive(false);
+    }
+
+    public static void SetPrevStage(int prevstage)
+    {
+        Debug.Log(prevstage);
+        SkillLearned.prevstage= prevstage;
+    }
+
+    public static int GetPrevStage()
+    {
+        return prevstage;
     }
 }
