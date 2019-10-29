@@ -29186,11 +29186,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 4866397285633822424, guid: a93f28a55ac67ab419a62e1e60440edb,
-        type: 3}
-      propertyPath: m_Name
-      value: Player
-      objectReference: {fileID: 0}
     - target: {fileID: 4866397285633822402, guid: a93f28a55ac67ab419a62e1e60440edb,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -29245,6 +29240,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4866397285633822424, guid: a93f28a55ac67ab419a62e1e60440edb,
+        type: 3}
+      propertyPath: m_Name
+      value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 4866397285633822401, guid: a93f28a55ac67ab419a62e1e60440edb,
         type: 3}
@@ -29382,6 +29382,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 8413837404813129425, guid: 28b65de62b8d3134d80669466e2c6bed,
         type: 3}
+    - target: {fileID: 4866397286069082441, guid: a93f28a55ac67ab419a62e1e60440edb,
+        type: 3}
+      propertyPath: m_TagString
+      value: GameController
+      objectReference: {fileID: 0}
     - target: {fileID: 4866397284731236283, guid: a93f28a55ac67ab419a62e1e60440edb,
         type: 3}
       propertyPath: m_Offset.x
@@ -29401,11 +29406,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Size.y
       value: 0.4
-      objectReference: {fileID: 0}
-    - target: {fileID: 4866397286069082441, guid: a93f28a55ac67ab419a62e1e60440edb,
-        type: 3}
-      propertyPath: m_TagString
-      value: GameController
       objectReference: {fileID: 0}
     - target: {fileID: 4866397286069082444, guid: a93f28a55ac67ab419a62e1e60440edb,
         type: 3}

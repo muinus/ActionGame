@@ -9,20 +9,21 @@ public class Stage2_boss : MonoBehaviour
     int wave;//ウェーブの状態
     bool isThisBattleEvent;//イベントの箇所の判定
     Vector3 enemyPosition;
-
+    GameObject objBattleEventMaster;
     GameObject maincamera;
     //GameObject battleEventMaster;
-    BattleEventMaster battleEventMasterStage;
+    BattleEventMaster battleEventMaster;
 
     private void Start()
     {
+        objBattleEventMaster = transform.parent.gameObject;
         enemyPosition = new Vector3(this.transform.position.x, this.transform.position.y + 3.0f, 0);
         wave = 1;//初期ウェーブは1
         isThisBattleEvent = false;
 
-        battleEventMasterStage = transform.parent.gameObject.GetComponent<BattleEventMaster>();
+        battleEventMaster = transform.parent.gameObject.GetComponent<BattleEventMaster>();
         maincamera = GameObject.Find("Main Camera");
-
+        
         ResetPlace();//障壁の消去
 
     }
@@ -32,7 +33,7 @@ public class Stage2_boss : MonoBehaviour
 
 
         //敵の数がゼロになる度にウェーブが進行する
-        if ((battleEventMasterStage.GetEnemyCounter() == 0) && isThisBattleEvent)
+        if ((battleEventMaster.GetEnemyCounter() == 0) && isThisBattleEvent)
         {
             wave += 1;//ウェーブ進行
             ChangeWave();
@@ -41,10 +42,10 @@ public class Stage2_boss : MonoBehaviour
 
 
         //イベント終了時の処理
-        if (!battleEventMasterStage.GetIsBattleEvent())
+        if (!battleEventMaster.GetIsBattleEvent())
         {
             isThisBattleEvent = false;
-            battleEventMasterStage.SetEventEndFlag(false);
+            battleEventMaster.SetEventEndFlag(false);
             ResetPlace();//障壁の消去
         }
     }
@@ -52,7 +53,7 @@ public class Stage2_boss : MonoBehaviour
     void OnTriggerEnter2D(Collider2D col)
     {
         if(col.tag==("Player")){
-            battleEventMasterStage.SetIsBattleEvent(true);
+            battleEventMaster.SetIsBattleEvent(true);
             isThisBattleEvent = true;
             transform.GetComponent<BoxCollider2D>().enabled = false;
             ChangeWave();//敵の発生
@@ -74,7 +75,7 @@ public class Stage2_boss : MonoBehaviour
                 break;
             
             default:
-                battleEventMasterStage.SetEventEndFlag(true);
+                battleEventMaster.SetEventEndFlag(true);
                 break;
         }
     }
@@ -105,8 +106,8 @@ public class Stage2_boss : MonoBehaviour
 
     void SpwanEnemy(GameObject enemy, Vector3 position)
     {
-        Instantiate(enemy, position, Quaternion.identity);
-        battleEventMasterStage.IncreaseEnemyCounter();
+        Instantiate(enemy, position, Quaternion.identity, objBattleEventMaster.transform);
+        battleEventMaster.IncreaseEnemyCounter();
     }
 
 }

@@ -12,7 +12,7 @@ public class Stgae2_2: MonoBehaviour
     int wave;//ウェーブの状態
     bool isThisBattleEvent;//イベントの箇所の判定
     Vector3 enemyPosition;
-
+    GameObject objBattleEventMaster;
     GameObject maincamera;
     //GameObject battleEventMaster;
     BattleEventMaster battleEventMasterStage;
@@ -22,6 +22,8 @@ public class Stgae2_2: MonoBehaviour
         enemyPosition = new Vector3(this.transform.position.x, this.transform.position.y + 1.0f, 0);
         wave = 1;//初期ウェーブは1
         isThisBattleEvent = false;
+        objBattleEventMaster = transform.parent.gameObject;
+
 
         battleEventMasterStage = transform.parent.gameObject.GetComponent<BattleEventMaster>();
         maincamera = GameObject.Find("Main Camera");
@@ -118,7 +120,7 @@ public class Stgae2_2: MonoBehaviour
 
     void SpwanEnemy(GameObject enemy, Vector3 position)
     {
-        Instantiate(enemy, position, Quaternion.identity);
+        Instantiate(enemy, position, Quaternion.identity, objBattleEventMaster.transform);
         battleEventMasterStage.IncreaseEnemyCounter();
     }
 

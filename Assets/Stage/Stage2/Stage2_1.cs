@@ -12,6 +12,7 @@ public class Stage2_1 : MonoBehaviour
     int wave;//ウェーブの状態
     bool isThisBattleEvent;//イベントの箇所の判定
     Vector3 enemyPosition;
+    GameObject objBattleEventMaster;
 
     GameObject maincamera;
     //GameObject battleEventMaster;
@@ -19,6 +20,7 @@ public class Stage2_1 : MonoBehaviour
 
     private void Start()
     {
+        objBattleEventMaster = transform.parent.gameObject;
         enemyPosition = new Vector3(this.transform.position.x, this.transform.position.y + 1.0f, 0);
         wave = 1;//初期ウェーブは1
         isThisBattleEvent = false;
@@ -114,7 +116,7 @@ public class Stage2_1 : MonoBehaviour
 
     void SpwanEnemy(GameObject enemy, Vector3 position)
     {
-        Instantiate(enemy, position, Quaternion.identity);
+        Instantiate(enemy, position, Quaternion.identity, objBattleEventMaster.transform);
         battleEventMaster.IncreaseEnemyCounter();
     }
 
