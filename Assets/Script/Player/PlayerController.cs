@@ -82,6 +82,7 @@ public class PlayerController : MonoBehaviour
             isDoubleJump = true;
         if (key != 0)
             drec = key;
+        
 
 
         isDublePress = false;
@@ -150,8 +151,7 @@ public class PlayerController : MonoBehaviour
         if (animator.GetBool("isGround"))
         {
             if ((isDublePress && (pressedKey == KeyCode.RightArrow || UB_clone.Equals(UB_right)
-                      || pressedKey == KeyCode.LeftArrow || UB_clone.Equals(UB_left))) &&
-                      aDriftCount == 0)
+                      || pressedKey == KeyCode.LeftArrow || UB_clone.Equals(UB_left))))
             {
                 Roling();
                 isDublePress = false;
@@ -170,6 +170,8 @@ public class PlayerController : MonoBehaviour
             }
             else
             {
+
+                
                 state = "IDLE";
             }
 
@@ -336,6 +338,11 @@ public class PlayerController : MonoBehaviour
 
     }
 
+    void Idle()
+    {
+        animator.SetBool("isRoling", false);
+    }
+
     void AirDrift()
     {
 
@@ -444,5 +451,20 @@ public class PlayerController : MonoBehaviour
         this.MasicEffect = MasicEffect;
     }
 
-    
+    public void Avoidance()
+    {
+        GetComponent<CapsuleCollider2D>().enabled = false;
+        GetComponent<CircleCollider2D>().enabled = false;
+        rb.constraints = RigidbodyConstraints2D.FreezePositionY;
+    }
+
+    public void UnAvoidance()
+    {
+        GetComponent<CapsuleCollider2D>().enabled = true;
+        GetComponent<CircleCollider2D>().enabled = true;
+        rb.constraints = RigidbodyConstraints2D.None;
+        rb.constraints = RigidbodyConstraints2D.FreezeRotation;
+    }
+
+
 }
