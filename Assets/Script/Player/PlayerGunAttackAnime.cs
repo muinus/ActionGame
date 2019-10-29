@@ -27,7 +27,7 @@ public class PlayerGunAttackAnime : MonoBehaviour
 
     GameObject nearEnemy;
 
-    float longPressIntervalTime = 1.0f;//生存時間
+    float longPressIntervalTime = 1.0f;//長押しと判定される時間
     float pressTime = 0f;
     bool isPressed;
     bool isreload;
@@ -47,8 +47,6 @@ public class PlayerGunAttackAnime : MonoBehaviour
         isComboing = false;
         isPressed = false;
         isreload = true;//銃ボタン長押しで無限にマシンガンが撃てるのを抑制するフラグ
-
-        Debug.Log(UB_gun.transform.name);
     }
 
     // Update is called once per frame

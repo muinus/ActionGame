@@ -16,7 +16,7 @@ public class SlimController : MonoBehaviour
     string state;
     float dis;
 
-    public GameObject BattleEvent;
+    GameObject BattleEvent;
 
     float slimDis=8.0f;
     float attackDis = 4.0f;
@@ -33,12 +33,12 @@ public class SlimController : MonoBehaviour
         col.gameObject.SetActive(false);
         HPbar = GetComponentInChildren<Slider>();
         player = GameObject.Find("Player");
-        animator = transform.root.GetComponent<Animator>();
+        animator = transform.GetComponent<Animator>();
         isdamage = false;
-        BattleEvent = GameObject.Find("BattleEventMaster");
-
+        
         rb = this.GetComponent<Rigidbody2D>();
         animator.SetBool("isMove", true);
+        BattleEvent = GameObject.Find("BattleEventMaster");
     }
 
     // Update is called once per frame
@@ -62,9 +62,9 @@ public class SlimController : MonoBehaviour
         if (animator.GetCurrentAnimatorStateInfo(0).IsName("slim_dead"))
         {
             Destroy(this.gameObject);
-            if (BattleEvent.GetComponent<BattleEventMasterStage1>().GetIsBattleEvent())
+            if (BattleEvent.GetComponent<BattleEventMaster>().GetIsBattleEvent())
             {
-                BattleEvent.GetComponent<BattleEventMasterStage1>().DecreaseEnemyCounter();
+                BattleEvent.GetComponent<BattleEventMaster>().DecreaseEnemyCounter();
             }
         }
         else if (isdamage)

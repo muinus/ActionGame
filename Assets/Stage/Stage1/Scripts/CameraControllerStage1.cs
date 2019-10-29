@@ -19,7 +19,7 @@ public class CameraControllerStage1 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!BattleEvent.GetComponent<BattleEventMasterStage1>().GetIsBattleEvent())
+        if (!BattleEvent.GetComponent<BattleEventMaster>().GetIsBattleEvent())
         {
             transform.position = new Vector3(player.transform.position.x, player.transform.position.y + 0.75f, -1);
         }

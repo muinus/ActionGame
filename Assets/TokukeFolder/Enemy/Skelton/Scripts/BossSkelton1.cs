@@ -37,6 +37,12 @@ public class BossSkelton1 : MonoBehaviour
         HPbar = GetComponentInChildren<Slider>();
         animator = transform.root.GetComponent<Animator>();
         isdamage = false;
+        player= GameObject.Find("Player");
+        upLeft = GameObject.Find("upLeft");
+        upRight = GameObject.Find("upRight");
+        downLeft = GameObject.Find("downLeft");
+        downRight = GameObject.Find("downRight");
+        middle = GameObject.Find("middle");
         upLeftV = new Vector2(upLeft.transform.position.x, upLeft.transform.position.y);
         upRightV = new Vector2(upRight.transform.position.x, upRight.transform.position.y);
         downLeftV = new Vector2(downLeft.transform.position.x, downLeft.transform.position.y);
@@ -71,7 +77,14 @@ public class BossSkelton1 : MonoBehaviour
         //敵から自分への向き
         int drec = System.Math.Sign(this.transform.position.x - player.transform.position.x);
         this.transform.rotation = new Quaternion(0, 90.0f * drec + 90.0f, 0, 0);
-
+        /*if (animator.GetCurrentAnimatorStateInfo(0).IsName("skelton_Dead"))
+        {
+            Destroy(this.gameObject,3.0f);
+            if (BattleEvent.GetComponent<BattleEventMaster>().GetIsBattleEvent())
+            {
+                BattleEvent.GetComponent<BattleEventMaster>().DecreaseEnemyCounter();
+            }
+        }*/
         if (HPbar.value <= 0)
         {
             state = "Die";

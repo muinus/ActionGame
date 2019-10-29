@@ -117,7 +117,7 @@ public class PlayerAttackAnime : MonoBehaviour
             else if (((Input.GetKeyDown(KeyCode.Z) || UB_sword.GetIsPressedDown())
                 && (Input.GetKey(KeyCode.LeftArrow) || UB_left.GetIsPressed())) ||
                 ((Input.GetKeyDown(KeyCode.Z) || UB_sword.GetIsPressedDown())
-                && (Input.GetKey(KeyCode.RightArrow)) || UB_right.GetIsPressed()))
+                && (Input.GetKey(KeyCode.RightArrow) || UB_right.GetIsPressed())))
             {
 
                 state = "ThrowSword";
@@ -293,7 +293,6 @@ public class PlayerAttackAnime : MonoBehaviour
                     animator.SetBool("isAHighSlash_end", true);
                     break;
                 case "Slashing_R":
-                    Slashing_S();
                     animator.SetBool("isSlashing_R", true);
                     break;
                 case "Slashing":
@@ -360,22 +359,6 @@ public class PlayerAttackAnime : MonoBehaviour
         transform.localScale = new Vector3(PC.GetDrection() * 3, 3, 3); // 向きに応じてキャラクターを反転
         rb.velocity = new Vector2(9f * PC.GetDrection(), -4.5f);
         boxCol.enabled = true;
-    }
-
-    public void Slashing_S()
-    {
-        CC.LockCamera();
-        transform.position += new Vector3(0.06f, -0.09f);
-        capCol.offset -= new Vector2(0.03f, -0.03f);
-        cirCol.offset -= new Vector2(0.03f, -0.03f);
-    }
-
-    public void Slashing_E()
-    {
-        CC.UnLockCamera();
-        transform.position -= new Vector3(0.06f, -0.09f);
-        capCol.offset += new Vector2(0.03f, -0.03f);
-        cirCol.offset += new Vector2(0.03f, -0.03f);
     }
 
     void Attack3Conbo()

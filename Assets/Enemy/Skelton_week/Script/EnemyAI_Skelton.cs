@@ -17,7 +17,7 @@ public class EnemyAI_Skelton : EnemyAI
 
         rb = GetComponent<Rigidbody2D>();
         player = GameObject.Find("Player");
-        animator = transform.root.GetComponent<Animator>();
+        animator = transform.GetComponent<Animator>();
         time = 0;
 
         GetComponent<EnemyController2>().SetDropLate(0.30f);

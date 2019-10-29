@@ -28,7 +28,7 @@ public class EnemyAI : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         player = GameObject.Find("Player");
-        animator = transform.root.GetComponent<Animator>();
+        animator = transform.GetComponent<Animator>();
         time = 0;
     }
 
@@ -42,13 +42,14 @@ public class EnemyAI : MonoBehaviour
 
     protected void ChangeState()
     {
+        drec= System.Math.Sign(this.transform.position.x - player.transform.position.x);
         dis = Vector3.Distance(player.transform.position, this.transform.position);
         time += Time.deltaTime;
 
         if (dis <= attackDis && state == "Idle" && time>3.0f)
         {
             
-            if(Random.Range(0.0f, 1.0f)> attackProb)
+            if(Random.Range(0.0f, 1.0f)< attackProb)
             state = "Attack";
             time = 0.0f;
         }

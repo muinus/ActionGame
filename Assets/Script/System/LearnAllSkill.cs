@@ -10,6 +10,6 @@ public class LearnAllSkill : MonoBehaviour
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.S))
-            SkillLearned.AllSkillLreaned();
+            SkillLearned.AllSkillLreaned(true);
     }
 }

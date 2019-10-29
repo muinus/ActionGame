@@ -12,6 +12,8 @@ public class PlayerController_Dameged : MonoBehaviour
     PlayerAttackAnime PAA;
     PlayerGunAttackAnime PGA;
 
+    public GameObject continueScene;
+
     bool isdamage;
     string state;
 
@@ -40,7 +42,9 @@ public class PlayerController_Dameged : MonoBehaviour
 
         if (animator.GetCurrentAnimatorStateInfo(0).IsName("Dead"))
         {
-            Destroy(this.gameObject);
+            continueScene.SetActive(true);
+            Destroy(gameObject);
+            Time.timeScale = 0;
         }
         else if (HPbar.value <= 0&& animator.GetCurrentAnimatorStateInfo(0).IsName("Hurt"))
         {
@@ -50,11 +54,6 @@ public class PlayerController_Dameged : MonoBehaviour
         else if (isdamage)
         {
             //剣溜め攻撃の時にダメージを食らった場合の処理
-            if (animator.GetCurrentAnimatorStateInfo(0).IsName("Slashing_R")||
-                animator.GetCurrentAnimatorStateInfo(0).IsName("Slashing"))
-            {
-                PAA.Slashing_E();
-            }
 
             PAA.ResetPressTIme();
             PGA.ResetPressTIme();

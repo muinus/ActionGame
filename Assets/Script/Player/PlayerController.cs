@@ -82,6 +82,7 @@ public class PlayerController : MonoBehaviour
             isDoubleJump = true;
         if (key != 0)
             drec = key;
+        
 
 
         isDublePress = false;
@@ -149,8 +150,15 @@ public class PlayerController : MonoBehaviour
         // 接地している場合
         if (animator.GetBool("isGround"))
         {
+            if ((isDublePress && (pressedKey == KeyCode.RightArrow || UB_clone.Equals(UB_right)
+                      || pressedKey == KeyCode.LeftArrow || UB_clone.Equals(UB_left))))
+            {
+                Roling();
+                isDublePress = false;
+                state = "Roling";
+            }
             // 走行中
-            if (key == 1)
+            else  if (key == 1)
             {
                 state = "RUN_right";
                 //待機状態
@@ -162,6 +170,8 @@ public class PlayerController : MonoBehaviour
             }
             else
             {
+
+                
                 state = "IDLE";
             }
 
@@ -263,6 +273,10 @@ public class PlayerController : MonoBehaviour
                     animator.SetBool("isADrift", true);
                     transform.localScale = new Vector3(key * 3, 3, 3); // 向きに応じてキャラクターを反転
                     break;
+                case "Roling":
+                    animator.SetBool("isRoling", true);
+                    transform.localScale = new Vector3(key * 3, 3, 3); // 向きに応じてキャラクターを反転
+                    break;
                 default:
                     animator.SetBool("isDJump", false);
                     animator.SetBool("isFall", false);
@@ -271,6 +285,7 @@ public class PlayerController : MonoBehaviour
                     animator.SetBool("isALanding_S", false);
                     animator.SetBool("isALanding_E", false);
                     animator.SetBool("isADrift", false);
+                    animator.SetBool("isRoling", false);
                     stateEffect = 1f;
                     break;
             }
@@ -323,12 +338,22 @@ public class PlayerController : MonoBehaviour
 
     }
 
+    void Idle()
+    {
+        animator.SetBool("isRoling", false);
+    }
+
     void AirDrift()
     {
 
         rb.velocity = new Vector2(4 * GetDrection(), 0);
         Instantiate(driftMagicCircle, this.transform.position + new Vector3(0.15f * GetDrection(), -0.2f), Quaternion.Euler(0, 90f - GetDrection() * 90f, 0));
 
+    }
+
+    public void Roling()
+    {
+        rb.velocity = new Vector2(4.5f * GetDrection(), 0);
     }
 
     void Ray()
@@ -425,4 +450,21 @@ public class PlayerController : MonoBehaviour
     {
         this.MasicEffect = MasicEffect;
     }
+
+    public void Avoidance()
+    {
+        GetComponent<CapsuleCollider2D>().enabled = false;
+        GetComponent<CircleCollider2D>().enabled = false;
+        rb.constraints = RigidbodyConstraints2D.FreezePositionY;
+    }
+
+    public void UnAvoidance()
+    {
+        GetComponent<CapsuleCollider2D>().enabled = true;
+        GetComponent<CircleCollider2D>().enabled = true;
+        rb.constraints = RigidbodyConstraints2D.None;
+        rb.constraints = RigidbodyConstraints2D.FreezeRotation;
+    }
+
+
 }
