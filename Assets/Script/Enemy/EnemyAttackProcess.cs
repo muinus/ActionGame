@@ -19,7 +19,10 @@ public class EnemyAttackProcess : MonoBehaviour
     {
         attackTable = Resources.Load<EnemyAttackDamege>("Data/CharacterStatusData_E");
         ADlist = attackTable.AttackDataList;
-        animator = transform.root.GetComponent<Animator>();
+        if(gameObject.name== "AttackColider")
+            animator = transform.parent.GetComponent<Animator>();
+        else
+            animator = transform.root.GetComponent<Animator>();
     }
 
 

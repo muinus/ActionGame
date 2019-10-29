@@ -289,7 +289,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7f7922760a1fd34da549868525cb32c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  continueScene: {fileID: 2532410288424096882, guid: 04e6225c3eb02154c85b1623afe45970,
+  continueScene: {fileID: 7770766535006915372, guid: f46929e575bc96f499168b42a6ad6169,
     type: 3}
 --- !u!114 &4866397285633822427
 MonoBehaviour:
