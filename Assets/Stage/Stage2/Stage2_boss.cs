@@ -5,8 +5,8 @@ using UnityEngine;
 public class Stage2_boss : MonoBehaviour
 {
     public GameObject enemy;//敵のプレハブを入れる変数
-    public GameObject enemy2;
     int wave;//ウェーブの状態
+    GameObject boss;
     bool isThisBattleEvent;//イベントの箇所の判定
     Vector3 enemyPosition;
     GameObject objBattleEventMaster;
@@ -16,6 +16,8 @@ public class Stage2_boss : MonoBehaviour
 
     private void Start()
     {
+        //transform.SetAsFirstSibling();
+        boss = enemy;
         objBattleEventMaster = transform.parent.gameObject;
         enemyPosition = new Vector3(this.transform.position.x, this.transform.position.y + 3.0f, 0);
         wave = 1;//初期ウェーブは1
@@ -33,7 +35,12 @@ public class Stage2_boss : MonoBehaviour
 
 
         //敵の数がゼロになる度にウェーブが進行する
-        if ((battleEventMaster.GetEnemyCounter() == 0) && isThisBattleEvent)
+        /*if ((battleEventMaster.GetEnemyCounter() == 0) && isThisBattleEvent)
+        {
+            wave += 1;//ウェーブ進行
+            ChangeWave();
+        }*/
+        if (boss == null)
         {
             wave += 1;//ウェーブ進行
             ChangeWave();
@@ -106,7 +113,9 @@ public class Stage2_boss : MonoBehaviour
 
     void SpwanEnemy(GameObject enemy, Vector3 position)
     {
-        Instantiate(enemy, position, Quaternion.identity, objBattleEventMaster.transform);
+        //Instantiate(enemy, position, Quaternion.identity, objBattleEventMaster.transform);
+        Instantiate(enemy, position, Quaternion.identity);
+        boss = GameObject.Find("SkeltonBoss(Clone)");
         battleEventMaster.IncreaseEnemyCounter();
     }
 
