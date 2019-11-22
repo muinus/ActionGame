@@ -95,6 +95,11 @@
     <Compile Include="Assets\Script\Magic\RailBullet.cs" />
     <Compile Include="Assets\Script\Magic\ThrownSword.cs" />
     <Compile Include="Assets\Script\Magic\Water.cs" />
+    <Compile Include="Assets\Script\MovieEvent\MovieEvent5_1.cs" />
+    <Compile Include="Assets\Script\MovieEvent\MovieEventMaster.cs" />
+    <Compile Include="Assets\Script\MovieEvent\PlayableAssetTest.cs" />
+    <Compile Include="Assets\Script\MovieEvent\PlayableBehaviourTest.cs" />
+    <Compile Include="Assets\Script\Player\PlayerAttack.cs" />
     <Compile Include="Assets\Script\Player\PlayerAttackAnime.cs" />
     <Compile Include="Assets\Script\Player\PlayerAttackCollider.cs" />
     <Compile Include="Assets\Script\Player\PlayerAttackProcess.cs" />

@@ -2,52 +2,23 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerAttackAnime : MonoBehaviour
+public class PlayerAttackAnime : PlayerAttack
 {
-    Rigidbody2D rb;
-    Animator animator;
-
-    PlayerController PC;
-    CameraController CC;
-    UIBottun UB_up;
-    UIBottun UB_down;
-    UIBottun UB_left;
-    UIBottun UB_right;
-    UIBottun UB_sword;
-
-
     public GameObject thrownSword;
     public GameObject potion;
 
     CapsuleCollider2D capCol;
     CircleCollider2D cirCol;
     BoxCollider2D boxCol;
-
-    string state;                // プレイヤーの状態管理
-    string prevState;            // 前の状態を保存
     
     bool isComboing;
     bool isAAttack3;
     bool isAttack3;
     bool isHamma;
-    bool isPressed;
-
-    float longPressIntervalTime = 1.0f;//生存時間
-    float pressTime = 0f;
 
     // Start is called before the first frame update
     void Start()
     {
-        this.CC = GameObject.Find("Main Camera").GetComponent<CameraController>();
-        this.PC = GetComponent<PlayerController>();
-        this.rb = GetComponent<Rigidbody2D>();
-        this.animator = GetComponent<Animator>();
-        Transform dodai = GameObject.Find("PlayerUI").transform.Find("dodai");
-        UB_up = dodai.Find("upButton").GetComponent<UIBottun>();
-        UB_down = dodai.Find("downButton").GetComponent<UIBottun>();
-        UB_left = dodai.Find("leftButton").GetComponent<UIBottun>();
-        UB_right = dodai.Find("rightButton").GetComponent<UIBottun>();
-        UB_sword = dodai.Find("SwordButton").GetComponent<UIBottun>();
         capCol = GetComponent<CapsuleCollider2D>();
         cirCol = GetComponent<CircleCollider2D>();
         boxCol = GetComponent<BoxCollider2D>();
@@ -58,16 +29,7 @@ public class PlayerAttackAnime : MonoBehaviour
         isAttack3 = false;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        //Time.timeScale = 0.3f;
-        GetInputKey();          // ① 入力を取得
-        ChangeState();          // ② 状態を変更する
-        ChangeAnimation();      // ③ 状態に応じてアニメーションを変更する
-    }
-
-    void GetInputKey()
+    public override void GetInputKey()
     {
 
         if (Input.GetKey(KeyCode.Z)||UB_sword.GetIsPressed())
@@ -81,7 +43,7 @@ public class PlayerAttackAnime : MonoBehaviour
             pressTime = 0;
     }
 
-    void ChangeState()
+    public override void ChangeState()
     {
 
         // 接地している場合
@@ -236,7 +198,7 @@ public class PlayerAttackAnime : MonoBehaviour
         }
     }
 
-    void ChangeAnimation()
+    public override void ChangeAnimation()
     {
         try
         {

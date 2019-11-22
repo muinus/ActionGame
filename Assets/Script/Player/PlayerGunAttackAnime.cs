@@ -3,65 +3,27 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PlayerGunAttackAnime : MonoBehaviour
+public class PlayerGunAttackAnime : PlayerAttack
 {
-    Rigidbody2D rb;
-    Animator animator;
-
-    PlayerController PC;
-
-    UIBottun UB_up;
-    UIBottun UB_down;
-    UIBottun UB_left;
-    UIBottun UB_right;
-    UIBottun UB_gun;
 
     public GameObject railGun;
     public GameObject bullet;
     public GameObject Fannelbullet;
 
-    string state;                // プレイヤーの状態管理
-    string prevState;            // 前の状態を保存
-
     bool isComboing;
 
     GameObject nearEnemy;
 
-    float longPressIntervalTime = 1.0f;//長押しと判定される時間
-    float pressTime = 0f;
-    bool isPressed;
     bool isreload;
 
     // Start is called before the first frame update
     void Start()
     {
-        Transform dodai = GameObject.Find("PlayerUI").transform.Find("dodai");
-        UB_up = dodai.Find("upButton").GetComponent<UIBottun>();
-        UB_down = dodai.Find("downButton").GetComponent<UIBottun>();
-        UB_left = dodai.Find("leftButton").GetComponent<UIBottun>();
-        UB_right = dodai.Find("rightButton").GetComponent<UIBottun>();
-        UB_gun = dodai.Find("GunButton").GetComponent<UIBottun>();
-        this.PC = GetComponent<PlayerController>();
-        this.rb = GetComponent<Rigidbody2D>();
-        this.animator = GetComponent<Animator>();
         isComboing = false;
-        isPressed = false;
-        isreload = true;//銃ボタン長押しで無限にマシンガンが撃てるのを抑制するフラグ
     }
 
-    // Update is called once per frame
-    void Update()
+    public override void GetInputKey()
     {
-        GetInputKey();          // ① 入力を取得
-        ChangeState();          // ② 状態を変更する
-        ChangeAnimation();      // ③ 状態に応じてアニメーションを変更する
-    }
-
-    void GetInputKey()
-    {
-        //Debug.Log(UB_gun.GetIsPressedDown());
-        //Debug.Log(UB_gun.GetIsPressedUp());
-        //Debug.Log(UB_gun.GetIsPressed());
 
         if (Input.GetKeyUp(KeyCode.X)||UB_gun.GetIsPressedUp())
             isreload = true;
@@ -77,7 +39,7 @@ public class PlayerGunAttackAnime : MonoBehaviour
             pressTime = 0;
     }
 
-    void ChangeState()
+    public override void ChangeState()
     {
         
 
@@ -194,7 +156,7 @@ public class PlayerGunAttackAnime : MonoBehaviour
         }
     }
 
-    void ChangeAnimation()
+    public override void ChangeAnimation()
     {
         try
         {

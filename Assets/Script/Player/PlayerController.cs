@@ -3,16 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-public class PlayerController : MonoBehaviour
+public class PlayerController : PlayerAttack
 {
-    Rigidbody2D rb;
-    Animator animator;
-
-    UIBottun UB_up;
-    UIBottun UB_down;
-    UIBottun UB_left;
-    UIBottun UB_right;
-    UIBottun UB_move;
 
 
     public GameObject driftMagicCircle;
@@ -27,10 +19,7 @@ public class PlayerController : MonoBehaviour
     int drec = 1;                // 左右の管理
     int dJumpCount = 0;
     int aDriftCount = 0;
-
-
-    string state;                // プレイヤーの状態管理
-    string prevState;            // 前の状態を保存
+    
     float stateEffect = 1.0f;       // 状態に応じて横移動速度を変えるための係数
     float MasicEffect = 1.0f;    // スキルにに応じて横移動速度を変えるための係数
 
@@ -43,16 +32,8 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
-        Transform dodai = GameObject.Find("PlayerUI").transform.Find("dodai");
-        UB_up = dodai.Find("upButton").GetComponent<UIBottun>();
-        UB_down = dodai.Find("downButton").GetComponent<UIBottun>();
-        UB_left = dodai.Find("leftButton").GetComponent<UIBottun>();
-        UB_right = dodai.Find("rightButton").GetComponent<UIBottun>();
-        UB_move = dodai.Find("MoveButton").GetComponent<UIBottun>();
         UB_clone = new UIBottun();
-        this.rb = GetComponent<Rigidbody2D>();
         rb.sleepMode=RigidbodySleepMode2D.NeverSleep;
-        this.animator = GetComponent<Animator>();
         animator.SetBool("isGround", true);
     }
 
@@ -66,11 +47,6 @@ public class PlayerController : MonoBehaviour
 
     void GetInputKey()
     {
-
-
-        //Debug.Log(UB_move.GetIsPressedDown());
-        //Debug.Log(UB_move.GetIsPressedUp());
-        //Debug.Log(UB_move.GetIsPressed());
 
         key = 0;
         isDoubleJump = false;

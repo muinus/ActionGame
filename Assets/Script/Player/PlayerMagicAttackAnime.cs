@@ -2,24 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerMagicAttackAnime : MonoBehaviour
+public class PlayerMagicAttackAnime : PlayerAttack
 {
-    Rigidbody2D rb;
-    Animator animator;
-
-    PlayerController PC;
-    CameraController CC;
-    UIBottun UB_up;
-    UIBottun UB_down;
-    UIBottun UB_left;
-    UIBottun UB_right;
-    UIBottun UB_magic;
-
-    string state;                // プレイヤーの状態管理
-    string prevState;            // 前の状態を保存
-
-    
-    
 
     public GameObject fireball;
     public GameObject airFireball;
@@ -28,41 +12,15 @@ public class PlayerMagicAttackAnime : MonoBehaviour
     public GameObject firecircle;
     public GameObject blackhole;
 
-    float longPressIntervalTime = 1.0f;//長押しと判定される時間
-    float pressTime = 0f;
-    bool isPressed;
-    bool isreroad;
-
     // Start is called before the first frame update
     void Start()
     {
-        Transform dodai = GameObject.Find("PlayerUI").transform.Find("dodai");
-        UB_up=dodai.Find("upButton").GetComponent<UIBottun>();
-        UB_down = dodai.Find("downButton").GetComponent<UIBottun>();
-        UB_left = dodai.Find("leftButton").GetComponent<UIBottun>();
-        UB_right = dodai.Find("rightButton").GetComponent<UIBottun>();
-        UB_magic = dodai.Find("MagicButton").GetComponent<UIBottun>();
-        CC = GameObject.Find("Main Camera").GetComponent<CameraController>();
-        PC = GetComponent<PlayerController>();
-        this.rb = GetComponent<Rigidbody2D>();
-        this.animator = GetComponent<Animator>();
-        isPressed = false;
-        isreroad = true;
+
     }
 
-    // Update is called once per frame
-    void Update()
+    public override void GetInputKey()
     {
-        GetInputKey();          // ① 入力を取得
-        ChangeState();          // ② 状態を変更する
-        ChangeAnimation();      // ③ 状態に応じてアニメーションを変更する
-    }
 
-    void GetInputKey()
-    {
-        //Debug.Log(UB_magic.GetIsPressedDown());
-        //Debug.Log(UB_magic.GetIsPressedUp());
-        //Debug.Log(UB_magic.GetIsPressed());
         if (Input.GetKeyDown(KeyCode.C) || UB_magic.GetIsPressedDown())
             isreroad = true;
 
@@ -77,7 +35,7 @@ public class PlayerMagicAttackAnime : MonoBehaviour
             pressTime = 0;
     }
 
-    void ChangeState()
+    public override void ChangeState()
     {
 
         // 接地している場合
@@ -149,7 +107,7 @@ public class PlayerMagicAttackAnime : MonoBehaviour
         }
     }
 
-    void ChangeAnimation()
+    public override void ChangeAnimation()
     {
         try
         {
@@ -231,18 +189,6 @@ public class PlayerMagicAttackAnime : MonoBehaviour
         Instantiate(airwaterMasic, this.transform.position + new Vector3(1.03f * PC.GetDrection(), 0.08f), Quaternion.Euler(0, 90f - PC.GetDrection() * 90f, 0));
         Instantiate(airwaterMasic, this.transform.position + new Vector3(-0.03f * PC.GetDrection(), -1.06f), Quaternion.Euler(0, 90f - PC.GetDrection() * 90f, -90f));
         Instantiate(airwaterMasic, this.transform.position + new Vector3(-0.03f * PC.GetDrection(), 1.06f), Quaternion.Euler(0, 90f - PC.GetDrection() * 90f, 90f));
-    }
-
-    void Tyoson_S()
-    {
-        CC.LockCamera();
-        transform.position += new Vector3(0, 0.5f);
-    }
-
-    void Tyoson_E()
-    {
-        CC.UnLockCamera();
-        transform.position -= new Vector3(0, 0.5f);
     }
 
     void BlackHole()
