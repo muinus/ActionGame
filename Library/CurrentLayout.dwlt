@@ -74,7 +74,7 @@ MonoBehaviour:
   m_MinSize: {x: 202, y: 344}
   m_MaxSize: {x: 4002, y: 8044}
   vertical: 1
-  controlID: 152
+  controlID: 137
 --- !u!114 &4
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -125,7 +125,7 @@ MonoBehaviour:
   m_MinSize: {x: 234, y: 494}
   m_MaxSize: {x: 10004, y: 14044}
   vertical: 1
-  controlID: 118
+  controlID: 75
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -176,7 +176,7 @@ MonoBehaviour:
   m_MinSize: {x: 715, y: 494}
   m_MaxSize: {x: 18010, y: 14044}
   vertical: 0
-  controlID: 150
+  controlID: 73
 --- !u!114 &8
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -294,7 +294,7 @@ MonoBehaviour:
   m_MinSize: {x: 436, y: 494}
   m_MaxSize: {x: 14006, y: 14044}
   vertical: 0
-  controlID: 151
+  controlID: 74
 --- !u!114 &13
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -314,8 +314,8 @@ MonoBehaviour:
     y: 0
     width: 909
     height: 418
-  m_MinSize: {x: 200, y: 200}
-  m_MaxSize: {x: 4000, y: 4000}
+  m_MinSize: {x: 202, y: 222}
+  m_MaxSize: {x: 4002, y: 4022}
   m_ActualView: {fileID: 23}
   m_Panes:
   - {fileID: 22}
@@ -588,7 +588,7 @@ MonoBehaviour:
     m_ShowAllHits: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Script/Player
+    - Assets/Stage/Stage1
   m_ViewMode: 0
   m_StartGridSize: 64
   m_LastFolders:
@@ -601,7 +601,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 85}
     m_SelectedIDs: 482b0000
     m_LastClickedID: 11080
-    m_ExpandedIDs: 00000000dc2a0000382c00005a2d0000f42e00001a2f000012300000d030000034330000b0330000163400003834000076340000ae340000fc3400005e370000a0390000343a0000fa3a0000663b0000c03c0000b63f00005c40000082400000cc40000032410000984100004a420000be430000ca430000fa4c0000fc4c0000fe4c0000004d0000024d0000044d0000
+    m_ExpandedIDs: 00000000de2a00003a2c00005c2d0000f62e00001c2f000014300000d230000034330000b0330000163400003834000076340000ae340000fc3400005e370000a0390000343a0000fa3a0000663b0000c03c0000663d0000b63f00005c40000082400000cc40000032410000984100004a420000be430000ca430000bc460000be460000c0460000c2460000c4460000c6460000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -626,24 +626,24 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
   m_AssetTreeState:
-    scrollPos: {x: 0, y: 900}
+    scrollPos: {x: 0, y: 1028}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: ffffffff00000000dc2a0000382c00005a2d0000f42e00001a2f000012300000d030000034330000b0330000163400003834000076340000ae340000fc3400005e370000a0390000343a0000fa3a0000663b0000c03c0000b63f00005c40000082400000cc40000032410000984100004a420000be430000ca430000fa4c0000fc4c0000fe4c0000004d0000024d0000044d0000
+    m_ExpandedIDs: ffffffff00000000de2a00003a2c00005c2d0000f62e00001c2f000014300000d230000034330000b0330000163400003834000076340000ae340000fc3400005e370000a0390000343a0000fa3a0000663b0000c03c0000663d0000b63f00005c40000082400000cc40000032410000984100004a420000be430000ca430000bc460000be460000c0460000c2460000c4460000c6460000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
-      m_Name: PlayerController
-      m_OriginalName: PlayerController
+      m_Name: 
+      m_OriginalName: 
       m_EditFieldRect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 0
         height: 0
-      m_UserData: 10492
+      m_UserData: 0
       m_IsWaitingForDelay: 0
       m_IsRenaming: 0
-      m_OriginalEventType: 0
+      m_OriginalEventType: 11
       m_IsRenamingFilename: 1
       m_ClientGUIView: {fileID: 6}
     m_SearchString: 
@@ -748,10 +748,10 @@ MonoBehaviour:
   m_ViewDataDictionary: {fileID: 0}
   m_SceneHierarchy:
     m_TreeViewState:
-      scrollPos: {x: 0, y: 19}
-      m_SelectedIDs: b4f9ffff
+      scrollPos: {x: 0, y: 0}
+      m_SelectedIDs: 
       m_LastClickedID: 0
-      m_ExpandedIDs: 8efbffff3c4700004c470000
+      m_ExpandedIDs: 8efbffff
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
