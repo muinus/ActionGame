@@ -28654,6 +28654,7 @@ MonoBehaviour:
   animator: {fileID: 0}
   PC: {fileID: 0}
   CC: {fileID: 0}
+  MEM: {fileID: 0}
   UB_up: {fileID: 0}
   UB_down: {fileID: 0}
   UB_left: {fileID: 0}
@@ -28667,6 +28668,7 @@ MonoBehaviour:
   longPressIntervalTime: 1
   pressTime: 0
   isPressed: 0
+  isreroad: 0
 --- !u!1 &755453991
 GameObject:
   m_ObjectHideFlags: 0
@@ -33468,7 +33470,7 @@ PrefabInstance:
     - target: {fileID: 2899392107642103650, guid: b8f64aa05b1ac5e4a8422b24433fd336,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b8f64aa05b1ac5e4a8422b24433fd336, type: 3}
@@ -33668,6 +33670,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4611926739864659674, guid: 33bd1ff5a4063524c94d23253d592491,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4611926738505587869, guid: 33bd1ff5a4063524c94d23253d592491,
         type: 3}
       propertyPath: m_Interactable
@@ -33694,11 +33701,6 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4611926738700528218, guid: 33bd1ff5a4063524c94d23253d592491,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4611926739864659674, guid: 33bd1ff5a4063524c94d23253d592491,
         type: 3}
       propertyPath: m_Enabled
       value: 0
@@ -33908,11 +33910,6 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 8413837404813129425, guid: 28b65de62b8d3134d80669466e2c6bed,
         type: 3}
-    - target: {fileID: 4866397286069082441, guid: a93f28a55ac67ab419a62e1e60440edb,
-        type: 3}
-      propertyPath: m_TagString
-      value: GameController
-      objectReference: {fileID: 0}
     - target: {fileID: 4866397284731236283, guid: a93f28a55ac67ab419a62e1e60440edb,
         type: 3}
       propertyPath: m_Offset.x
@@ -33932,6 +33929,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Size.y
       value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4866397286069082441, guid: a93f28a55ac67ab419a62e1e60440edb,
+        type: 3}
+      propertyPath: m_TagString
+      value: GameController
       objectReference: {fileID: 0}
     - target: {fileID: 4866397286069082444, guid: a93f28a55ac67ab419a62e1e60440edb,
         type: 3}

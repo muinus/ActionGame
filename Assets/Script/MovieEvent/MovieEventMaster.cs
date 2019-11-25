@@ -10,6 +10,12 @@ public class MovieEventMaster : MonoBehaviour
     void Start()
     {
         isMovieEvent = false;
+        Debug.Log(isMovieEvent);
+    }
+
+    private void Update()
+    {
+        Debug.Log(GetIsMovieEvent());
     }
 
     public bool GetIsMovieEvent()
@@ -19,6 +25,7 @@ public class MovieEventMaster : MonoBehaviour
 
     public void SetIsMovieEvent(bool isMovieEvent)
     {
+        
         this.isMovieEvent = isMovieEvent;
     }
 }

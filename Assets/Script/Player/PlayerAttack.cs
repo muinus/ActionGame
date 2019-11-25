@@ -9,6 +9,8 @@ public class PlayerAttack : MonoBehaviour
 
     public PlayerController PC;
     public CameraController CC;
+    public MovieEventMaster MEM;
+
     public UIBottun UB_up;
     public UIBottun UB_down;
     public UIBottun UB_left;
@@ -31,6 +33,7 @@ public class PlayerAttack : MonoBehaviour
     {
         CC = GameObject.Find("Main Camera").GetComponent<CameraController>();
         PC = GetComponent<PlayerController>();
+        MEM= GameObject.Find("MovieEventMaster").GetComponent<MovieEventMaster>();
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         Transform dodai = GameObject.Find("PlayerUI").transform.Find("dodai");
@@ -49,6 +52,9 @@ public class PlayerAttack : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (MEM.GetIsMovieEvent())
+            return;
+
         GetInputKey();          // ① 入力を取得
         ChangeState();          // ② 状態を変更する
         ChangeAnimation();      // ③ 状態に応じてアニメーションを変更する

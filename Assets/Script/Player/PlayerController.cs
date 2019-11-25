@@ -39,13 +39,17 @@ public class PlayerController : PlayerAttack
 
     void Update()
     {
+        
+        if (MEM.GetIsMovieEvent())
+            return;
+
         GetInputKey();          // ① 入力を取得
         ChangeState();          // ② 状態を変更する
         ChangeAnimation();      // ③ 状態に応じてアニメーションを変更する
         Move();                 // ④ 入力に応じて移動する
     }
 
-    void GetInputKey()
+    public override void GetInputKey()
     {
 
         key = 0;
@@ -115,7 +119,7 @@ public class PlayerController : PlayerAttack
 
     }
 
-    void ChangeState()
+    public override void ChangeState()
     {
         // 空中にいるかどうかの判定。上下の速度(rigidbody.velocity)が一定の値を超えている場合、空中とみなす
         if (Mathf.Abs(rb.velocity.y) > jumpThreshold)
@@ -191,7 +195,7 @@ public class PlayerController : PlayerAttack
         }
     }
 
-    void ChangeAnimation()
+    public override void ChangeAnimation()
     {
         try
         {
