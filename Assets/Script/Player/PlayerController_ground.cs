@@ -30,7 +30,6 @@ public class PlayerController_ground : MonoBehaviour
         {
             if (!animator.GetBool("isGround"))
             {
-                Debug.Log(col.name);
                 animator.SetBool("isGround", true);
             }
         }

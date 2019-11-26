@@ -50,7 +50,7 @@ public class MahoujinIcon : MonoBehaviour
             }
         }
         //yousei
-        else if ((UB_summon.GetIsPressedDown() || Input.GetKeyDown(KeyCode.V)&&(UB_down.GetIsPressed()||Input.GetKey(KeyCode.DownArrow))&& SkillLearned.GetSkillActive("SummonYosei") ))
+        else if ((UB_summon.GetIsPressedDown() || Input.GetKeyDown(KeyCode.V))&&(UB_down.GetIsPressed()||Input.GetKey(KeyCode.DownArrow))&& SkillLearned.GetSkillActive("SummonYosei"))
         {
             if (judge[1])
             {
@@ -59,7 +59,7 @@ public class MahoujinIcon : MonoBehaviour
                 StartCoroutine("TukaimaCT", 1);
             }
         }
-        else if ((UB_summon.GetIsPressedDown() || Input.GetKeyDown(KeyCode.V)&&(UB_right.GetIsPressed()|| UB_left.GetIsPressed()||Input.GetKey(KeyCode.RightArrow)||Input.GetKey(KeyCode.LeftArrow)) && judge[2]  && SkillLearned.GetSkillActive("SummonSaboten") ))
+        else if ((UB_summon.GetIsPressedDown() || Input.GetKeyDown(KeyCode.V))&&(UB_right.GetIsPressed()|| UB_left.GetIsPressed()||Input.GetKey(KeyCode.RightArrow)||Input.GetKey(KeyCode.LeftArrow)) && judge[2]  && SkillLearned.GetSkillActive("SummonSaboten") )
         {
             if (judge[2])
             {
@@ -68,7 +68,7 @@ public class MahoujinIcon : MonoBehaviour
                 StartCoroutine("TukaimaCT", 2);
             }
         }
-        else if ((UB_summon.GetIsPressedDown() || Input.GetKeyDown(KeyCode.V)&&judge[3] && SkillLearned.GetSkillActive("SummonOokami")))
+        else if ((UB_summon.GetIsPressedDown() || Input.GetKeyDown(KeyCode.V))&&judge[3] && SkillLearned.GetSkillActive("SummonOokami"))
         {
             if (judge[3])
             {

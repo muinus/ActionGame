@@ -108,6 +108,7 @@
     <Compile Include="Assets\Script\Player\PlayerController_ground.cs" />
     <Compile Include="Assets\Script\Player\PlayerGunAttackAnime.cs" />
     <Compile Include="Assets\Script\Player\PlayerMagicAttackAnime.cs" />
+    <Compile Include="Assets\Script\System\AllStageClear.cs" />
     <Compile Include="Assets\Script\System\BattleEvent.cs" />
     <Compile Include="Assets\Script\System\BattleEventMaster.cs" />
     <Compile Include="Assets\Script\System\ButtonSelected.cs" />
