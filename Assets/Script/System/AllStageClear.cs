@@ -8,6 +8,7 @@ public class AllStageClear : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
+            Time.timeScale = 0;
             GameObject.Find("PlayerUI").transform.Find("Warning").gameObject.SetActive(true);
         }
     }
