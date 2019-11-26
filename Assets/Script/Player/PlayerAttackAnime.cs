@@ -31,6 +31,8 @@ public class PlayerAttackAnime : PlayerAttack
 
     public override void GetInputKey()
     {
+        Debug.Log(UB_sword.GetIsPressedDown());
+        Debug.Log(UB_sword.GetIsPressed());
 
         if (Input.GetKey(KeyCode.Z)||UB_sword.GetIsPressed())
             isPressed = true;

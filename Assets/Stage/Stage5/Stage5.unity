@@ -30959,11 +30959,11 @@ RectTransform:
   - {fileID: 1938176839}
   - {fileID: 1374517963}
   m_Father: {fileID: 1903467162}
-  m_RootOrder: 0
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.0000076293945, y: 0}
+  m_AnchoredPosition: {x: -0, y: 0}
   m_SizeDelta: {x: 500, y: 200}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1468240185
@@ -31513,7 +31513,7 @@ GameObject:
   - component: {fileID: 1688321643}
   - component: {fileID: 1688321642}
   - component: {fileID: 1688321641}
-  m_Layer: 5
+  m_Layer: 2
   m_Name: Sheder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -31532,7 +31532,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1903467162}
-  m_RootOrder: 3
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -32286,10 +32286,10 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
-  - {fileID: 1468240184}
+  - {fileID: 1688321640}
   - {fileID: 134448052}
   - {fileID: 1333884289}
-  - {fileID: 1688321640}
+  - {fileID: 1468240184}
   m_Father: {fileID: 0}
   m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -33714,11 +33714,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 4866397285633822424, guid: a93f28a55ac67ab419a62e1e60440edb,
-        type: 3}
-      propertyPath: m_Name
-      value: Player
-      objectReference: {fileID: 0}
     - target: {fileID: 4866397285633822402, guid: a93f28a55ac67ab419a62e1e60440edb,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -33773,6 +33768,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4866397285633822424, guid: a93f28a55ac67ab419a62e1e60440edb,
+        type: 3}
+      propertyPath: m_Name
+      value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 4866397285633822401, guid: a93f28a55ac67ab419a62e1e60440edb,
         type: 3}
@@ -33910,6 +33910,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 8413837404813129425, guid: 28b65de62b8d3134d80669466e2c6bed,
         type: 3}
+    - target: {fileID: 4866397286069082441, guid: a93f28a55ac67ab419a62e1e60440edb,
+        type: 3}
+      propertyPath: m_TagString
+      value: GameController
+      objectReference: {fileID: 0}
     - target: {fileID: 4866397284731236283, guid: a93f28a55ac67ab419a62e1e60440edb,
         type: 3}
       propertyPath: m_Offset.x
@@ -33929,11 +33934,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Size.y
       value: 0.4
-      objectReference: {fileID: 0}
-    - target: {fileID: 4866397286069082441, guid: a93f28a55ac67ab419a62e1e60440edb,
-        type: 3}
-      propertyPath: m_TagString
-      value: GameController
       objectReference: {fileID: 0}
     - target: {fileID: 4866397286069082444, guid: a93f28a55ac67ab419a62e1e60440edb,
         type: 3}
@@ -34094,6 +34094,11 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 2.925
       objectReference: {fileID: 0}
+    - target: {fileID: 4968495278120479261, guid: dee77e4be83962f458a24c69229f2421,
+        type: 3}
+      propertyPath: m_IgnoreReversedGraphics
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4968495278272641615, guid: dee77e4be83962f458a24c69229f2421,
         type: 3}
       propertyPath: m_AnchorMin.x
@@ -34128,11 +34133,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchorMin.x
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4968495278120479261, guid: dee77e4be83962f458a24c69229f2421,
-        type: 3}
-      propertyPath: m_IgnoreReversedGraphics
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dee77e4be83962f458a24c69229f2421, type: 3}

@@ -24,14 +24,12 @@ public class UIBottun : MonoBehaviour
     // Update is called once per frame
     public void PointerDown()
     {
-        //Debug.Log(gameObject.name+"Down");
         ispressed = true;
         ispressedDown=true;
     }
 
     public void PointerUP()
     {
-        //Debug.Log(gameObject.name + "Up");
         ispressed = false;
         ispressedUp=true;
     }

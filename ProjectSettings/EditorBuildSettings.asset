@@ -11,9 +11,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Stage/SkillsLearned.unity
     guid: a16f1036f1abcf142af9c5bf3e619c81
-  - enabled: 1
-    path: Assets/Stage/Stage1/Stage1.unity
-    guid: d8aa2393a4b7db1438c5156424a7d7c0
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
   - enabled: 1
     path: Assets/Stage/Stage2/Stage2.unity
     guid: 7e3ecfae0096aff4ba57d68fcbc89bfc

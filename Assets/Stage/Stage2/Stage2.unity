@@ -585,7 +585,7 @@ GameObject:
   m_Component:
   - component: {fileID: 50156077}
   - component: {fileID: 50156076}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: colider13
   m_TagString: Ground
   m_Icon: {fileID: 0}
@@ -642,7 +642,7 @@ GameObject:
   m_Component:
   - component: {fileID: 59960536}
   - component: {fileID: 59960535}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: colider9
   m_TagString: Ground
   m_Icon: {fileID: 0}
@@ -699,7 +699,7 @@ GameObject:
   m_Component:
   - component: {fileID: 60007198}
   - component: {fileID: 60007197}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: colider20
   m_TagString: Ground
   m_Icon: {fileID: 0}
@@ -756,7 +756,7 @@ GameObject:
   m_Component:
   - component: {fileID: 83551007}
   - component: {fileID: 83551006}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: colider4
   m_TagString: Ground
   m_Icon: {fileID: 0}
@@ -813,7 +813,7 @@ GameObject:
   m_Component:
   - component: {fileID: 97806402}
   - component: {fileID: 97806401}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: colider7
   m_TagString: Ground
   m_Icon: {fileID: 0}
@@ -954,7 +954,7 @@ GameObject:
   m_Component:
   - component: {fileID: 142094887}
   - component: {fileID: 142094886}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: colider15
   m_TagString: Ground
   m_Icon: {fileID: 0}
@@ -1134,7 +1134,7 @@ GameObject:
   m_Component:
   - component: {fileID: 202892671}
   - component: {fileID: 202892670}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: colider3
   m_TagString: Ground
   m_Icon: {fileID: 0}
@@ -1753,7 +1753,7 @@ GameObject:
   m_Component:
   - component: {fileID: 358517387}
   - component: {fileID: 358517386}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: colider5
   m_TagString: Ground
   m_Icon: {fileID: 0}
@@ -2774,7 +2774,7 @@ GameObject:
   m_Component:
   - component: {fileID: 524155304}
   - component: {fileID: 524155303}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: colider18
   m_TagString: Ground
   m_Icon: {fileID: 0}
@@ -2984,7 +2984,7 @@ GameObject:
   m_Component:
   - component: {fileID: 590286410}
   - component: {fileID: 590286409}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: colider12
   m_TagString: Ground
   m_Icon: {fileID: 0}
@@ -3333,7 +3333,7 @@ GameObject:
   m_Component:
   - component: {fileID: 780448864}
   - component: {fileID: 780448863}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: colider24 (2)
   m_TagString: Ground
   m_Icon: {fileID: 0}
@@ -3469,7 +3469,7 @@ GameObject:
   m_Component:
   - component: {fileID: 785072137}
   - component: {fileID: 785072136}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: colider21
   m_TagString: Ground
   m_Icon: {fileID: 0}
@@ -3656,7 +3656,7 @@ GameObject:
   m_Component:
   - component: {fileID: 807284629}
   - component: {fileID: 807284628}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: colider2
   m_TagString: Ground
   m_Icon: {fileID: 0}
@@ -4006,7 +4006,7 @@ GameObject:
   m_Component:
   - component: {fileID: 838213388}
   - component: {fileID: 838213387}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: colider17
   m_TagString: Ground
   m_Icon: {fileID: 0}
@@ -4232,7 +4232,7 @@ GameObject:
   m_Component:
   - component: {fileID: 924415802}
   - component: {fileID: 924415801}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: colider23
   m_TagString: Ground
   m_Icon: {fileID: 0}
@@ -4289,7 +4289,7 @@ GameObject:
   m_Component:
   - component: {fileID: 942709245}
   - component: {fileID: 942709244}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: colider16
   m_TagString: Ground
   m_Icon: {fileID: 0}
@@ -4346,7 +4346,7 @@ GameObject:
   m_Component:
   - component: {fileID: 945743358}
   - component: {fileID: 945743357}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: colider19
   m_TagString: Ground
   m_Icon: {fileID: 0}
@@ -4400,20 +4400,15 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 4866397285633822424, guid: a93f28a55ac67ab419a62e1e60440edb,
-        type: 3}
-      propertyPath: m_Name
-      value: Player
-      objectReference: {fileID: 0}
     - target: {fileID: 4866397285633822402, guid: a93f28a55ac67ab419a62e1e60440edb,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 235.98
+      value: -3.83
       objectReference: {fileID: 0}
     - target: {fileID: 4866397285633822402, guid: a93f28a55ac67ab419a62e1e60440edb,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 12.9
+      value: -8.529
       objectReference: {fileID: 0}
     - target: {fileID: 4866397285633822402, guid: a93f28a55ac67ab419a62e1e60440edb,
         type: 3}
@@ -4460,11 +4455,32 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4866397285633822424, guid: a93f28a55ac67ab419a62e1e60440edb,
+        type: 3}
+      propertyPath: m_Name
+      value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 4866397285633822401, guid: a93f28a55ac67ab419a62e1e60440edb,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 59314c2695a0a7a4c8729198bc958554,
+        type: 3}
+    - target: {fileID: 4866397285633822401, guid: a93f28a55ac67ab419a62e1e60440edb,
+        type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4866397285633822400, guid: a93f28a55ac67ab419a62e1e60440edb,
         type: 3}
       propertyPath: m_Simulated
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4866397285633822426, guid: a93f28a55ac67ab419a62e1e60440edb,
+        type: 3}
+      propertyPath: continueScene
+      value: 
+      objectReference: {fileID: 852467059}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a93f28a55ac67ab419a62e1e60440edb, type: 3}
 --- !u!1 &977800895
@@ -43858,7 +43874,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1223243084}
   - component: {fileID: 1223243083}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: colider10
   m_TagString: Ground
   m_Icon: {fileID: 0}
@@ -43999,7 +44015,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1268296590}
   - component: {fileID: 1268296589}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: colider24 (5)
   m_TagString: Ground
   m_Icon: {fileID: 0}
@@ -44173,7 +44189,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1385666105}
   - component: {fileID: 1385666104}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: colider22
   m_TagString: Ground
   m_Icon: {fileID: 0}
@@ -44300,7 +44316,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1484037920}
   - component: {fileID: 1484037919}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: colider6
   m_TagString: Ground
   m_Icon: {fileID: 0}
@@ -45008,7 +45024,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1677007227}
   - component: {fileID: 1677007226}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: colider1
   m_TagString: Ground
   m_Icon: {fileID: 0}
@@ -45065,7 +45081,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1699878684}
   - component: {fileID: 1699878683}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: colider24 (4)
   m_TagString: Ground
   m_Icon: {fileID: 0}
@@ -45122,7 +45138,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1728628954}
   - component: {fileID: 1728628953}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: colider24 (6)
   m_TagString: Ground
   m_Icon: {fileID: 0}
@@ -45433,7 +45449,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1752474930}
   - component: {fileID: 1752474929}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: colider8
   m_TagString: Ground
   m_Icon: {fileID: 0}
@@ -45600,7 +45616,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1838395907}
   - component: {fileID: 1838395906}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: colider11
   m_TagString: Ground
   m_Icon: {fileID: 0}
@@ -45815,7 +45831,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1880180838}
   - component: {fileID: 1880180837}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: colider24 (1)
   m_TagString: Ground
   m_Icon: {fileID: 0}
@@ -46020,6 +46036,49 @@ Transform:
   m_Father: {fileID: 1302311030}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1953013659
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1953013661}
+  - component: {fileID: 1953013660}
+  m_Layer: 0
+  m_Name: MovieEventMaster
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1953013660
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1953013659}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ddf6a58ed498274096dbe330116eaa6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &1953013661
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1953013659}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 660.1032, y: 302.2528, z: -194.13557}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 29
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1958618978
 GameObject:
   m_ObjectHideFlags: 0
@@ -46153,7 +46212,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1975667254}
   - component: {fileID: 1975667253}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: colider24 (3)
   m_TagString: Ground
   m_Icon: {fileID: 0}
@@ -46210,7 +46269,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2030751876}
   - component: {fileID: 2030751875}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: colider14
   m_TagString: Ground
   m_Icon: {fileID: 0}
@@ -64646,7 +64705,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2092409983}
   - component: {fileID: 2092409982}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: colider24
   m_TagString: Ground
   m_Icon: {fileID: 0}
